@@ -1,0 +1,3 @@
+[submodule "PipelineVis"]
+	path = PipelineVis
+	url = git@github.com:serval-uni-lu/PipelineVis.git

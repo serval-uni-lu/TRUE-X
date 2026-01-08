@@ -1,0 +1,19 @@
+services:
+  true-x:
+    image: true-x:latest
+    container_name: true-x
+    restart: always
+    volumes:
+      - ./streamlit_config.toml:/app/.streamlit/config.toml:ro
+      - ./PipelineVis:/app/PipelineVis:rw
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.true-x.rule=Host(`demo.serval.uni.lux`) && PathPrefix(`/true-x`)"
+      - "traefik.http.routers.true-x.entrypoints=web"
+      - "traefik.http.services.true-x.loadbalancer.server.port=8501"
+    networks:
+      - demo-internal
+
+networks:
+  demo-internal:
+    external: true
