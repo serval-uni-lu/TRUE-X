@@ -79,17 +79,19 @@ def create_pipeline_for_row(steps, scores, problem):
     }
 
 
-def create_pipelines_from_csv(filepath, metric_column, primitive_columns, metric_scores, dataset="", models=[], explainers=[]):
+def create_pipelines_from_csv(filepath, metric_column, primitive_columns, metric_scores, dataset="", models=[], explainers=[], selected_metrics=[]):
     df = pd.read_csv(filepath)
     df = df[df['Dataset'] == dataset]
     df = df[df['Explainer'].isin(explainers)]
     df = df[df['Model'].isin(models)]
+    df = df[df['Metric'].isin(selected_metrics)]
     pipelines = {}
     min_max = {}
     for _, row in df.iterrows():
         pipeline_key = ""
         steps = []
-        metric, problem = row[metric_column].split(' (')
+        metric = row[metric_column]
+        problem = 'classification' if row[metric_column] == 'Accuracy' else 'regression'
         for i in range(len(primitive_columns)):
             manual_primitive_types[f"{primitive_columns[i]}.{row[primitive_columns[i]]}"] = primitive_columns[i]
             pipeline_key += row[primitive_columns[i]] + ' '
@@ -117,5 +119,11 @@ def create_pipelines_from_csv(filepath, metric_column, primitive_columns, metric
     for pipeline in pipelines.values():
         for score in pipeline['scores']:
             m = score['metric']['metric']
-            score['normalized'] = 0.0 if (min_max[m]['max'] - min_max[m]['min']) == 0.0 else (score['value'] - min_max[m]['min']) / (min_max[m]['max'] - min_max[m]['min'])
+            score['normalized'] = round(0.0 if (min_max[m]['max'] - min_max[m]['min']) == 0.0 else (score['value'] - min_max[m]['min']) / (min_max[m]['max'] - min_max[m]['min']), 4)
+            if score['normalized'] < 0.0:
+                print(pipeline)
+                print(score)
+                print(min_max[m])
+
+
     return pipelines, manual_primitive_types
