@@ -2,10 +2,12 @@ import streamlit as st
 import pandas as pd
 from PipelineProfiler import get_pipeline_profiler_html
 from export_profiler import create_pipelines_from_csv
+from plots import generate_tradeoff_figures_with_pareto, generate_topk_plots_auto, fig_to_plotly_dict
 import streamlit.components.v1 as components
 from sklearn import set_config
 
 import numpy as np
+
 
 
 ranks = "ranks_per_block_with_performance.csv"
@@ -99,8 +101,14 @@ if selected_performance and selected_models and selected_xai and all(selected_me
                                                         selected_metrics=[m for group_metrics in selected_metrics.values() for m in group_metrics] + selected_performance)
 
 
-    html_text = get_pipeline_profiler_html(list(pipelines.values()), manual_primitive_types=manual_primitive_types)
-
+    
+    df_rank_filtered = df_rank[
+        (df_rank['Model'].isin(selected_models)) &
+        (df_rank['Explainer'].isin(selected_xai)) &
+        (df_rank['Metric'].isin([m for group_metrics in selected_metrics.values() for m in group_metrics] + selected_performance))  
+    ]
+    
+    
 
     st.header("AHP-Based Metric Importance (pairwise comparisons)")
 
@@ -146,6 +154,8 @@ if selected_performance and selected_models and selected_xai and all(selected_me
     for crit, w in zip(criteria, weights_percent):
         st.write(f"{crit}: {w:.2f}%")
 
+    coef = {'P': weights_percent[0], 'T': weights_percent[1]} 
+
 
     st.subheader("Trustworthiness Criteria Comparisons")
 
@@ -170,7 +180,11 @@ if selected_performance and selected_models and selected_xai and all(selected_me
     normalized = matrix / col_sum
     weights = normalized.mean(axis=1)
     weights_percent = (weights / weights.sum()) * 100
-
+    
+    coef['F'] = weights_percent[0]
+    coef['R'] = weights_percent[1]
+    coef['C'] = weights_percent[2]
+    
     criteria = ["Faithfulness", "Robustness", "Complexity"]
 
     # Consistency check (optional)
@@ -191,22 +205,32 @@ if selected_performance and selected_models and selected_xai and all(selected_me
 
         if st.button("Launch Analysis"):
             st.info("Running analysis with selected configuration...")
-            tab1, tab2, tab3 = st.tabs(["Combination Comparison", "Alternative View 1", "Alternative View 2"])
+            tab1, tab2, tab3 = st.tabs(["Combination Comparison", "Trustworthiness Trade-offs", "Performance and Trustworthiness"])
             
             with tab1:
                 st.write("### Combination comparison")
+                html_text = get_pipeline_profiler_html(list(pipelines.values()), coef, manual_primitive_types=manual_primitive_types)
                 set_config(display="html")
                 components.html(html_text, width=1600, height=2000, scrolling=True)
             
             with tab2:
-                st.write("### Alternative Visualization 1")
-                # Add your alternative visualization here
-                st.info("Alternative view to be implemented")
+                st.write("### Trustworthiness Trade-offs")
+                tradeoff_figs = generate_tradeoff_figures_with_pareto(df_rank_filtered, coef)
+                for tradeoff_fig in tradeoff_figs:
+                    st.plotly_chart(tradeoff_fig)
             
             with tab3:
-                st.write("### Alternative Visualization 2")
-                # Add your alternative visualization here
-                st.info("Alternative view to be implemented")
+                st.write("### Performance and Trustworthiness")
+                @st.fragment
+                def show_topk_plots():
+                    k = st.slider("Select top K experiments", 
+                                min_value=1,
+                                max_value=10, 
+                                value=3)
+                    topk_figs = generate_topk_plots_auto(df_rank_filtered, coef, k)
+                    for fig in topk_figs:
+                        st.plotly_chart(fig)
+                show_topk_plots()
     else:
         st.warning("Consistency is poor. Please review your comparisons.")
 
