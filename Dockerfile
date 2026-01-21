@@ -14,17 +14,19 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy Python files
-COPY frontend.py export_profiler.py ranks_per_block.csv requirements.txt ./
+COPY frontend.py export_profiler.py plots.py ranks_per_block_with_performance.csv requirements.txt ./
+
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the npm submodule
-COPY PipelineVis ./PipelineVis
+COPY PipelineVis/ ./PipelineVis
 
 # Build the npm project
 WORKDIR /app/PipelineVis/PipelineProfiler
-RUN npm install && npm run build
+RUN npm install --legacy-peer-deps -no-audit --no-fund regenerator-runtime core-js
+RUN npm run build --legacy-peer-deps
 
 WORKDIR /app/PipelineVis/
 
