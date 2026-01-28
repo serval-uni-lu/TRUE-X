@@ -302,23 +302,31 @@ def generate_topk_radar_plots(
     axes = [DIM_TO_AXIS[d][0] for d in active_dims]
     cols = [DIM_TO_AXIS[d][1] for d in active_dims]
 
-    figs: List[go.Figure] = []
+    fig = go.Figure()
+    theta = axes + [axes[0]]
+    
     for _, row in topk.iterrows():
         model = str(row[model_col])
         expl = str(row[explainer_col])
-
+        
         values = [float(row[c]) if pd.notna(row[c]) else 0.0 for c in cols]
-        theta = axes + [axes[0]]
         rvals = values + [values[0]]
-
-        fig = go.Figure()
-        fig.add_trace(go.Scatterpolar(r=rvals, theta=theta, fill="toself"))
-        fig.update_layout(
-            title=f"{model} / {expl}",
-            polar=dict(radialaxis=dict(visible=True, range=[0, 1])),
-            showlegend=False,
+        
+        fig.add_trace(
+            go.Scatterpolar(
+                r=rvals,
+                theta=theta,
+                fill="toself",
+                name=f"{model} / {expl}",
+            )
         )
-        figs.append(fig)
+    
+    fig.update_layout(
+        title="Top-k Models/Explainers Radar",
+        polar=dict(radialaxis=dict(visible=True, range=[0, 1])),
+        showlegend=True,
+    )
+    figs = [fig]
     return figs
 
 
