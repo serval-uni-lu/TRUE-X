@@ -19,7 +19,15 @@ This repo provides a DEMO of the TRUE-X decision support tool, more details, and
    cd TRUE-X
    ```
 
-2. **Install Python dependencies**
+2. **Initialize and sync the git submodule**
+   ```bash
+   git submodule init
+   git submodule update --recursive
+   ```
+
+   This will pull the PipelineVis submodule which is required for the application.
+
+3. **Install Python dependencies**
    ```bash
    pip install -r requirements.txt
    ```
