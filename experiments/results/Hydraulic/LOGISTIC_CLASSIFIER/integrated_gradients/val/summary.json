@@ -1,0 +1,27 @@
+{
+  "dataset": "Hydraulic",
+  "model": "LOGISTIC_CLASSIFIER",
+  "explainer": "integrated_gradients",
+  "split": "val",
+  "n_explained": 145,
+  "metric_means": {
+    "Average Sensitivity (Classif)": 6.155792284756005,
+    "Continuity (Classif)": 0.532959099045927,
+    "Faithfulness Correlation (Classif)": 0.02046568794810516,
+    "Pixel Flipping (Classif)": 0.04874498436819975,
+    "Sparseness (Classif, Elem)": 0.6062382576630709,
+    "Complexity (Classif, Elem)": 0.8922238744792979,
+    "Sparseness (Classif, Chan)": 0.3869791504725475,
+    "Complexity (Classif, Chan)": 0.8737161398981825
+  },
+  "metric_stds": {
+    "Average Sensitivity (Classif)": 1.3238632154469618,
+    "Continuity (Classif)": 0.06022463870839312,
+    "Faithfulness Correlation (Classif)": 0.18267108121290188,
+    "Pixel Flipping (Classif)": 0.025925417359273242,
+    "Sparseness (Classif, Elem)": 0.04030162696557751,
+    "Complexity (Classif, Elem)": 0.018850012234954264,
+    "Sparseness (Classif, Chan)": 0.07626491162070709,
+    "Complexity (Classif, Chan)": 0.04225955577992273
+  }
+}

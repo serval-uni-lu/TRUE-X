@@ -1,0 +1,27 @@
+{
+  "dataset": "Hydraulic",
+  "model": "RESNET",
+  "explainer": "gradientshap",
+  "split": "val",
+  "n_explained": 145,
+  "metric_means": {
+    "Average Sensitivity (Classif)": 91.16288417343247,
+    "Continuity (Classif)": 0.5965235563246432,
+    "Faithfulness Correlation (Classif)": 0.1367592207496612,
+    "Pixel Flipping (Classif)": 0.020268293606520552,
+    "Sparseness (Classif, Elem)": 0.6274001939115302,
+    "Complexity (Classif, Elem)": 0.8776490819394478,
+    "Sparseness (Classif, Chan)": 0.40520344036107847,
+    "Complexity (Classif, Chan)": 0.8619674947683378
+  },
+  "metric_stds": {
+    "Average Sensitivity (Classif)": 48.456920686215206,
+    "Continuity (Classif)": 0.1652324397611405,
+    "Faithfulness Correlation (Classif)": 0.36596387142487136,
+    "Pixel Flipping (Classif)": 0.01936880347885656,
+    "Sparseness (Classif, Elem)": 0.07041257328688963,
+    "Complexity (Classif, Elem)": 0.030950360814883587,
+    "Sparseness (Classif, Chan)": 0.10000518161842761,
+    "Complexity (Classif, Chan)": 0.06467356273951108
+  }
+}

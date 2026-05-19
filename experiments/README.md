@@ -32,7 +32,8 @@ pip install shap lime   # required for DeepSHAP and LIME
 
 ### 2. Prepare the data
 
-Place the Hydraulic dataset under `experiments/data/hydraulic_systems/`.
+The Hydraulic condition monitoring dataset is publicly available on the UCI Machine Learning Repository (Helwig et al., 2015 — "Condition monitoring of hydraulic systems").
+Download it and place the raw `.txt` files under `experiments/data/hydraulic_systems/`.
 
 ### 3. Train a model *(optional — pre-trained weights are included)*
 

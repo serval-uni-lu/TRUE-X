@@ -1,0 +1,21 @@
+{
+  "dataset": "Hydraulic",
+  "model": "RESNET",
+  "direction": "maximize",
+  "source": "csv",
+  "params": {
+    "batch_size": 32,
+    "block_channels": [
+      64,
+      128,
+      128
+    ],
+    "epochs": 12,
+    "kernel_sizes": [
+      9,
+      5,
+      3
+    ],
+    "learning_rate": 0.0015604603412395109
+  }
+}

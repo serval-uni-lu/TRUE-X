@@ -1,0 +1,27 @@
+{
+  "dataset": "Hydraulic",
+  "model": "INCEPTIONTIME",
+  "explainer": "deepliftshap",
+  "split": "val",
+  "n_explained": 145,
+  "metric_means": {
+    "Average Sensitivity (Classif)": 24.62026325276676,
+    "Continuity (Classif)": 0.9599172496892704,
+    "Faithfulness Correlation (Classif)": -0.03603232047342666,
+    "Pixel Flipping (Classif)": 0.02214272860445866,
+    "Sparseness (Classif, Elem)": 0.7243705679841147,
+    "Complexity (Classif, Elem)": 0.8211589609031906,
+    "Sparseness (Classif, Chan)": 0.43152702340555227,
+    "Complexity (Classif, Chan)": 0.8496670455063167
+  },
+  "metric_stds": {
+    "Average Sensitivity (Classif)": 20.195433666197353,
+    "Continuity (Classif)": 0.11007866401387414,
+    "Faithfulness Correlation (Classif)": 0.1381228317643497,
+    "Pixel Flipping (Classif)": 0.016732084242872376,
+    "Sparseness (Classif, Elem)": 0.05058578062712689,
+    "Complexity (Classif, Elem)": 0.035125399572432284,
+    "Sparseness (Classif, Chan)": 0.06845924896909081,
+    "Complexity (Classif, Chan)": 0.04674442190492691
+  }
+}

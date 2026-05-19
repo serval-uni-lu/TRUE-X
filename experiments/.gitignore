@@ -1,9 +1,6 @@
 # Runtime / generated artifacts
-src/tuning/tuning_results/
-results/
-saved_models/
-data/
 model_details.csv
+data/
 slurm-*.out
 
 # Byte-compiled / optimized / DLL files

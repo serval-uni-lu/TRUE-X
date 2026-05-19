@@ -1,0 +1,27 @@
+{
+  "dataset": "Hydraulic",
+  "model": "INCEPTIONTIME",
+  "explainer": "gradientshap",
+  "split": "val",
+  "n_explained": 145,
+  "metric_means": {
+    "Average Sensitivity (Classif)": 22.57948801934964,
+    "Continuity (Classif)": 0.6838903897638092,
+    "Faithfulness Correlation (Classif)": 0.1155213176490063,
+    "Pixel Flipping (Classif)": 0.02211918885687046,
+    "Sparseness (Classif, Elem)": 0.6042160402799874,
+    "Complexity (Classif, Elem)": 0.8890523588889006,
+    "Sparseness (Classif, Chan)": 0.40084736933626414,
+    "Complexity (Classif, Chan)": 0.8659593346476709
+  },
+  "metric_stds": {
+    "Average Sensitivity (Classif)": 18.901737308887522,
+    "Continuity (Classif)": 0.1806420617542196,
+    "Faithfulness Correlation (Classif)": 0.3201649508408459,
+    "Pixel Flipping (Classif)": 0.017816734054591523,
+    "Sparseness (Classif, Elem)": 0.07140608575016659,
+    "Complexity (Classif, Elem)": 0.032348889392351,
+    "Sparseness (Classif, Chan)": 0.08478926280541697,
+    "Complexity (Classif, Chan)": 0.05922959546427554
+  }
+}

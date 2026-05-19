@@ -1,0 +1,27 @@
+{
+  "dataset": "Hydraulic",
+  "model": "LOGISTIC_CLASSIFIER",
+  "explainer": "deepliftshap",
+  "split": "val",
+  "n_explained": 145,
+  "metric_means": {
+    "Average Sensitivity (Classif)": 6.0058932010446435,
+    "Continuity (Classif)": 0.4740273537323556,
+    "Faithfulness Correlation (Classif)": -0.020158457225032858,
+    "Pixel Flipping (Classif)": 0.048758062533440956,
+    "Sparseness (Classif, Elem)": 0.5724740842220036,
+    "Complexity (Classif, Elem)": 0.9024738160387263,
+    "Sparseness (Classif, Chan)": 0.2947860804572558,
+    "Complexity (Classif, Chan)": 0.9229401316970319
+  },
+  "metric_stds": {
+    "Average Sensitivity (Classif)": 1.114756226822403,
+    "Continuity (Classif)": 0.06296299460627978,
+    "Faithfulness Correlation (Classif)": 0.18421163779794275,
+    "Pixel Flipping (Classif)": 0.025934228973331416,
+    "Sparseness (Classif, Elem)": 0.01992387732663401,
+    "Complexity (Classif, Elem)": 0.011503643443808241,
+    "Sparseness (Classif, Chan)": 0.08005066788090964,
+    "Complexity (Classif, Chan)": 0.04115944297536713
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "dataset": "Hydraulic",
+  "model": "TST",
+  "explainer": "lime_tabular",
+  "split": "val",
+  "n_explained": 145,
+  "metric_means": {
+    "Average Sensitivity (Classif)": 10.98849028417713,
+    "Continuity (Classif)": 0.672520426103424,
+    "Faithfulness Correlation (Classif)": 0.023847046773642883,
+    "Pixel Flipping (Classif)": 0.01970927612627216,
+    "Sparseness (Classif, Elem)": 0.44241216045215476,
+    "Complexity (Classif, Elem)": 0.9322507442870299,
+    "Sparseness (Classif, Chan)": 0.15757419245749404,
+    "Complexity (Classif, Chan)": 0.9652872034102192
+  },
+  "metric_stds": {
+    "Average Sensitivity (Classif)": 10.945001927881272,
+    "Continuity (Classif)": 0.16284359846128224,
+    "Faithfulness Correlation (Classif)": 0.16313620166600182,
+    "Pixel Flipping (Classif)": 0.010279591395716409,
+    "Sparseness (Classif, Elem)": 0.05906892804941222,
+    "Complexity (Classif, Elem)": 0.11044870413909147,
+    "Sparseness (Classif, Chan)": 0.05417038871842672,
+    "Complexity (Classif, Chan)": 0.11473428164854578
+  }
+}

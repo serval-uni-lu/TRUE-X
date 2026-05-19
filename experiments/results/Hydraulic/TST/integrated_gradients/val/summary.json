@@ -1,0 +1,27 @@
+{
+  "dataset": "Hydraulic",
+  "model": "TST",
+  "explainer": "integrated_gradients",
+  "split": "val",
+  "n_explained": 145,
+  "metric_means": {
+    "Average Sensitivity (Classif)": 15.698587747511525,
+    "Continuity (Classif)": 0.5444980145495824,
+    "Faithfulness Correlation (Classif)": 0.02017360356725328,
+    "Pixel Flipping (Classif)": 0.03232442228615183,
+    "Sparseness (Classif, Elem)": 0.6522618119848912,
+    "Complexity (Classif, Elem)": 0.8733351596977489,
+    "Sparseness (Classif, Chan)": 0.36503655498504745,
+    "Complexity (Classif, Chan)": 0.894551964605168
+  },
+  "metric_stds": {
+    "Average Sensitivity (Classif)": 9.753831198604862,
+    "Continuity (Classif)": 0.18032348209158933,
+    "Faithfulness Correlation (Classif)": 0.14457512632067537,
+    "Pixel Flipping (Classif)": 0.0202668647189512,
+    "Sparseness (Classif, Elem)": 0.03387537837008572,
+    "Complexity (Classif, Elem)": 0.015262186158863515,
+    "Sparseness (Classif, Chan)": 0.038543092027351566,
+    "Complexity (Classif, Chan)": 0.0237393031495141
+  }
+}

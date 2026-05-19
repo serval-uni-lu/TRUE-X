@@ -1,0 +1,27 @@
+{
+  "dataset": "Hydraulic",
+  "model": "LSTM",
+  "explainer": "deepliftshap",
+  "split": "val",
+  "n_explained": 145,
+  "metric_means": {
+    "Average Sensitivity (Classif)": 27.990844780021483,
+    "Continuity (Classif)": 0.24310250845569675,
+    "Faithfulness Correlation (Classif)": 0.1235462304851175,
+    "Pixel Flipping (Classif)": 0.013091906403853514,
+    "Sparseness (Classif, Elem)": 0.7094605939723907,
+    "Complexity (Classif, Elem)": 0.8356388184995533,
+    "Sparseness (Classif, Chan)": 0.4112259159155728,
+    "Complexity (Classif, Chan)": 0.8566315966449938
+  },
+  "metric_stds": {
+    "Average Sensitivity (Classif)": 22.226534307703613,
+    "Continuity (Classif)": 0.07305081721092148,
+    "Faithfulness Correlation (Classif)": 0.35897753219438455,
+    "Pixel Flipping (Classif)": 0.00918680644648411,
+    "Sparseness (Classif, Elem)": 0.08743956828683266,
+    "Complexity (Classif, Elem)": 0.054893592157707366,
+    "Sparseness (Classif, Chan)": 0.09871339653254545,
+    "Complexity (Classif, Chan)": 0.058164149331047806
+  }
+}
