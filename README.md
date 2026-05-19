@@ -1,6 +1,12 @@
 # TRUE-X
 
-This repo provides a DEMO of the TRUE-X decision support tool, more details, and a link to the full repo with code and paper coming soon.
+TRUE-X is a decision support tool that helps practitioners select the most trustworthy {Model × Explainer} combination for multivariate time-series classification.
+This repository contains:
+
+- **`experiments/`** — full experimental pipeline: model training, XAI evaluation, and the trustworthiness metrics library used in the paper (see [experiments/README.md](experiments/README.md))
+- **`frontend.py`** — interactive Streamlit dashboard to explore and compare evaluation results
+
+> Pre-trained models, XAI outputs, and evaluation results for the Hydraulic condition monitoring benchmark are included under `experiments/saved_models/` and `experiments/results/`.
 
 ## Running the Streamlit Frontend
 

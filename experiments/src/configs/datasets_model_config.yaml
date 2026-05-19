@@ -1,0 +1,25 @@
+trainer:
+  output_root:  "../saved_models"
+  params_root:  "../saved_models"
+  save_format:  "state_dict"
+  metrics_split: "val"
+  default_train_args:
+    epochs: 50
+    lr: 0.001
+    early_stopping:
+      enabled: true
+      patience: 10
+      min_delta: 0.0
+      monitor: auto
+      warmup: 2
+      restore_best_weights: true
+
+datasets:
+
+  Hydraulic:
+    models:
+      INCEPTIONTIME:       {}
+      RESNET:              {}
+      TST:                 {}
+      LSTM:                {}
+      LOGISTIC_CLASSIFIER: {}

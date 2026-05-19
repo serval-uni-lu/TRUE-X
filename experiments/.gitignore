@@ -1,0 +1,35 @@
+# Runtime / generated artifacts
+src/tuning/tuning_results/
+results/
+saved_models/
+data/
+model_details.csv
+slurm-*.out
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Environments
+.env
+.venv
+env/
+venv/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Editors / OS
+**/.idea/
+**/.DS_Store
+.mypy_cache/

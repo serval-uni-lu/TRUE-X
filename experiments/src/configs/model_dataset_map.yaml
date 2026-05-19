@@ -1,0 +1,6 @@
+Hydraulic:
+  - INCEPTIONTIME
+  - LOGISTIC_CLASSIFIER
+  - LSTM
+  - RESNET
+  - TST
