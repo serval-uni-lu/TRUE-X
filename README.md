@@ -64,8 +64,4 @@ The app will be accessible at `http://localhost:8501`.
 
 ## ExpliTest Library
 
-The metrics library is developed independently at [serval-uni-lu/ExpliTest](https://github.com/serval-uni-lu/ExpliTest) and included here as a git submodule. To update it to the latest version:
-
-```bash
-git submodule update --remote submodules/explitest
-```
+The metrics library is developed independently at [serval-uni-lu/ExpliTest](https://github.com/serval-uni-lu/ExpliTest) and included here as a git submodule.
