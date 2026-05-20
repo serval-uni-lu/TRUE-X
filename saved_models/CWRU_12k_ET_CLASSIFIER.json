@@ -1,0 +1,10 @@
+{
+  "dataset": "CWRU_12k",
+  "model": "ET_CLASSIFIER",
+  "direction": "maximize",
+  "source": "defaults",
+  "params": {
+    "n_estimators": 500,
+    "max_depth": null
+  }
+}

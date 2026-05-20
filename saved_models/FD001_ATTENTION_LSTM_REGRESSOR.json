@@ -1,0 +1,18 @@
+{
+  "dataset": "FD001",
+  "model": "ATTENTION_LSTM_REGRESSOR",
+  "direction": "minimize",
+  "source": "csv",
+  "params": {
+    "attn_hidden": 76,
+    "batch_size": 32,
+    "bidirectional": true,
+    "epochs": 25,
+    "head_dropout": 0.05514978204003723,
+    "head_hidden": null,
+    "hidden_size": 179,
+    "learning_rate": 0.0009487661175903087,
+    "lstm_dropout": 0.1329886303669197,
+    "num_layers": 2
+  }
+}

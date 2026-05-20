@@ -1,0 +1,59 @@
+Hydraulic:
+  adapter: "datasets.adapters.hydraulic:make_hydraulic_loaders"
+  task: "Classification"
+  args:
+    data_dir: "../data/hydraulic_systems"
+    channels: ["CP", "FS1", "PS1", "PS2", "PS3", "PS4", "PS5", "SE", "VS1"]
+    label_cols: 2            # single target: pump (0=cooler, 1=valve, 2=pump, 3=acc)
+    seq_len: 50
+    batch_size: 32
+    num_workers: 0
+    filter_unstable: true
+    stratify_on: "first"
+    squeeze_single_target: true
+
+Ecoating:
+  adapter: "datasets.adapters.ecoating:make_ecoating_loaders"
+  task: "Regression"
+  args:
+    root: "../data/E-coating"
+    train_filename: "manual_30min_norm.csv"
+    test_filename: "iiot_30min_norm.csv"
+    time_col: "TIME"
+    target_col: "FM1"
+    drop_extra_train: ["EPOCH"]
+    drop_extra_test: ["EPOCH"]
+    window: 30
+    shift: 1
+    batch_size: 256
+    num_workers: 0
+    last_k_test_windows: 5
+    pin_memory: false
+
+FD001:
+  adapter: "datasets.adapters.cmapss:make_cmapss_loaders"
+  task: "Regression"
+  args:
+    root: "../data/CMAPPS_Dataset"
+    fd: "FD001"
+    window: 30
+    shift: 1
+    early_rul: 120
+    batch_size: 32
+    num_workers: 4
+    return_test: true
+    k_last: 5
+
+CWRU_12k:
+  adapter: "datasets.adapters.cwru:make_cwru_loaders"
+  task: "Classification"
+  args:
+    root: "../data/CWRU"
+    sample_rate: "12k"
+    channels: ["DE", "FE"]
+    window_size: 2048
+    stride: 512
+    batch_size: 64
+    num_workers: 8
+    val_ratio: 0.1
+    random_state: 42

@@ -1,0 +1,11 @@
+{
+  "dataset": "Ecoating",
+  "model": "VI_DROPOUT",
+  "direction": "minimize",
+  "source": "defaults",
+  "params": {
+    "hidden_dim": 32,
+    "n_hidden_layers": 2,
+    "lstm_hidden_dim": 32
+  }
+}

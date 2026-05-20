@@ -1,0 +1,89 @@
+trainer:
+  output_root:  "./saved_models"
+  params_root:  "./saved_models"
+  save_format:  "state_dict"
+  metrics_split: "val"
+  default_train_args:
+    epochs: 50
+    lr: 0.001
+    early_stopping:
+      enabled: true
+      patience: 10
+      min_delta: 0.0
+      monitor: auto
+      warmup: 2
+      restore_best_weights: true
+
+datasets:
+
+  FD001:
+    models:
+      VI_ENSEMBLE:              {}
+      VI_DROPOUT:               {}
+      VAE_RUL:                  {}
+      CNN_LSTM_REGRESSOR:       {}
+      ATTENTION_LSTM_REGRESSOR: {}
+      TST_REGRESSOR:            {}
+      TCN_REGRESSOR:            {}
+      LSTM_FCN_REGRESSOR:       {}
+      TFT_REGRESSOR:            {}
+      LSTM_REGRESSOR:           {}
+      BI_LSTM_REGRESSOR:        {}
+      LINEAR_REGRESSOR:         {}
+      RF_REGRESSOR:             {}
+      ET_REGRESSOR:             {}
+      XGB_REGRESSOR:            {}
+      LGBM_REGRESSOR:           {}
+
+  Ecoating:
+    models:
+      VI_ENSEMBLE:              {}
+      VI_DROPOUT:               {}
+      VAE_RUL:                  {}
+      CNN_LSTM_REGRESSOR:       {}
+      ATTENTION_LSTM_REGRESSOR: {}
+      TST_REGRESSOR:            {}
+      TCN_REGRESSOR:            {}
+      LSTM_FCN_REGRESSOR:       {}
+      TFT_REGRESSOR:            {}
+      LSTM_REGRESSOR:           {}
+      BI_LSTM_REGRESSOR:        {}
+      LINEAR_REGRESSOR:         {}
+      RF_REGRESSOR:             {}
+      ET_REGRESSOR:             {}
+      XGB_REGRESSOR:            {}
+      LGBM_REGRESSOR:           {}
+
+  Hydraulic:
+    models:
+      INCEPTIONTIME:       {}
+      RESNET:              {}
+      FCN:                 {}
+      MCD_CNN:             {}
+      TIME_CNN:            {}
+      ENCODER:             {}
+      TST:                 {}
+      LSTM:                {}
+      GRU:                 {}
+      RF_CLASSIFIER:       {}
+      ET_CLASSIFIER:       {}
+      XGB_CLASSIFIER:      {}
+      LGBM_CLASSIFIER:     {}
+      LOGISTIC_CLASSIFIER: {}
+
+  CWRU_12k:
+    models:
+      INCEPTIONTIME:       {}
+      RESNET:              {}
+      FCN:                 {}
+      MCD_CNN:             {}
+      TIME_CNN:            {}
+      ENCODER:             {}
+      TST:                 {}
+      LSTM:                {}
+      GRU:                 {}
+      RF_CLASSIFIER:       {}
+      ET_CLASSIFIER:       {}
+      XGB_CLASSIFIER:      {}
+      LGBM_CLASSIFIER:     {}
+      LOGISTIC_CLASSIFIER: {}

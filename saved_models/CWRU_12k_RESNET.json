@@ -1,0 +1,18 @@
+{
+  "dataset": "CWRU_12k",
+  "model": "RESNET",
+  "direction": "maximize",
+  "source": "defaults",
+  "params": {
+    "block_channels": [
+      64,
+      128,
+      128
+    ],
+    "kernel_sizes": [
+      9,
+      5,
+      3
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "dataset": "CWRU_12k",
+  "model": "MCD_CNN",
+  "direction": "maximize",
+  "source": "defaults",
+  "params": {
+    "branch_filters": [
+      8,
+      8
+    ],
+    "branch_kernels": [
+      5,
+      5
+    ],
+    "pool": 2,
+    "dense_units": 732,
+    "dropout": 0.0,
+    "use_bn": false
+  }
+}

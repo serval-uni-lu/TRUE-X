@@ -1,0 +1,15 @@
+{
+  "dataset": "FD001",
+  "model": "XGB_REGRESSOR",
+  "direction": "minimize",
+  "source": "csv",
+  "params": {
+    "colsample_bytree": 0.6279576400645754,
+    "learning_rate": 0.05512038372247709,
+    "max_depth": 5,
+    "n_estimators": 938,
+    "reg_alpha": 0.0009166853995008135,
+    "reg_lambda": 0.004760950570751057,
+    "subsample": 0.6072390549541248
+  }
+}

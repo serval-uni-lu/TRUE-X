@@ -1,11 +1,7 @@
 FROM python:3.11-slim
 
-LABEL authors="raoni.lourenco"
-
-# Set working directory
 WORKDIR /app
 
-# Install system dependencies for Node.js
 RUN apt-get update && apt-get install -y \
     curl \
     git \
@@ -13,34 +9,36 @@ RUN apt-get update && apt-get install -y \
     && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy Python files
-COPY frontend.py export_profiler.py plots.py ranks_per_block_with_performance.csv requirements.txt ./
-
-
-# Install Python dependencies
+# Python dependencies
+COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the npm submodule
-COPY PipelineVis/ ./PipelineVis
+# ExpliTest submodule
+COPY submodules/explitest/ ./submodules/explitest/
+RUN pip install --no-cache-dir -e submodules/explitest
 
-# Build the npm project
-WORKDIR /app/PipelineVis/PipelineProfiler
-RUN npm install --legacy-peer-deps -no-audit --no-fund regenerator-runtime core-js
+# PipelineVis submodule — build npm bundle then install Python package
+COPY submodules/PipelineVis/ ./submodules/PipelineVis/
+WORKDIR /app/submodules/PipelineVis/PipelineProfiler
+RUN npm install --legacy-peer-deps --no-audit --no-fund regenerator-runtime core-js
 RUN npm run build --legacy-peer-deps
-
-WORKDIR /app/PipelineVis/
-
+WORKDIR /app/submodules/PipelineVis
 RUN pip install .
 
-# Go back to app directory
 WORKDIR /app
 
-# Expose Streamlit default port
+# Application code, models and benchmark results
+COPY app/ ./app/
+COPY saved_models/ ./saved_models/
+COPY results/ ./results/
+
+# Streamlit config (sets baseUrlPath for reverse-proxy deployments)
+RUN mkdir -p .streamlit
+COPY app/streamlit_config.toml .streamlit/config.toml
+
 EXPOSE 8501
 
-# Set environment variables for Streamlit
 ENV STREAMLIT_SERVER_PORT=8501 \
     STREAMLIT_SERVER_HEADLESS=true
 
-# Entrypoint for the app
-ENTRYPOINT ["streamlit", "run", "frontend.py", "--server.port=8501", "--server.headless=true"]
+ENTRYPOINT ["streamlit", "run", "app/frontend.py", "--server.port=8501", "--server.headless=true"]

@@ -1,0 +1,11 @@
+{
+  "dataset": "Ecoating",
+  "model": "LINEAR_REGRESSOR",
+  "direction": "minimize",
+  "source": "csv",
+  "params": {
+    "batch_size": 128,
+    "epochs": 19,
+    "learning_rate": 0.0006111107824222293
+  }
+}

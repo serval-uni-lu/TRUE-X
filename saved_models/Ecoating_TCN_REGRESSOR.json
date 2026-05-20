@@ -1,0 +1,19 @@
+{
+  "dataset": "Ecoating",
+  "model": "TCN_REGRESSOR",
+  "direction": "minimize",
+  "source": "csv",
+  "params": {
+    "batch_size": 128,
+    "channels": [
+      64,
+      128,
+      128
+    ],
+    "dropout": 0.04434688409459918,
+    "epochs": 16,
+    "head_hidden": 109,
+    "kernel_size": 5,
+    "learning_rate": 0.0008900738045363535
+  }
+}

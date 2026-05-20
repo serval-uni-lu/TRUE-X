@@ -1,0 +1,16 @@
+{
+  "dataset": "CWRU_12k",
+  "model": "INCEPTIONTIME",
+  "direction": "maximize",
+  "source": "defaults",
+  "params": {
+    "n_residual_blocks": 3,
+    "nb_filters": 32,
+    "kernel_sizes": [
+      9,
+      19,
+      39
+    ],
+    "bottleneck": true
+  }
+}

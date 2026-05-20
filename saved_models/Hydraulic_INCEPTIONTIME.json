@@ -1,0 +1,19 @@
+{
+  "dataset": "Hydraulic",
+  "model": "INCEPTIONTIME",
+  "direction": "maximize",
+  "source": "csv",
+  "params": {
+    "batch_size": 32,
+    "bottleneck": true,
+    "epochs": 28,
+    "kernel_sizes": [
+      9,
+      15,
+      29
+    ],
+    "learning_rate": 0.0003185007116772902,
+    "n_residual_blocks": 3,
+    "nb_filters": 19
+  }
+}

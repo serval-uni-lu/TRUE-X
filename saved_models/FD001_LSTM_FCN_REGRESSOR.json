@@ -1,0 +1,26 @@
+{
+  "dataset": "FD001",
+  "model": "LSTM_FCN_REGRESSOR",
+  "direction": "minimize",
+  "source": "csv",
+  "params": {
+    "batch_size": 32,
+    "bidirectional": false,
+    "epochs": 25,
+    "fcn_channels": [
+      256,
+      256,
+      128
+    ],
+    "head_hidden": 256,
+    "kernels": [
+      7,
+      5,
+      3
+    ],
+    "learning_rate": 0.00021873855986749867,
+    "lstm_dropout": 0.23617822012702258,
+    "lstm_hidden": 64,
+    "lstm_layers": 1
+  }
+}

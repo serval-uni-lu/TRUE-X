@@ -1,0 +1,16 @@
+{
+  "dataset": "Hydraulic",
+  "model": "LSTM",
+  "direction": "maximize",
+  "source": "csv",
+  "params": {
+    "batch_size": 32,
+    "bidirectional": true,
+    "dropout": 0.2128187046484428,
+    "epochs": 22,
+    "hidden_size": 157,
+    "learning_rate": 0.0007110824513073176,
+    "num_layers": 2,
+    "temporal_pool": "last"
+  }
+}

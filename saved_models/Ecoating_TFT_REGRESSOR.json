@@ -1,0 +1,19 @@
+{
+  "dataset": "Ecoating",
+  "model": "TFT_REGRESSOR",
+  "direction": "minimize",
+  "source": "csv",
+  "params": {
+    "batch_size": 256,
+    "d_ff": 285,
+    "d_model": 106,
+    "dropout": 0.0016177155071912183,
+    "epochs": 22,
+    "head_hidden": null,
+    "learning_rate": 0.0003269155337624624,
+    "lstm_hidden": 123,
+    "lstm_layers": 1,
+    "n_attn_layers": 2,
+    "n_heads": 2
+  }
+}

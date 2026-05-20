@@ -1,0 +1,9 @@
+{
+  "dataset": "Hydraulic",
+  "model": "LOGISTIC_CLASSIFIER",
+  "direction": "maximize",
+  "source": "csv",
+  "params": {
+    "use_bias": true
+  }
+}

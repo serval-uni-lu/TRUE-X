@@ -1,0 +1,10 @@
+{
+  "dataset": "Hydraulic",
+  "model": "ET_CLASSIFIER",
+  "direction": "maximize",
+  "source": "csv",
+  "params": {
+    "max_depth": 15,
+    "n_estimators": 865
+  }
+}

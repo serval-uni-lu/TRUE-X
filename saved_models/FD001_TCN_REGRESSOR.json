@@ -1,0 +1,19 @@
+{
+  "dataset": "FD001",
+  "model": "TCN_REGRESSOR",
+  "direction": "minimize",
+  "source": "csv",
+  "params": {
+    "batch_size": 32,
+    "channels": [
+      64,
+      128,
+      128
+    ],
+    "dropout": 0.0921430105873415,
+    "epochs": 15,
+    "head_hidden": 124,
+    "kernel_size": 5,
+    "learning_rate": 0.0008942081383092391
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dataset": "Ecoating",
+  "model": "TST_REGRESSOR",
+  "direction": "minimize",
+  "source": "csv",
+  "params": {
+    "batch_size": 128,
+    "d_ff": 300,
+    "d_model": 141,
+    "epochs": 19,
+    "learning_rate": 0.0004416525087400117,
+    "n_heads": 8,
+    "num_layers": 3,
+    "patch_len": 5,
+    "stride": 3,
+    "use_cls_token": false
+  }
+}

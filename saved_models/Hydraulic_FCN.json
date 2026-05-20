@@ -1,0 +1,21 @@
+{
+  "dataset": "Hydraulic",
+  "model": "FCN",
+  "direction": "maximize",
+  "source": "csv",
+  "params": {
+    "batch_size": 128,
+    "channels": [
+      256,
+      256,
+      128
+    ],
+    "epochs": 30,
+    "kernels": [
+      7,
+      5,
+      3
+    ],
+    "learning_rate": 0.0027640013256002875
+  }
+}

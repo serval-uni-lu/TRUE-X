@@ -1,0 +1,10 @@
+{
+  "dataset": "Ecoating",
+  "model": "RF_REGRESSOR",
+  "direction": "minimize",
+  "source": "csv",
+  "params": {
+    "max_depth": null,
+    "n_estimators": 279
+  }
+}

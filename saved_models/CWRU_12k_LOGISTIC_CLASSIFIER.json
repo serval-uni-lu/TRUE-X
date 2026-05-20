@@ -1,0 +1,9 @@
+{
+  "dataset": "CWRU_12k",
+  "model": "LOGISTIC_CLASSIFIER",
+  "direction": "maximize",
+  "source": "defaults",
+  "params": {
+    "use_bias": true
+  }
+}

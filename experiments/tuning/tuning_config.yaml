@@ -1,0 +1,777 @@
+early_stopping:
+  enabled: true
+  patience: 3
+  min_delta: 0.0
+  monitor: auto
+  warmup: 0
+
+experiments:
+
+  # FD001 (CMAPSS)
+
+  - dataset: FD001
+    model: VI_ENSEMBLE
+    n_trials: 25
+    direction: minimize
+    search_space:
+      learning_rate:   {type: loguniform, low: 1e-4, high: 3e-3}
+      batch_size:      {type: categorical, choices: [32, 64, 128]}
+      epochs:          {type: int,        low: 8,    high: 25}
+      hidden_dim:      {type: int,        low: 16,   high: 128}
+      n_hidden_layers: {type: int,        low: 1,    high: 4}
+      lstm_hidden_dim: {type: int,        low: 16,   high: 128}
+      use_dropout:     {type: categorical, choices: [True, False]}
+
+  - dataset: FD001
+    model: VI_DROPOUT
+    n_trials: 25
+    direction: minimize
+    search_space:
+      learning_rate:   {type: loguniform, low: 1e-4, high: 3e-3}
+      batch_size:      {type: categorical, choices: [32, 64, 128]}
+      epochs:          {type: int,        low: 8,    high: 25}
+      hidden_dim:      {type: int,        low: 16,   high: 128}
+      n_hidden_layers: {type: int,        low: 1,    high: 4}
+      lstm_hidden_dim: {type: int,        low: 16,   high: 128}
+
+  - dataset: FD001
+    model: VAE_RUL
+    n_trials: 25
+    direction: minimize
+    search_space:
+      learning_rate:    {type: loguniform, low: 1e-4, high: 3e-3}
+      batch_size:       {type: categorical, choices: [32, 64, 128]}
+      epochs:           {type: int,        low: 8,    high: 25}
+      intermediate_dim: {type: int,        low: 16,   high: 128}
+      latent_dim:       {type: int,        low: 4,    high: 32}
+
+  - dataset: FD001
+    model: CNN_LSTM_REGRESSOR
+    n_trials: 25
+    direction: minimize
+    search_space:
+      learning_rate:  {type: loguniform, low: 1e-4, high: 3e-3}
+      batch_size:     {type: categorical, choices: [32, 64, 128]}
+      epochs:         {type: int,        low: 8,    high: 25}
+      conv_channels:  {type: categorical, choices: [[64,128], [64,96], [96,128]]}
+      conv_kernels:   {type: categorical, choices: [[7,5], [5,5], [9,5]]}
+      lstm_hidden:    {type: int,        low: 64,   high: 256}
+      lstm_layers:    {type: int,        low: 1,    high: 2}
+      bidirectional:  {type: categorical, choices: [True, False]}
+      lstm_dropout:   {type: uniform,    low: 0.0,  high: 0.3}
+      head_hidden:    {type: categorical, choices: [null, 64, 128]}
+      head_dropout:   {type: uniform,    low: 0.0,  high: 0.3}
+
+  - dataset: FD001
+    model: ATTENTION_LSTM_REGRESSOR
+    n_trials: 25
+    direction: minimize
+    search_space:
+      learning_rate: {type: loguniform, low: 1e-4, high: 3e-3}
+      batch_size:    {type: categorical, choices: [32, 64, 128]}
+      epochs:        {type: int,        low: 8,    high: 25}
+      hidden_size:   {type: int,        low: 64,   high: 256}
+      num_layers:    {type: int,        low: 1,    high: 2}
+      bidirectional: {type: categorical, choices: [True, False]}
+      lstm_dropout:  {type: uniform,    low: 0.0,  high: 0.3}
+      attn_hidden:   {type: int,        low: 32,   high: 128}
+      head_hidden:   {type: categorical, choices: [null, 64, 128]}
+      head_dropout:  {type: uniform,    low: 0.0,  high: 0.3}
+
+  - dataset: FD001
+    model: TST_REGRESSOR
+    n_trials: 25
+    direction: minimize
+    search_space:
+      learning_rate: {type: loguniform, low: 1e-4, high: 3e-3}
+      batch_size:    {type: categorical, choices: [32, 64, 128]}
+      epochs:        {type: int,        low: 8,    high: 25}
+      d_model:       {type: int,        low: 64,   high: 192}
+      n_heads:       {type: categorical, choices: [4, 8]}
+      num_layers:    {type: int,        low: 2,    high: 6}
+      d_ff:          {type: int,        low: 128,  high: 512}
+      patch_len:     {type: int,        low: 6,    high: 20}
+      stride:        {type: int,        low: 2,    high: 10}
+      use_cls_token: {type: categorical, choices: [True, False]}
+
+  - dataset: FD001
+    model: TCN_REGRESSOR
+    n_trials: 25
+    direction: minimize
+    search_space:
+      learning_rate: {type: loguniform, low: 1e-4, high: 3e-3}
+      batch_size:    {type: categorical, choices: [32, 64, 128]}
+      epochs:        {type: int,        low: 8,    high: 25}
+      kernel_size:   {type: categorical, choices: [3, 5, 7]}
+      dropout:       {type: uniform,    low: 0.0,  high: 0.3}
+      head_hidden:   {type: int,        low: 32,   high: 256}
+      channels:      {type: categorical, choices: [[64,64,128], [64,128,128], [128,128,128]]}
+
+  - dataset: FD001
+    model: LSTM_FCN_REGRESSOR
+    n_trials: 25
+    direction: minimize
+    search_space:
+      learning_rate: {type: loguniform, low: 1e-4, high: 3e-3}
+      batch_size:    {type: categorical, choices: [32, 64, 128]}
+      epochs:        {type: int,        low: 8,    high: 25}
+      lstm_hidden:   {type: int,        low: 64,   high: 256}
+      lstm_layers:   {type: int,        low: 1,    high: 2}
+      bidirectional: {type: categorical, choices: [True, False]}
+      lstm_dropout:  {type: uniform,    low: 0.0,  high: 0.3}
+      fcn_channels:  {type: categorical, choices: [[128,256,128], [64,128,64], [256,256,128]]}
+      kernels:       {type: categorical, choices: [[9,5,3], [7,5,3], [11,7,5]]}
+      head_hidden:   {type: categorical, choices: [null, 128, 256]}
+
+  - dataset: FD001
+    model: TFT_REGRESSOR
+    n_trials: 30
+    direction: minimize
+    search_space:
+      learning_rate:  {type: loguniform, low: 1e-4, high: 3e-3}
+      batch_size:     {type: categorical, choices: [32, 64, 128]}
+      epochs:         {type: int,        low: 10,   high: 30}
+      d_model:        {type: int,        low: 64,   high: 192}
+      n_heads:        {type: categorical, choices: [2, 4, 8]}
+      n_attn_layers:  {type: int,        low: 1,    high: 3}
+      d_ff:           {type: int,        low: 128,  high: 512}
+      lstm_hidden:    {type: int,        low: 64,   high: 256}
+      lstm_layers:    {type: int,        low: 1,    high: 2}
+      dropout:        {type: uniform,    low: 0.0,  high: 0.3}
+      head_hidden:    {type: categorical, choices: [null, 128, 256]}
+
+  - dataset: FD001
+    model: LSTM_REGRESSOR
+    n_trials: 20
+    direction: minimize
+    search_space:
+      learning_rate:  {type: loguniform, low: 1e-4, high: 3e-3}
+      batch_size:     {type: categorical, choices: [32, 64, 128]}
+      epochs:         {type: int,        low: 8,    high: 25}
+      hidden_size:    {type: int,        low: 64,   high: 256}
+      num_layers:     {type: int,        low: 1,    high: 3}
+      bidirectional:  {type: categorical, choices: [True, False]}
+      dropout:        {type: uniform,    low: 0.0,  high: 0.3}
+      temporal_pool:  {type: categorical, choices: ["last", "mean", "max"]}
+
+  - dataset: FD001
+    model: BI_LSTM_REGRESSOR
+    n_trials: 20
+    direction: minimize
+    search_space:
+      learning_rate: {type: loguniform, low: 1e-4, high: 3e-3}
+      batch_size:    {type: categorical, choices: [32, 64, 128]}
+      epochs:        {type: int,        low: 8,    high: 25}
+      hidden_size:   {type: int,        low: 64,   high: 256}
+      num_layers:    {type: int,        low: 1,    high: 3}
+      dropout:       {type: uniform,    low: 0.0,  high: 0.3}
+      temporal_pool: {type: categorical, choices: ["last", "mean", "max"]}
+
+  - dataset: FD001
+    model: LINEAR_REGRESSOR
+    n_trials: 10
+    direction: minimize
+    search_space:
+      learning_rate: {type: loguniform, low: 5e-5, high: 5e-3}
+      batch_size:    {type: categorical, choices: [32, 64, 128]}
+      epochs:        {type: int,        low: 5,    high: 20}
+
+  - dataset: FD001
+    model: RF_REGRESSOR
+    n_trials: 30
+    direction: minimize
+    search_space:
+      n_estimators: {type: int,        low: 200, high: 800}
+      max_depth:    {type: categorical, choices: [null, 8, 12, 16, 20]}
+
+  - dataset: FD001
+    model: ET_REGRESSOR
+    n_trials: 30
+    direction: minimize
+    search_space:
+      n_estimators: {type: int,        low: 300, high: 1000}
+      max_depth:    {type: categorical, choices: [null, 8, 12, 16, 20]}
+
+  - dataset: FD001
+    model: XGB_REGRESSOR
+    n_trials: 40
+    direction: minimize
+    search_space:
+      n_estimators:     {type: int,        low: 300, high: 1000}
+      learning_rate:    {type: loguniform, low: 5e-3, high: 2e-1}
+      max_depth:        {type: int,        low: 3,    high: 8}
+      subsample:        {type: uniform,    low: 0.6,  high: 1.0}
+      colsample_bytree: {type: uniform,    low: 0.6,  high: 1.0}
+      reg_alpha:        {type: loguniform, low: 1e-8, high: 1e-1}
+      reg_lambda:       {type: loguniform, low: 1e-3, high: 10.0}
+
+  - dataset: FD001
+    model: LGBM_REGRESSOR
+    n_trials: 40
+    direction: minimize
+    search_space:
+      n_estimators:     {type: int,        low: 300, high: 1000}
+      learning_rate:    {type: loguniform, low: 5e-3, high: 2e-1}
+      num_leaves:       {type: int,        low: 15,  high: 127}
+      subsample:        {type: uniform,    low: 0.6, high: 1.0}
+      colsample_bytree: {type: uniform,    low: 0.6, high: 1.0}
+      reg_alpha:        {type: loguniform, low: 1e-8, high: 1e-1}
+      reg_lambda:       {type: loguniform, low: 1e-8, high: 1.0}
+
+  # Ecoating
+
+  - dataset: Ecoating
+    model: VI_ENSEMBLE
+    n_trials: 20
+    direction: minimize
+    search_space:
+      learning_rate:   {type: loguniform, low: 1e-4, high: 5e-3}
+      batch_size:      {type: categorical, choices: [128, 256, 512]}
+      epochs:          {type: int,        low: 8,    high: 20}
+      hidden_dim:      {type: int,        low: 16,   high: 128}
+      n_hidden_layers: {type: int,        low: 1,    high: 4}
+      lstm_hidden_dim: {type: int,        low: 16,   high: 128}
+      use_dropout:     {type: categorical, choices: [True, False]}
+
+  - dataset: Ecoating
+    model: VI_DROPOUT
+    n_trials: 20
+    direction: minimize
+    search_space:
+      learning_rate:   {type: loguniform, low: 1e-4, high: 5e-3}
+      batch_size:      {type: categorical, choices: [128, 256, 512]}
+      epochs:          {type: int,        low: 8,    high: 20}
+      hidden_dim:      {type: int,        low: 16,   high: 128}
+      n_hidden_layers: {type: int,        low: 1,    high: 4}
+      lstm_hidden_dim: {type: int,        low: 16,   high: 128}
+
+  - dataset: Ecoating
+    model: VAE_RUL
+    n_trials: 20
+    direction: minimize
+    search_space:
+      learning_rate:    {type: loguniform, low: 1e-4, high: 5e-3}
+      batch_size:       {type: categorical, choices: [128, 256, 512]}
+      epochs:           {type: int,        low: 8,    high: 20}
+      intermediate_dim: {type: int,        low: 16,   high: 128}
+      latent_dim:       {type: int,        low: 4,    high: 32}
+
+  - dataset: Ecoating
+    model: CNN_LSTM_REGRESSOR
+    n_trials: 25
+    direction: minimize
+    search_space:
+      learning_rate:  {type: loguniform, low: 1e-4, high: 5e-3}
+      batch_size:     {type: categorical, choices: [128, 256, 512]}
+      epochs:         {type: int,        low: 8,    high: 20}
+      conv_channels:  {type: categorical, choices: [[64,128], [64,96], [96,128]]}
+      conv_kernels:   {type: categorical, choices: [[7,5], [5,5], [9,5]]}
+      lstm_hidden:    {type: int,        low: 64,   high: 256}
+      lstm_layers:    {type: int,        low: 1,    high: 2}
+      bidirectional:  {type: categorical, choices: [True, False]}
+      lstm_dropout:   {type: uniform,    low: 0.0,  high: 0.3}
+      head_hidden:    {type: categorical, choices: [null, 128, 256]}
+      head_dropout:   {type: uniform,    low: 0.0,  high: 0.3}
+
+  - dataset: Ecoating
+    model: ATTENTION_LSTM_REGRESSOR
+    n_trials: 25
+    direction: minimize
+    search_space:
+      learning_rate: {type: loguniform, low: 1e-4, high: 5e-3}
+      batch_size:    {type: categorical, choices: [128, 256, 512]}
+      epochs:        {type: int,        low: 8,    high: 20}
+      hidden_size:   {type: int,        low: 64,   high: 256}
+      num_layers:    {type: int,        low: 1,    high: 2}
+      bidirectional: {type: categorical, choices: [True, False]}
+      lstm_dropout:  {type: uniform,    low: 0.0,  high: 0.3}
+      attn_hidden:   {type: int,        low: 32,   high: 128}
+      head_hidden:   {type: categorical, choices: [null, 128, 256]}
+      head_dropout:  {type: uniform,    low: 0.0,  high: 0.3}
+
+  - dataset: Ecoating
+    model: TST_REGRESSOR
+    n_trials: 25
+    direction: minimize
+    search_space:
+      learning_rate: {type: loguniform, low: 1e-4, high: 5e-3}
+      batch_size:    {type: categorical, choices: [128, 256, 512]}
+      epochs:        {type: int,        low: 8,    high: 20}
+      d_model:       {type: int,        low: 64,   high: 192}
+      n_heads:       {type: categorical, choices: [4, 8]}
+      num_layers:    {type: int,        low: 2,    high: 6}
+      d_ff:          {type: int,        low: 128,  high: 512}
+      patch_len:     {type: int,        low: 4,    high: 12}
+      stride:        {type: int,        low: 1,    high: 6}
+      use_cls_token: {type: categorical, choices: [True, False]}
+
+  - dataset: Ecoating
+    model: TCN_REGRESSOR
+    n_trials: 25
+    direction: minimize
+    search_space:
+      learning_rate: {type: loguniform, low: 1e-4, high: 5e-3}
+      batch_size:    {type: categorical, choices: [128, 256, 512]}
+      epochs:        {type: int,        low: 8,    high: 20}
+      kernel_size:   {type: categorical, choices: [3, 5, 7]}
+      dropout:       {type: uniform,    low: 0.0,  high: 0.3}
+      head_hidden:   {type: int,        low: 32,   high: 256}
+      channels:      {type: categorical, choices: [[64,64,128], [64,128,128], [128,128,128]]}
+
+  - dataset: Ecoating
+    model: LSTM_FCN_REGRESSOR
+    n_trials: 25
+    direction: minimize
+    search_space:
+      learning_rate: {type: loguniform, low: 1e-4, high: 5e-3}
+      batch_size:    {type: categorical, choices: [128, 256, 512]}
+      epochs:        {type: int,        low: 8,    high: 20}
+      lstm_hidden:   {type: int,        low: 64,   high: 256}
+      lstm_layers:   {type: int,        low: 1,    high: 2}
+      bidirectional: {type: categorical, choices: [True, False]}
+      lstm_dropout:  {type: uniform,    low: 0.0,  high: 0.3}
+      fcn_channels:  {type: categorical, choices: [[128,256,128], [64,128,64], [256,256,128]]}
+      kernels:       {type: categorical, choices: [[9,5,3], [7,5,3], [11,7,5]]}
+      head_hidden:   {type: categorical, choices: [null, 128, 256]}
+
+  - dataset: Ecoating
+    model: TFT_REGRESSOR
+    n_trials: 30
+    direction: minimize
+    search_space:
+      learning_rate:  {type: loguniform, low: 1e-4, high: 5e-3}
+      batch_size:     {type: categorical, choices: [128, 256, 512]}
+      epochs:         {type: int,        low: 10,   high: 25}
+      d_model:        {type: int,        low: 64,   high: 192}
+      n_heads:        {type: categorical, choices: [2, 4, 8]}
+      n_attn_layers:  {type: int,        low: 1,    high: 3}
+      d_ff:           {type: int,        low: 128,  high: 512}
+      lstm_hidden:    {type: int,        low: 64,   high: 256}
+      lstm_layers:    {type: int,        low: 1,    high: 2}
+      dropout:        {type: uniform,    low: 0.0,  high: 0.3}
+      head_hidden:    {type: categorical, choices: [null, 128, 256]}
+
+  - dataset: Ecoating
+    model: LSTM_REGRESSOR
+    n_trials: 20
+    direction: minimize
+    search_space:
+      learning_rate:  {type: loguniform, low: 1e-4, high: 5e-3}
+      batch_size:     {type: categorical, choices: [128, 256, 512]}
+      epochs:         {type: int,        low: 8,    high: 20}
+      hidden_size:    {type: int,        low: 64,   high: 256}
+      num_layers:     {type: int,        low: 1,    high: 3}
+      bidirectional:  {type: categorical, choices: [True, False]}
+      dropout:        {type: uniform,    low: 0.0,  high: 0.3}
+      temporal_pool:  {type: categorical, choices: ["last", "mean", "max"]}
+
+  - dataset: Ecoating
+    model: BI_LSTM_REGRESSOR
+    n_trials: 20
+    direction: minimize
+    search_space:
+      learning_rate: {type: loguniform, low: 1e-4, high: 5e-3}
+      batch_size:    {type: categorical, choices: [128, 256, 512]}
+      epochs:        {type: int,        low: 8,    high: 20}
+      hidden_size:   {type: int,        low: 64,   high: 256}
+      num_layers:    {type: int,        low: 1,    high: 3}
+      dropout:       {type: uniform,    low: 0.0,  high: 0.3}
+      temporal_pool: {type: categorical, choices: ["last", "mean", "max"]}
+
+  - dataset: Ecoating
+    model: LINEAR_REGRESSOR
+    n_trials: 10
+    direction: minimize
+    search_space:
+      learning_rate: {type: loguniform, low: 5e-5, high: 5e-3}
+      batch_size:    {type: categorical, choices: [128, 256, 512]}
+      epochs:        {type: int,        low: 5,    high: 20}
+
+  - dataset: Ecoating
+    model: RF_REGRESSOR
+    n_trials: 30
+    direction: minimize
+    search_space:
+      n_estimators: {type: int,        low: 200, high: 800}
+      max_depth:    {type: categorical, choices: [null, 8, 12, 16, 20]}
+
+  - dataset: Ecoating
+    model: ET_REGRESSOR
+    n_trials: 30
+    direction: minimize
+    search_space:
+      n_estimators: {type: int,        low: 300, high: 1000}
+      max_depth:    {type: categorical, choices: [null, 8, 12, 16, 20]}
+
+  - dataset: Ecoating
+    model: XGB_REGRESSOR
+    n_trials: 40
+    direction: minimize
+    search_space:
+      n_estimators:     {type: int,        low: 300, high: 1000}
+      learning_rate:    {type: loguniform, low: 5e-3, high: 2e-1}
+      max_depth:        {type: int,        low: 3,    high: 8}
+      subsample:        {type: uniform,    low: 0.6,  high: 1.0}
+      colsample_bytree: {type: uniform,    low: 0.6,  high: 1.0}
+      reg_alpha:        {type: loguniform, low: 1e-8, high: 1e-1}
+      reg_lambda:       {type: loguniform, low: 1e-3, high: 10.0}
+
+  - dataset: Ecoating
+    model: LGBM_REGRESSOR
+    n_trials: 40
+    direction: minimize
+    search_space:
+      n_estimators:     {type: int,        low: 300, high: 1000}
+      learning_rate:    {type: loguniform, low: 5e-3, high: 2e-1}
+      num_leaves:       {type: int,        low: 15,  high: 127}
+      subsample:        {type: uniform,    low: 0.6, high: 1.0}
+      colsample_bytree: {type: uniform,    low: 0.6, high: 1.0}
+      reg_alpha:        {type: loguniform, low: 1e-8, high: 1e-1}
+      reg_lambda:       {type: loguniform, low: 1e-8, high: 1.0}
+
+  # Hydraulic
+
+  - dataset: Hydraulic
+    model: INCEPTIONTIME
+    n_trials: 30
+    direction: maximize
+    search_space:
+      learning_rate:     {type: loguniform, low: 5e-5, high: 3e-3}
+      batch_size:        {type: categorical, choices: [32, 64, 128]}
+      epochs:            {type: int,        low: 10,   high: 35}
+      n_residual_blocks: {type: int,        low: 3,    high: 6}
+      nb_filters:        {type: int,        low: 16,   high: 64}
+      kernel_sizes:      {type: categorical, choices: [[9,19,39], [7,15,31], [9,15,29]]}
+      bottleneck:        {type: categorical, choices: [True, False]}
+
+  - dataset: Hydraulic
+    model: RESNET
+    n_trials: 30
+    direction: maximize
+    search_space:
+      learning_rate:  {type: loguniform, low: 5e-5, high: 3e-3}
+      batch_size:     {type: categorical, choices: [32, 64, 128]}
+      epochs:         {type: int,        low: 10,   high: 35}
+      block_channels: {type: categorical, choices: [[64,128,128], [64,128,256], [128,128,128]]}
+      kernel_sizes:   {type: categorical, choices: [[9,5,3], [9,7,5]]}
+
+  - dataset: Hydraulic
+    model: FCN
+    n_trials: 25
+    direction: maximize
+    search_space:
+      learning_rate: {type: loguniform, low: 5e-5, high: 3e-3}
+      batch_size:    {type: categorical, choices: [32, 64, 128]}
+      epochs:        {type: int,        low: 10,   high: 30}
+      channels:      {type: categorical, choices: [[128,256,128], [64,128,64], [256,256,128]]}
+      kernels:       {type: categorical, choices: [[9,5,3], [7,5,3], [11,7,5]]}
+
+  - dataset: Hydraulic
+    model: MCD_CNN
+    n_trials: 25
+    direction: maximize
+    search_space:
+      learning_rate:  {type: loguniform, low: 5e-5, high: 3e-3}
+      batch_size:     {type: categorical, choices: [32, 64, 128]}
+      epochs:         {type: int,        low: 10,   high: 30}
+      branch_filters: {type: categorical, choices: [[8,8], [8,16], [16,16]]}
+      branch_kernels: {type: categorical, choices: [[5,5], [7,5], [9,5]]}
+      pool:           {type: categorical, choices: [2, 3]}
+      dense_units:    {type: int,        low: 256, high: 1024}
+      dropout:        {type: uniform,    low: 0.0,  high: 0.4}
+      use_bn:         {type: categorical, choices: [True, False]}
+
+  - dataset: Hydraulic
+    model: TIME_CNN
+    n_trials: 20
+    direction: maximize
+    search_space:
+      learning_rate: {type: loguniform, low: 5e-5, high: 3e-3}
+      batch_size:    {type: categorical, choices: [32, 64, 128]}
+      epochs:        {type: int,        low: 10,   high: 30}
+      filters:       {type: categorical, choices: [[6,12], [6,12,24]]}
+      kernel_size:   {type: categorical, choices: [5, 7, 9]}
+      pool_size:     {type: categorical, choices: [2, 3]}
+      dense_units:   {type: int,        low: 64,   high: 256}
+      dropout:       {type: uniform,    low: 0.0,  high: 0.3}
+
+  - dataset: Hydraulic
+    model: ENCODER
+    n_trials: 25
+    direction: maximize
+    search_space:
+      learning_rate:    {type: loguniform, low: 5e-5, high: 3e-3}
+      batch_size:       {type: categorical, choices: [32, 64, 128]}
+      epochs:           {type: int,        low: 10,   high: 30}
+      filters:          {type: categorical, choices: [[128,256,512], [64,128,256]]}
+      kernels:          {type: categorical, choices: [[5,11,21], [3,9,19]]}
+      dropout:          {type: uniform,    low: 0.0,  high: 0.3}
+      use_instancenorm: {type: categorical, choices: [True, False]}
+
+  - dataset: Hydraulic
+    model: TST
+    n_trials: 30
+    direction: maximize
+    search_space:
+      learning_rate: {type: loguniform, low: 5e-5, high: 3e-3}
+      batch_size:    {type: categorical, choices: [32, 64, 128]}
+      epochs:        {type: int,        low: 10,   high: 30}
+      d_model:       {type: int,        low: 64,   high: 192}
+      n_heads:       {type: categorical, choices: [4, 8]}
+      num_layers:    {type: int,        low: 2,    high: 6}
+      d_ff:          {type: int,        low: 128,  high: 512}
+      patch_len:     {type: int,        low: 6,    high: 20}
+      stride:        {type: int,        low: 2,    high: 10}
+      use_cls_token: {type: categorical, choices: [True, False]}
+
+  - dataset: Hydraulic
+    model: LSTM
+    n_trials: 20
+    direction: maximize
+    search_space:
+      learning_rate:  {type: loguniform, low: 5e-5, high: 3e-3}
+      batch_size:     {type: categorical, choices: [32, 64, 128]}
+      epochs:         {type: int,        low: 10,   high: 30}
+      hidden_size:    {type: int,        low: 64,   high: 256}
+      num_layers:     {type: int,        low: 1,    high: 3}
+      bidirectional:  {type: categorical, choices: [True, False]}
+      dropout:        {type: uniform,    low: 0.0,  high: 0.3}
+      temporal_pool:  {type: categorical, choices: ["last", "mean", "max"]}
+
+  - dataset: Hydraulic
+    model: GRU
+    n_trials: 20
+    direction: maximize
+    search_space:
+      learning_rate:  {type: loguniform, low: 5e-5, high: 3e-3}
+      batch_size:     {type: categorical, choices: [32, 64, 128]}
+      epochs:         {type: int,        low: 10,   high: 30}
+      hidden_size:    {type: int,        low: 64,   high: 256}
+      num_layers:     {type: int,        low: 1,    high: 3}
+      bidirectional:  {type: categorical, choices: [True, False]}
+      dropout:        {type: uniform,    low: 0.0,  high: 0.3}
+      temporal_pool:  {type: categorical, choices: ["last", "mean", "max"]}
+
+  - dataset: Hydraulic
+    model: RF_CLASSIFIER
+    n_trials: 30
+    direction: maximize
+    search_space:
+      n_estimators: {type: int,        low: 200, high: 800}
+      max_depth:    {type: categorical, choices: [null, 10, 15, 20]}
+
+  - dataset: Hydraulic
+    model: ET_CLASSIFIER
+    n_trials: 30
+    direction: maximize
+    search_space:
+      n_estimators: {type: int,        low: 300, high: 1200}
+      max_depth:    {type: categorical, choices: [null, 10, 15, 20]}
+
+  - dataset: Hydraulic
+    model: XGB_CLASSIFIER
+    n_trials: 40
+    direction: maximize
+    search_space:
+      n_estimators:     {type: int,        low: 300, high: 1000}
+      learning_rate:    {type: loguniform, low: 5e-3, high: 2e-1}
+      max_depth:        {type: int,        low: 3,    high: 8}
+      subsample:        {type: uniform,    low: 0.6,  high: 1.0}
+      colsample_bytree: {type: uniform,    low: 0.6,  high: 1.0}
+      reg_alpha:        {type: loguniform, low: 1e-8, high: 1e-1}
+      reg_lambda:       {type: loguniform, low: 1e-3, high: 10.0}
+
+  - dataset: Hydraulic
+    model: LGBM_CLASSIFIER
+    n_trials: 40
+    direction: maximize
+    search_space:
+      n_estimators:     {type: int,        low: 300, high: 1000}
+      learning_rate:    {type: loguniform, low: 5e-3, high: 2e-1}
+      num_leaves:       {type: int,        low: 15,  high: 127}
+      subsample:        {type: uniform,    low: 0.6, high: 1.0}
+      colsample_bytree: {type: uniform,    low: 0.6, high: 1.0}
+      reg_alpha:        {type: loguniform, low: 1e-8, high: 1e-1}
+      reg_lambda:       {type: loguniform, low: 1e-8, high: 1.0}
+
+  - dataset: Hydraulic
+    model: LOGISTIC_CLASSIFIER
+    n_trials: 10
+    direction: maximize
+    search_space:
+      use_bias: {type: categorical, choices: [True, False]}
+
+  # CWRU_12k (T=2048, classification)
+
+  - dataset: CWRU_12k
+    model: INCEPTIONTIME
+    n_trials: 20
+    direction: maximize
+    search_space:
+      learning_rate:     {type: loguniform, low: 5e-5, high: 3e-3}
+      batch_size:        {type: categorical, choices: [32, 64, 128]}
+      epochs:            {type: int,        low: 10,   high: 35}
+      n_residual_blocks: {type: int,        low: 3,    high: 6}
+      nb_filters:        {type: int,        low: 16,   high: 64}
+      kernel_sizes:      {type: categorical, choices: [[9,19,39], [11,21,41], [15,25,45]]}
+      bottleneck:        {type: categorical, choices: [True, False]}
+
+  - dataset: CWRU_12k
+    model: RESNET
+    n_trials: 20
+    direction: maximize
+    search_space:
+      learning_rate:  {type: loguniform, low: 5e-5, high: 3e-3}
+      batch_size:     {type: categorical, choices: [32, 64, 128]}
+      epochs:         {type: int,        low: 10,   high: 35}
+      block_channels: {type: categorical, choices: [[64,128,128], [64,128,256], [128,128,128]]}
+      kernel_sizes:   {type: categorical, choices: [[9,5,3], [11,7,5]]}
+
+  - dataset: CWRU_12k
+    model: FCN
+    n_trials: 20
+    direction: maximize
+    search_space:
+      learning_rate: {type: loguniform, low: 5e-5, high: 3e-3}
+      batch_size:    {type: categorical, choices: [32, 64, 128]}
+      epochs:        {type: int,        low: 10,   high: 30}
+      channels:      {type: categorical, choices: [[128,256,128], [64,128,64], [256,256,128]]}
+      kernels:       {type: categorical, choices: [[9,5,3], [11,7,5], [15,9,5]]}
+
+  - dataset: CWRU_12k
+    model: MCD_CNN
+    n_trials: 20
+    direction: maximize
+    search_space:
+      learning_rate:  {type: loguniform, low: 5e-5, high: 3e-3}
+      batch_size:     {type: categorical, choices: [32, 64, 128]}
+      epochs:         {type: int,        low: 10,   high: 30}
+      branch_filters: {type: categorical, choices: [[8,8], [8,16], [16,16]]}
+      branch_kernels: {type: categorical, choices: [[5,5], [7,5], [9,5]]}
+      pool:           {type: categorical, choices: [2, 3]}
+      dense_units:    {type: int,        low: 256,  high: 1024}
+      dropout:        {type: uniform,    low: 0.0,  high: 0.4}
+      use_bn:         {type: categorical, choices: [True, False]}
+
+  - dataset: CWRU_12k
+    model: TIME_CNN
+    n_trials: 20
+    direction: maximize
+    search_space:
+      learning_rate: {type: loguniform, low: 5e-5, high: 3e-3}
+      batch_size:    {type: categorical, choices: [32, 64, 128]}
+      epochs:        {type: int,        low: 10,   high: 30}
+      filters:       {type: categorical, choices: [[6,12], [6,12,24]]}
+      kernel_size:   {type: categorical, choices: [7, 9, 11]}
+      pool_size:     {type: categorical, choices: [2, 3]}
+      dense_units:   {type: int,        low: 64,   high: 256}
+      dropout:       {type: uniform,    low: 0.0,  high: 0.3}
+
+  - dataset: CWRU_12k
+    model: ENCODER
+    n_trials: 20
+    direction: maximize
+    search_space:
+      learning_rate:    {type: loguniform, low: 5e-5, high: 3e-3}
+      batch_size:       {type: categorical, choices: [32, 64, 128]}
+      epochs:           {type: int,        low: 10,   high: 30}
+      filters:          {type: categorical, choices: [[128,256,512], [64,128,256]]}
+      kernels:          {type: categorical, choices: [[5,11,21], [7,11,21]]}
+      dropout:          {type: uniform,    low: 0.0,  high: 0.3}
+      use_instancenorm: {type: categorical, choices: [True, False]}
+
+  - dataset: CWRU_12k
+    model: TST
+    n_trials: 20
+    direction: maximize
+    search_space:
+      learning_rate: {type: loguniform, low: 5e-5, high: 3e-3}
+      batch_size:    {type: categorical, choices: [32, 64, 128]}
+      epochs:        {type: int,        low: 10,   high: 30}
+      d_model:       {type: int,        low: 96,   high: 256}
+      n_heads:       {type: categorical, choices: [4, 8]}
+      num_layers:    {type: int,        low: 3,    high: 6}
+      d_ff:          {type: int,        low: 256,  high: 768}
+      patch_len:     {type: int,        low: 32,   high: 128}
+      stride:        {type: int,        low: 16,   high: 64}
+      use_cls_token: {type: categorical, choices: [True, False]}
+
+  - dataset: CWRU_12k
+    model: LSTM
+    n_trials: 20
+    direction: maximize
+    search_space:
+      learning_rate:  {type: loguniform, low: 5e-5, high: 3e-3}
+      batch_size:     {type: categorical, choices: [32, 64, 128]}
+      epochs:         {type: int,        low: 10,   high: 30}
+      hidden_size:    {type: int,        low: 64,   high: 256}
+      num_layers:     {type: int,        low: 1,    high: 3}
+      bidirectional:  {type: categorical, choices: [True, False]}
+      dropout:        {type: uniform,    low: 0.0,  high: 0.3}
+      temporal_pool:  {type: categorical, choices: ["last", "mean", "max"]}
+
+  - dataset: CWRU_12k
+    model: GRU
+    n_trials: 20
+    direction: maximize
+    search_space:
+      learning_rate:  {type: loguniform, low: 5e-5, high: 3e-3}
+      batch_size:     {type: categorical, choices: [32, 64, 128]}
+      epochs:         {type: int,        low: 10,   high: 30}
+      hidden_size:    {type: int,        low: 64,   high: 256}
+      num_layers:     {type: int,        low: 1,    high: 3}
+      bidirectional:  {type: categorical, choices: [True, False]}
+      dropout:        {type: uniform,    low: 0.0,  high: 0.3}
+      temporal_pool:  {type: categorical, choices: ["last", "mean", "max"]}
+
+  - dataset: CWRU_12k
+    model: RF_CLASSIFIER
+    n_trials: 20
+    direction: maximize
+    search_space:
+      n_estimators: {type: int,        low: 200, high: 1000}
+      max_depth:    {type: categorical, choices: [null, 10, 15, 20, 25]}
+
+  - dataset: CWRU_12k
+    model: ET_CLASSIFIER
+    n_trials: 20
+    direction: maximize
+    search_space:
+      n_estimators: {type: int,        low: 300, high: 1200}
+      max_depth:    {type: categorical, choices: [null, 10, 15, 20, 25]}
+
+  - dataset: CWRU_12k
+    model: XGB_CLASSIFIER
+    n_trials: 20
+    direction: maximize
+    search_space:
+      n_estimators:     {type: int,        low: 300,  high: 1200}
+      learning_rate:    {type: loguniform, low: 5e-3,  high: 2e-1}
+      max_depth:        {type: int,        low: 3,     high: 8}
+      subsample:        {type: uniform,    low: 0.6,   high: 1.0}
+      colsample_bytree: {type: uniform,    low: 0.6,   high: 1.0}
+      reg_alpha:        {type: loguniform, low: 1e-8,  high: 1e-1}
+      reg_lambda:       {type: loguniform, low: 1e-3,  high: 10.0}
+
+  - dataset: CWRU_12k
+    model: LGBM_CLASSIFIER
+    n_trials: 20
+    direction: maximize
+    search_space:
+      n_estimators:     {type: int,        low: 300,  high: 1200}
+      learning_rate:    {type: loguniform, low: 5e-3,  high: 2e-1}
+      num_leaves:       {type: int,        low: 15,   high: 127}
+      subsample:        {type: uniform,    low: 0.6,  high: 1.0}
+      colsample_bytree: {type: uniform,    low: 0.6,  high: 1.0}
+      reg_alpha:        {type: loguniform, low: 1e-8, high: 1e-1}
+      reg_lambda:       {type: loguniform, low: 1e-8, high: 1.0}
+
+  - dataset: CWRU_12k
+    model: LOGISTIC_CLASSIFIER
+    n_trials: 20
+    direction: maximize
+    search_space:
+      learning_rate: {type: loguniform, low: 5e-5, high: 3e-3}
+      batch_size:    {type: categorical, choices: [32, 64, 128]}
+      epochs:        {type: int,        low: 10,   high: 30}
+      use_bias:      {type: categorical, choices: [True, False]}

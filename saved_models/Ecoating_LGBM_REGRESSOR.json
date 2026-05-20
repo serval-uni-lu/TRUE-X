@@ -1,0 +1,15 @@
+{
+  "dataset": "Ecoating",
+  "model": "LGBM_REGRESSOR",
+  "direction": "minimize",
+  "source": "csv",
+  "params": {
+    "colsample_bytree": 0.7567084879510743,
+    "learning_rate": 0.09691436674049539,
+    "n_estimators": 843,
+    "num_leaves": 105,
+    "reg_alpha": 0.011304034380010024,
+    "reg_lambda": 1.3764130654925834e-08,
+    "subsample": 0.6945859608985797
+  }
+}

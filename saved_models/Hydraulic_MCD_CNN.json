@@ -1,0 +1,23 @@
+{
+  "dataset": "Hydraulic",
+  "model": "MCD_CNN",
+  "direction": "maximize",
+  "source": "csv",
+  "params": {
+    "batch_size": 64,
+    "branch_filters": [
+      8,
+      16
+    ],
+    "branch_kernels": [
+      5,
+      5
+    ],
+    "dense_units": 689,
+    "dropout": 0.008036305063041566,
+    "epochs": 26,
+    "learning_rate": 0.00106616859112371,
+    "pool": 3,
+    "use_bn": false
+  }
+}

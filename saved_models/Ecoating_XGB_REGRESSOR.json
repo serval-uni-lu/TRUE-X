@@ -1,0 +1,15 @@
+{
+  "dataset": "Ecoating",
+  "model": "XGB_REGRESSOR",
+  "direction": "minimize",
+  "source": "csv",
+  "params": {
+    "colsample_bytree": 0.835307036902955,
+    "learning_rate": 0.10780987059771477,
+    "max_depth": 8,
+    "n_estimators": 940,
+    "reg_alpha": 1.504944934402683e-07,
+    "reg_lambda": 0.7177989175280234,
+    "subsample": 0.6973906218070755
+  }
+}

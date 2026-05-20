@@ -1,0 +1,18 @@
+{
+  "dataset": "Hydraulic",
+  "model": "TST",
+  "direction": "maximize",
+  "source": "csv",
+  "params": {
+    "batch_size": 32,
+    "d_ff": 270,
+    "d_model": 146,
+    "epochs": 14,
+    "learning_rate": 0.0002932173204667362,
+    "n_heads": 4,
+    "num_layers": 5,
+    "patch_len": 7,
+    "stride": 7,
+    "use_cls_token": false
+  }
+}

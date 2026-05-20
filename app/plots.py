@@ -69,8 +69,10 @@ def _minmax_series(s: pd.Series) -> pd.Series:
         return pd.Series(np.nan, index=s.index)
     mn = np.nanmin(s.values)
     mx = np.nanmax(s.values)
-    if not np.isfinite(mn) or not np.isfinite(mx) or mx == mn:
+    if not np.isfinite(mn) or not np.isfinite(mx):
         return pd.Series(np.nan, index=s.index)
+    if mx == mn:
+        return pd.Series(1.0, index=s.index)
     return (s - mn) / (mx - mn)
 
 

@@ -4,8 +4,7 @@ services:
     container_name: true-x
     restart: always
     volumes:
-      - ./streamlit_config.toml:/app/.streamlit/config.toml:ro
-      - ./PipelineVis:/app/PipelineVis:rw
+      - ./app/streamlit_config.toml:/app/.streamlit/config.toml:ro
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.true-x.rule=Host(`demo.serval.uni.lux`) && PathPrefix(`/true-x`)"

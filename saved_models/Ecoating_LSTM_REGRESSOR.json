@@ -1,0 +1,16 @@
+{
+  "dataset": "Ecoating",
+  "model": "LSTM_REGRESSOR",
+  "direction": "minimize",
+  "source": "csv",
+  "params": {
+    "batch_size": 128,
+    "bidirectional": true,
+    "dropout": 0.11307280391369176,
+    "epochs": 20,
+    "hidden_size": 256,
+    "learning_rate": 0.0007409648308615947,
+    "num_layers": 1,
+    "temporal_pool": "max"
+  }
+}

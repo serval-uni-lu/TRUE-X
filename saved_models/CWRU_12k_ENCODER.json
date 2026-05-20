@@ -1,0 +1,20 @@
+{
+  "dataset": "CWRU_12k",
+  "model": "ENCODER",
+  "direction": "maximize",
+  "source": "defaults",
+  "params": {
+    "filters": [
+      128,
+      256,
+      512
+    ],
+    "kernels": [
+      5,
+      11,
+      21
+    ],
+    "dropout": 0.2,
+    "use_instancenorm": true
+  }
+}

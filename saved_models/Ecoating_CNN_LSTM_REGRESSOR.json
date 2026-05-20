@@ -1,0 +1,25 @@
+{
+  "dataset": "Ecoating",
+  "model": "CNN_LSTM_REGRESSOR",
+  "direction": "minimize",
+  "source": "csv",
+  "params": {
+    "batch_size": 256,
+    "bidirectional": false,
+    "conv_channels": [
+      96,
+      128
+    ],
+    "conv_kernels": [
+      5,
+      5
+    ],
+    "epochs": 20,
+    "head_dropout": 0.08572572080931803,
+    "head_hidden": null,
+    "learning_rate": 0.0020200591945076364,
+    "lstm_dropout": 0.25193150332242187,
+    "lstm_hidden": 163,
+    "lstm_layers": 1
+  }
+}

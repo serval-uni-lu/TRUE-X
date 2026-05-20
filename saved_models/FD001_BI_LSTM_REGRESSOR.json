@@ -1,0 +1,15 @@
+{
+  "dataset": "FD001",
+  "model": "BI_LSTM_REGRESSOR",
+  "direction": "minimize",
+  "source": "csv",
+  "params": {
+    "batch_size": 32,
+    "dropout": 0.07524632864470679,
+    "epochs": 12,
+    "hidden_size": 171,
+    "learning_rate": 0.002446119636284112,
+    "num_layers": 3,
+    "temporal_pool": "mean"
+  }
+}

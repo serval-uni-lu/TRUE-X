@@ -1,0 +1,26 @@
+{
+  "dataset": "Ecoating",
+  "model": "LSTM_FCN_REGRESSOR",
+  "direction": "minimize",
+  "source": "csv",
+  "params": {
+    "batch_size": 512,
+    "bidirectional": false,
+    "epochs": 20,
+    "fcn_channels": [
+      256,
+      256,
+      128
+    ],
+    "head_hidden": 256,
+    "kernels": [
+      7,
+      5,
+      3
+    ],
+    "learning_rate": 0.0011754286603869906,
+    "lstm_dropout": 0.22541808381899367,
+    "lstm_hidden": 175,
+    "lstm_layers": 1
+  }
+}

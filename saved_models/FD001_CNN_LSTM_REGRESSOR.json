@@ -1,0 +1,25 @@
+{
+  "dataset": "FD001",
+  "model": "CNN_LSTM_REGRESSOR",
+  "direction": "minimize",
+  "source": "csv",
+  "params": {
+    "batch_size": 32,
+    "bidirectional": true,
+    "conv_channels": [
+      96,
+      128
+    ],
+    "conv_kernels": [
+      7,
+      5
+    ],
+    "epochs": 23,
+    "head_dropout": 0.11465867708733135,
+    "head_hidden": null,
+    "learning_rate": 0.001382132688308672,
+    "lstm_dropout": 0.053229604346477416,
+    "lstm_hidden": 143,
+    "lstm_layers": 1
+  }
+}

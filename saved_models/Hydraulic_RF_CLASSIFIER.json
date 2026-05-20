@@ -1,0 +1,10 @@
+{
+  "dataset": "Hydraulic",
+  "model": "RF_CLASSIFIER",
+  "direction": "maximize",
+  "source": "csv",
+  "params": {
+    "max_depth": 10,
+    "n_estimators": 789
+  }
+}

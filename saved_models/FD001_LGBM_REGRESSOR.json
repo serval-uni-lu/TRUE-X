@@ -1,0 +1,15 @@
+{
+  "dataset": "FD001",
+  "model": "LGBM_REGRESSOR",
+  "direction": "minimize",
+  "source": "csv",
+  "params": {
+    "colsample_bytree": 0.972660744771722,
+    "learning_rate": 0.06570046309955378,
+    "n_estimators": 798,
+    "num_leaves": 29,
+    "reg_alpha": 0.00017878001803816595,
+    "reg_lambda": 8.822527988138902e-05,
+    "subsample": 0.7491406430373775
+  }
+}

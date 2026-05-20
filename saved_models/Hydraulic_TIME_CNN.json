@@ -1,0 +1,20 @@
+{
+  "dataset": "Hydraulic",
+  "model": "TIME_CNN",
+  "direction": "maximize",
+  "source": "csv",
+  "params": {
+    "batch_size": 64,
+    "dense_units": 86,
+    "dropout": 0.12950507456764135,
+    "epochs": 29,
+    "filters": [
+      6,
+      12,
+      24
+    ],
+    "kernel_size": 9,
+    "learning_rate": 0.002048472166374641,
+    "pool_size": 3
+  }
+}

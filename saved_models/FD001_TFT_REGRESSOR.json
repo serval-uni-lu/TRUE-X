@@ -1,0 +1,19 @@
+{
+  "dataset": "FD001",
+  "model": "TFT_REGRESSOR",
+  "direction": "minimize",
+  "source": "csv",
+  "params": {
+    "batch_size": 32,
+    "d_ff": 225,
+    "d_model": 132,
+    "dropout": 0.12289664592569108,
+    "epochs": 27,
+    "head_hidden": 256,
+    "learning_rate": 0.0011850217656544728,
+    "lstm_hidden": 154,
+    "lstm_layers": 2,
+    "n_attn_layers": 2,
+    "n_heads": 2
+  }
+}

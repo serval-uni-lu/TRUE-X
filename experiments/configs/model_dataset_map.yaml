@@ -1,0 +1,65 @@
+# model_dataset_map.yaml
+# Controls which models are evaluated per dataset in test_xai_evalu.py.
+# Only models with saved weights (.pt or .pkl) in saved_models/ are listed.
+# VAE_RUL, VI_DROPOUT, VI_ENSEMBLE are excluded (no weights file — BNN variants).
+
+FD001:
+  - ATTENTION_LSTM_REGRESSOR
+  - BI_LSTM_REGRESSOR
+  - CNN_LSTM_REGRESSOR
+  - ET_REGRESSOR
+  - LGBM_REGRESSOR
+  - LINEAR_REGRESSOR
+  - LSTM_FCN_REGRESSOR
+  - LSTM_REGRESSOR
+  - RF_REGRESSOR
+  - TCN_REGRESSOR
+  - TFT_REGRESSOR
+  - TST_REGRESSOR
+  - XGB_REGRESSOR
+
+Ecoating:
+  - ATTENTION_LSTM_REGRESSOR
+  - BI_LSTM_REGRESSOR
+  - CNN_LSTM_REGRESSOR
+  - ET_REGRESSOR
+  - LGBM_REGRESSOR
+  - LINEAR_REGRESSOR
+  - LSTM_FCN_REGRESSOR
+  - LSTM_REGRESSOR
+  - RF_REGRESSOR
+  - TCN_REGRESSOR
+  - TFT_REGRESSOR
+  - TST_REGRESSOR
+  - XGB_REGRESSOR
+
+Hydraulic:
+  - ENCODER
+  - ET_CLASSIFIER
+  - FCN
+  - GRU
+  - INCEPTIONTIME
+  - LGBM_CLASSIFIER
+  - LOGISTIC_CLASSIFIER
+  - LSTM
+  - MCD_CNN
+  - RESNET
+  - RF_CLASSIFIER
+  - TIME_CNN
+  - TST
+  - XGB_CLASSIFIER
+
+CWRU_12k:
+  - ENCODER
+  - ET_CLASSIFIER
+  - FCN
+  - GRU
+  - INCEPTIONTIME
+  - LGBM_CLASSIFIER
+  - LOGISTIC_CLASSIFIER
+  - LSTM
+  - RESNET
+  - RF_CLASSIFIER
+  - TIME_CNN
+  - TST
+  # MCD_CNN and XGB_CLASSIFIER excluded — weights file missing from saved_models/

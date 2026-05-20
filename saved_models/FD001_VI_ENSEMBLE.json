@@ -1,0 +1,12 @@
+{
+  "dataset": "FD001",
+  "model": "VI_ENSEMBLE",
+  "direction": "minimize",
+  "source": "defaults",
+  "params": {
+    "hidden_dim": 32,
+    "n_hidden_layers": 2,
+    "lstm_hidden_dim": 32,
+    "use_dropout": false
+  }
+}

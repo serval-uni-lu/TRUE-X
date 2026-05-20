@@ -1,0 +1,18 @@
+{
+  "dataset": "FD001",
+  "model": "TST_REGRESSOR",
+  "direction": "minimize",
+  "source": "csv",
+  "params": {
+    "batch_size": 64,
+    "d_ff": 454,
+    "d_model": 137,
+    "epochs": 16,
+    "learning_rate": 0.00048297554797974173,
+    "n_heads": 4,
+    "num_layers": 2,
+    "patch_len": 14,
+    "stride": 2,
+    "use_cls_token": true
+  }
+}

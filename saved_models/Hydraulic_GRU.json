@@ -1,0 +1,16 @@
+{
+  "dataset": "Hydraulic",
+  "model": "GRU",
+  "direction": "maximize",
+  "source": "csv",
+  "params": {
+    "batch_size": 32,
+    "bidirectional": true,
+    "dropout": 0.0024841691976709717,
+    "epochs": 15,
+    "hidden_size": 113,
+    "learning_rate": 0.00036699614068953643,
+    "num_layers": 2,
+    "temporal_pool": "mean"
+  }
+}

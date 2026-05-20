@@ -1,0 +1,15 @@
+{
+  "dataset": "Hydraulic",
+  "model": "XGB_CLASSIFIER",
+  "direction": "maximize",
+  "source": "csv",
+  "params": {
+    "colsample_bytree": 0.9349320199447393,
+    "learning_rate": 0.07261993731971005,
+    "max_depth": 6,
+    "n_estimators": 434,
+    "reg_alpha": 0.000733756195505639,
+    "reg_lambda": 0.014955237132960542,
+    "subsample": 0.7257227483892188
+  }
+}

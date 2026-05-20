@@ -1,0 +1,17 @@
+{
+  "dataset": "CWRU_12k",
+  "model": "TST",
+  "direction": "maximize",
+  "source": "defaults",
+  "params": {
+    "d_model": 128,
+    "n_heads": 8,
+    "num_layers": 4,
+    "d_ff": 256,
+    "dropout": 0.1,
+    "patch_len": 16,
+    "stride": 8,
+    "use_cls_token": true,
+    "emb_dropout": 0.1
+  }
+}

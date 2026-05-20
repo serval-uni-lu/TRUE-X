@@ -10,3 +10,18 @@ dist/
 build/
 *.log
 .env
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Datasets (not versioned — see README for download links)
+data
+data/
+
+# Auto-generated metadata
+model_details.csv
+
+# Large model file — exceeds GitHub limit, download separately (see README)
+saved_models/CWRU_12k_ENCODER.pt

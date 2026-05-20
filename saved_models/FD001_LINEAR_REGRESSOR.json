@@ -1,0 +1,11 @@
+{
+  "dataset": "FD001",
+  "model": "LINEAR_REGRESSOR",
+  "direction": "minimize",
+  "source": "csv",
+  "params": {
+    "batch_size": 32,
+    "epochs": 19,
+    "learning_rate": 0.0018828946791212312
+  }
+}

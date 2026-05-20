@@ -1,0 +1,15 @@
+{
+  "dataset": "Hydraulic",
+  "model": "LGBM_CLASSIFIER",
+  "direction": "maximize",
+  "source": "csv",
+  "params": {
+    "colsample_bytree": 0.8867489907240649,
+    "learning_rate": 0.015798167780185304,
+    "n_estimators": 905,
+    "num_leaves": 108,
+    "reg_alpha": 0.000566820210170544,
+    "reg_lambda": 2.4153873879446593e-06,
+    "subsample": 0.9973375788023242
+  }
+}

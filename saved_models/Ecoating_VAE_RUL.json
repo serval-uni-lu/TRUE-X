@@ -1,0 +1,10 @@
+{
+  "dataset": "Ecoating",
+  "model": "VAE_RUL",
+  "direction": "minimize",
+  "source": "defaults",
+  "params": {
+    "intermediate_dim": 32,
+    "latent_dim": 8
+  }
+}

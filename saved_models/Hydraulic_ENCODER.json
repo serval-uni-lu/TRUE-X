@@ -1,0 +1,23 @@
+{
+  "dataset": "Hydraulic",
+  "model": "ENCODER",
+  "direction": "maximize",
+  "source": "csv",
+  "params": {
+    "batch_size": 32,
+    "dropout": 0.21517780175455142,
+    "epochs": 21,
+    "filters": [
+      64,
+      128,
+      256
+    ],
+    "kernels": [
+      5,
+      11,
+      21
+    ],
+    "learning_rate": 0.0013615104839131199,
+    "use_instancenorm": true
+  }
+}

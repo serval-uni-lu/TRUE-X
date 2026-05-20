@@ -1,0 +1,13 @@
+{
+  "dataset": "CWRU_12k",
+  "model": "LGBM_CLASSIFIER",
+  "direction": "maximize",
+  "source": "defaults",
+  "params": {
+    "n_estimators": 300,
+    "learning_rate": 0.1,
+    "num_leaves": 63,
+    "subsample": 0.9,
+    "colsample_bytree": 0.9
+  }
+}
