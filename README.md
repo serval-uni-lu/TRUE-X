@@ -1,102 +1,71 @@
 # TRUE-X
 
-This repo provides a DEMO of the TRUE-X decision support tool, more details, and a link to the full repo with code and paper coming soon.
+TRUE-X is a decision support tool for explainable AI evaluation on multivariate time series. It combines a Streamlit demo interface with the [ExpliTest](https://github.com/serval-uni-lu/ExpliTest) metrics library.
 
-## Running the Streamlit Frontend
+## Repository Structure
 
-### Option 1: Local Installation
+```
+TRUE-X/
+├── app/                    # Streamlit application
+├── experiments/            # Experiment pipeline (configs, scripts, notebooks)
+├── results/                # Benchmark outputs (CSV, figures)
+├── submodules/
+│   ├── explitest/          # ExpliTest metrics library (git submodule)
+│   └── PipelineVis/        # Pipeline visualisation component (git submodule)
+├── requirements.txt
+├── Dockerfile
+└── docker-compose.yml
+```
 
-#### Prerequisites
-- Python 3.11 or higher
-- Node.js 18.x or higher
-- pip (Python package manager)
+> **Note:** `data/` and `saved_models/` are not versioned in this repository. See the *Data & Models* section below.
 
-#### Steps
+## Getting Started
 
-1. **Clone the repository** (if not already done)
-   ```bash
-   git clone <repository-url>
-   cd TRUE-X
-   ```
+### 1. Clone with submodules
 
-2. **Initialize and sync the git submodule**
-   ```bash
-   git submodule init
-   git submodule update --recursive
-   ```
+```bash
+git clone --recurse-submodules <repository-url>
+cd TRUE-X
+```
 
-   This will pull the PipelineVis submodule which is required for the application.
+Or, if already cloned:
 
-3. **Install Python dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
+```bash
+git submodule update --init --recursive
+```
 
-3. **Install the PipelineProfiler package**
-   ```bash
-   cd PipelineVis
-   npm install --legacy-peer-deps
-   npm run build
-   pip install .
-   cd ..
-   ```
+### 2. Install dependencies
 
-4. **Run the Streamlit application**
-   ```bash
-   streamlit run frontend.py
-   ```
+```bash
+pip install -r requirements.txt
+pip install -e submodules/explitest
+```
 
-   The application will start and automatically open in your default browser at `http://localhost:8501`
+### 3. Run the Streamlit app
 
-#### Optional Configuration
-You can customize the Streamlit configuration by editing `streamlit_config.toml`. Common settings include:
-- Server port
-- Server address
-- Theme settings
+```bash
+streamlit run app/app.py
+```
 
-### Option 2: Docker
+The app will open at `http://localhost:8501`.
 
-#### Prerequisites
-- Docker and Docker Compose installed
+## Docker
 
-#### Build the Docker Image
+```bash
+docker build -t true-x:latest .
+docker-compose up -d
+```
 
-1. **Build the Docker image**
-   ```bash
-   docker build -t true-x:latest .
-   ```
+The app will be accessible at `http://localhost:8501`.
 
-   This step is required before running the container, whether using Docker Compose or manual docker run commands.
+## Data & Models
 
-#### Quick Start with Docker Compose
+`data/` and `saved_models/` are not versioned in this repository. To reproduce experiments, download the artifacts and place them at the expected paths, or update the symlinks to point to your local copies.
 
-1. **Build the image** (if not already done)
-   ```bash
-   docker build -t true-x:latest .
-   ```
+## ExpliTest Library
 
-2. **Run the container with Docker Compose**
-   ```bash
-   docker-compose up -d
-   ```
+The metrics library is developed independently at [serval-uni-lu/ExpliTest](https://github.com/serval-uni-lu/ExpliTest) and included here as a git submodule. To update it to the latest version:
 
-   The application will be accessible based on your docker-compose configuration.
-
-#### Manual Docker Run
-
-1. **Run the container** (after building the image)
-   ```bash
-   docker run -p 8501:8501 \
-     -v $(pwd)/streamlit_config.toml:/app/.streamlit/config.toml:ro \
-     -v $(pwd)/PipelineVis:/app/PipelineVis:rw \
-     true-x:latest
-   ```
-
-   The application will be accessible at `http://localhost:8501`
-
-#### Docker Configuration Notes
-- The container exposes port `8501` (Streamlit default)
-- Volume mounts allow you to:
-  - Override configuration via `streamlit_config.toml`
-  - Access and update the PipelineVis module
-- For production deployments, update the Traefik labels in `docker-compose.yml` according to your infrastructure
+```bash
+git submodule update --remote submodules/explitest
+```
