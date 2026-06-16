@@ -1,5 +1,5 @@
 [submodule "PipelineVis"]
-	path = submodules/PipelineVis
+	path = PipelineVis
 	url = git@github.com:serval-uni-lu/PipelineVis.git
 [submodule "submodules/explitest"]
 	path = submodules/explitest
