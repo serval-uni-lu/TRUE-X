@@ -29,6 +29,8 @@ WORKDIR /app
 
 # Application code, models and benchmark results
 COPY app/ ./app/
+COPY experiments/ ./experiments/
+COPY data/ ./data/
 COPY saved_models/ ./saved_models/
 COPY results/ ./results/
 

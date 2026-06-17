@@ -7,6 +7,7 @@ TRUE-X is a decision support tool for explainable AI evaluation on multivariate 
 ```
 TRUE-X/
 ├── app/                    # Streamlit application (entry: frontend.py)
+├── data/                   # Dataset folder
 ├── experiments/            # Experiment pipeline (configs, scripts, notebooks)
 ├── results/                # Benchmark outputs (CSV)
 ├── saved_models/           # Pre-trained model weights (.pt + .json)
@@ -18,7 +19,24 @@ TRUE-X/
 └── docker-compose.yml
 ```
 
-> **Note:** `data/` is not versioned in this repository. See the *Data & Models* section for download links.
+> **Note:** `data/` is not versioned in this repository (the folder needs to be created). See the *Data & Models* section for download links.
+
+## Data & Models
+
+`data/` is not versioned in this repository. Download each dataset and place it at the expected path under `data/`:
+
+| Dataset | Task | Expected path | Source |
+|---------|------|---------------|--------|
+| C-MAPSS FD001 | Regression (RUL) | `data/CMAPPS_Dataset/` | [NASA Prognostics Data Repository](https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/pcoe/pcoe-data-set-repository/) |
+| CWRU Bearing | Classification | `data/CWRU/` | [Case Western Reserve University](https://engineering.case.edu/bearingdatacenter/download-data) |
+| Hydraulic Systems | Classification | `data/hydraulic_systems/` | [UCI ML Repository](https://archive.ics.uci.edu/dataset/447/condition+monitoring+of+hydraulic+systems) |
+| E-coating | Regression | `data/E-coating/` | [Kaggle — process-data-for-predictive-maintenance](https://www.kaggle.com/datasets/boyangs444/process-data-for-predictive-maintenance) |
+
+Pre-trained model weights are in `saved_models/` and versioned in this repository. The single exception is `CWRU_12k_ENCODER.pt` (140 MB), which exceeds GitHub's file size limit and must be downloaded separately:
+
+1. Download `CWRU_12k_ENCODER.pt` from the [Releases](../../releases) page.
+2. Place it at `saved_models/CWRU_12k_ENCODER.pt`.
+
 
 ## Getting Started
 
@@ -66,22 +84,6 @@ docker-compose up -d
 ```
 
 The app will be accessible at `http://localhost:8501`.
-
-## Data & Models
-
-`data/` is not versioned in this repository. Download each dataset and place it at the expected path under `data/`:
-
-| Dataset | Task | Expected path | Source |
-|---------|------|---------------|--------|
-| C-MAPSS FD001 | Regression (RUL) | `data/CMAPPS_Dataset/` | [NASA Prognostics Data Repository](https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/pcoe/pcoe-data-set-repository/) |
-| CWRU Bearing | Classification | `data/CWRU/` | [Case Western Reserve University](https://engineering.case.edu/bearingdatacenter/download-data) |
-| Hydraulic Systems | Classification | `data/hydraulic_systems/` | [UCI ML Repository](https://archive.ics.uci.edu/dataset/447/condition+monitoring+of+hydraulic+systems) |
-| E-coating | Regression | `data/E-coating/` | [Kaggle — process-data-for-predictive-maintenance](https://www.kaggle.com/datasets/boyangs444/process-data-for-predictive-maintenance) |
-
-Pre-trained model weights are in `saved_models/` and versioned in this repository. The single exception is `CWRU_12k_ENCODER.pt` (140 MB), which exceeds GitHub's file size limit and must be downloaded separately:
-
-1. Download `CWRU_12k_ENCODER.pt` from the [Releases](../../releases) page.
-2. Place it at `saved_models/CWRU_12k_ENCODER.pt`.
 
 ## ExpliTest Library
 

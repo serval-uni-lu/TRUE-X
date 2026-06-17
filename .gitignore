@@ -17,7 +17,6 @@ venv/
 env/
 
 # Datasets (not versioned — see README for download links)
-data
 data/
 
 # Auto-generated metadata
