@@ -15,7 +15,6 @@ TRUE-X/
 ├── pyproject.toml          # Python project metadata and dependencies
 ├── uv.lock                 # Locked Python dependency versions
 ├── Dockerfile
-└── docker-compose.yml
 ```
 
 `data/` and `saved_models/` are not versioned in this repository. See [Data & Models](#data--models).
@@ -77,18 +76,6 @@ Build the image:
 docker build -t true-x:latest .
 ```
 
-
-The app will be available at:
-
-```text
-http://localhost:8501
-```
-
-Stop the service:
-
-```bash
-docker-compose down
-```
 
 ## Data & Models
 
