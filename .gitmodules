@@ -1,6 +1,7 @@
 [submodule "PipelineVis"]
-	path = PipelineVis
-	url = git@github.com:serval-uni-lu/PipelineVis.git
+    path = PipelineVis
+	url = https://github.com/serval-uni-lu/PipelineVis.git
+	branch = true-x
 [submodule "submodules/explitest"]
 	path = submodules/explitest
 	url = https://github.com/serval-uni-lu/ExpliTest.git

@@ -1,0 +1,21 @@
+[project]
+name = "true-x"
+version = "0.1.0"
+description = "Decision support tool for explainable AI evaluation on multivariate time series."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "pandas",
+    "scikit-learn",
+    "streamlit",
+    "plotly",
+    "setuptools<82",
+]
+
+[dependency-groups]
+dev = [
+    "pandas-stubs"
+]
+
+[tool.uv]
+package = false
