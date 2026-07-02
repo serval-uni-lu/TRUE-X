@@ -77,11 +77,6 @@ Build the image:
 docker build -t true-x:latest .
 ```
 
-Run with Docker Compose:
-
-```bash
-docker-compose up -d
-```
 
 The app will be available at:
 
