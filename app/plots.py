@@ -10,9 +10,7 @@ import plotly.express as px
 from plotly.subplots import make_subplots
 
 
-# ============================================================
 # Expected input dataframe columns
-# ============================================================
 # df must contain:
 #   Dataset (optional), Model, Explainer, Metric, Value
 #

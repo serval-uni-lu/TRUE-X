@@ -5,9 +5,7 @@ from pathlib import Path
 MIN_SAMPLES = 20   # minimum windows required to proceed
 
 
-# ---------------------------------------------------------------
 # Internal helpers
-# ---------------------------------------------------------------
 
 _DROP_HINTS = {"time", "date", "index", "epoch", "timestamp", "id", "datetime"}
 _TARGET_HINTS = {"target", "label", "y", "class", "output", "fault"}
@@ -40,9 +38,7 @@ def _guess_target(df: pd.DataFrame, exclude: list[str]) -> str | None:
     return numeric[-1]
 
 
-# ---------------------------------------------------------------
 # Public: dataset upload + column role UI
-# ---------------------------------------------------------------
 
 def render_dataset_upload() -> dict | None:
     """
@@ -68,9 +64,7 @@ def render_dataset_upload() -> dict | None:
 
     st.divider()
 
-    # ================================================================
     # B1 — benchmark dataset
-    # ================================================================
     if data_source == "Use a benchmark dataset":
 
         st.caption(
@@ -113,9 +107,7 @@ def render_dataset_upload() -> dict | None:
             "target_col":   spec["target_col"],
         }
 
-    # ================================================================
     # B2 — custom dataset
-    # ================================================================
     else:
 
         st.caption(
@@ -133,7 +125,7 @@ def render_dataset_upload() -> dict | None:
             st.info("Upload a CSV file to continue.")
             return None
 
-        # ---- Parse ----
+        # Parse
         try:
             df = pd.read_csv(uploaded)
         except Exception as exc:
@@ -148,12 +140,12 @@ def render_dataset_upload() -> dict | None:
             st.error("The file must have at least two columns (one feature + one target).")
             return None
 
-        # ---- Preview ----
+        # Preview
         st.write(f"**Detected:** {df.shape[0]:,} rows × {df.shape[1]} columns")
         with st.expander("Preview — first 5 rows", expanded=True):
             st.dataframe(df.head(), use_container_width=True)
 
-        # ---- Step 2: column roles ----
+        # Step 2: column roles
         st.subheader("Step 2 — Confirm column roles")
         st.caption("TRUE-X will auto-detect roles. Correct anything that looks wrong.")
 
@@ -184,7 +176,7 @@ def render_dataset_upload() -> dict | None:
                 key="entry_b_drop",
             )
 
-        # ---- Derive feature list ----
+        # Derive feature list
         feature_cols = [
             c for c in all_cols
             if c != target_col and c not in cols_to_drop
@@ -213,9 +205,7 @@ def render_dataset_upload() -> dict | None:
         }
 
 
-# ---------------------------------------------------------------
 # Internal helpers for Step 3
-# ---------------------------------------------------------------
 
 def _guess_task(df: pd.DataFrame, target_col: str) -> str:
     """Return 'Classification' if target looks like discrete labels, else 'Regression'."""
@@ -240,9 +230,7 @@ def _count_windows(n_timesteps: int, window: int, shift: int) -> int:
     return (n_timesteps - window) // shift + 1
 
 
-# ---------------------------------------------------------------
 # Public: windowing + task configuration
-# ---------------------------------------------------------------
 
 def render_windowing_config(dataset_info: dict) -> dict | None:
     """
@@ -270,9 +258,7 @@ def render_windowing_config(dataset_info: dict) -> dict | None:
 
     st.subheader("Step 3 — Windowing & task configuration")
 
-    # ================================================================
     # B1 — benchmark: configuration is fixed, show read-only display
-    # ================================================================
     if mode == "benchmark":
         dataset_name = dataset_info["dataset_name"]
         spec = _BENCHMARK_SPECS[dataset_name]
@@ -323,9 +309,7 @@ def render_windowing_config(dataset_info: dict) -> dict | None:
             "n_classes":      n_classes,
         }
 
-    # ================================================================
     # B2 — custom: configurable windowing
-    # ================================================================
     df          = dataset_info["df"]
     n_timesteps = len(df)
 
@@ -334,7 +318,7 @@ def render_windowing_config(dataset_info: dict) -> dict | None:
         "Each window becomes one sample fed to the model."
     )
 
-    # ---- Task type ----
+    # Task type
     guessed_task = _guess_task(df, target_col)
 
     task = st.radio(
@@ -349,7 +333,7 @@ def render_windowing_config(dataset_info: dict) -> dict | None:
         key="entry_b_task",
     )
 
-    # ---- Target preview ----
+    # Target preview
     target_series = df[target_col].dropna()
 
     if task == "Classification":
@@ -377,7 +361,7 @@ def render_windowing_config(dataset_info: dict) -> dict | None:
 
     st.divider()
 
-    # ---- Window length and hop size ----
+    # Window length and hop size
     col_l, col_h = st.columns(2)
 
     max_window = max(2, n_timesteps // 2)
@@ -408,7 +392,7 @@ def render_windowing_config(dataset_info: dict) -> dict | None:
             key="entry_b_shift",
         )
 
-    # ---- Train / test split ----
+    # Train / test split
     test_ratio = st.slider(
         "Test set size",
         min_value=0.1,
@@ -420,7 +404,7 @@ def render_windowing_config(dataset_info: dict) -> dict | None:
         key="entry_b_split",
     )
 
-    # ---- Live summary ----
+    # Live summary
     n_samples = _count_windows(n_timesteps, int(window), int(shift))
     n_test    = max(1, int(n_samples * test_ratio))
     n_train   = n_samples - n_test
@@ -435,7 +419,7 @@ def render_windowing_config(dataset_info: dict) -> dict | None:
         f"Each sample shape: ({int(window)} timesteps × {len(feature_cols)} channels)"
     )
 
-    # ---- Validation ----
+    # Validation
     if n_samples < MIN_SAMPLES:
         st.error(
             f"Only {n_samples} window(s) produced — need at least {MIN_SAMPLES}. "
@@ -465,9 +449,7 @@ def render_windowing_config(dataset_info: dict) -> dict | None:
     }
 
 
-# ---------------------------------------------------------------
 # Constants — benchmark dataset specs (shared by Steps 1, 3, 4)
-# ---------------------------------------------------------------
 
 # All values derived from xurl/configs/datasets_config.yaml and the dataset adapters.
 # feature_cols = numeric sensor columns after dropping time/id columns and the target.
@@ -531,9 +513,7 @@ _ARCHITECTURES_REGRESSION = [
 ]
 
 
-# ---------------------------------------------------------------
 # Internal helpers for Step 4
-# ---------------------------------------------------------------
 
 def _scan_pretrained_models(saved_models_dir: str, task: str) -> list[dict]:
     """
@@ -585,9 +565,7 @@ def _shape_compatible(model_meta: dict, window_info: dict, dataset_info: dict) -
     )
 
 
-# ---------------------------------------------------------------
 # Public: model selection
-# ---------------------------------------------------------------
 
 _APP_DIR = Path(__file__).resolve().parent   # TRUE-X/app/
 _ROOT    = _APP_DIR.parent                   # TRUE-X/ (repo root)
@@ -622,9 +600,7 @@ def render_model_selection(dataset_info: dict, window_info: dict) -> dict | None
 
     st.subheader("Step 4 — Model selection")
 
-    # ================================================================
-    # B1 — benchmark: multiselect from pre-trained models for THIS dataset
-    # ================================================================
+    # B1 — benchmark: multiselect from pre-trained models for this dataset
     if mode == "benchmark":
         dataset_name = dataset_info["dataset_name"]
 
@@ -683,9 +659,7 @@ def render_model_selection(dataset_info: dict, window_info: dict) -> dict | None
         st.success(f"✅ {len(selected_models)} model(s) selected.")
         return {"models": selected_models}
 
-    # ================================================================
     # B2 — custom: upload one or more model files
-    # ================================================================
     arch_options = (
         _ARCHITECTURES_CLASSIFICATION
         if task == "Classification"
@@ -747,9 +721,7 @@ def render_model_selection(dataset_info: dict, window_info: dict) -> dict | None
     return {"models": selected_models}
 
 
-# ---------------------------------------------------------------
 # XAI method groups (used in Step 5)
-# ---------------------------------------------------------------
 
 _XAI_GROUPS = {
     "Gradient-based": [
@@ -788,9 +760,7 @@ _DEFAULT_XAI_METHODS = [
 ]
 
 
-# ---------------------------------------------------------------
 # Public: XAI method selection
-# ---------------------------------------------------------------
 
 def render_explainer_selection() -> dict | None:
     """
@@ -824,9 +794,7 @@ def render_explainer_selection() -> dict | None:
     return {"methods": selected}
 
 
-# ---------------------------------------------------------------
 # Public: evaluation launch
-# ---------------------------------------------------------------
 
 def render_evaluation_launch(
     dataset_info: dict,
@@ -884,9 +852,7 @@ def render_evaluation_launch(
     return st.session_state.get("live_results")
 
 
-# ---------------------------------------------------------------
 # Public: results visualisation (Step 7)
-# ---------------------------------------------------------------
 
 def render_results_visualisation(live_results: "pd.DataFrame") -> None:
     """
@@ -903,7 +869,7 @@ def render_results_visualisation(live_results: "pd.DataFrame") -> None:
 
     st.subheader("Step 7 — Results")
 
-    # ---- Step 8: export ----
+    # Step 8: export
     st.download_button(
         label="⬇ Download results as CSV",
         data=live_results.to_csv(index=False).encode("utf-8"),
@@ -921,7 +887,7 @@ def render_results_visualisation(live_results: "pd.DataFrame") -> None:
     perf_metrics  = [m for m in available_metrics if m in ("Accuracy", "RMSE")]
     trust_metrics = [m for m in available_metrics if m not in ("Accuracy", "RMSE")]
 
-    # ---- AHP weighting ----
+    # AHP weighting
     st.header("AHP-Based Metric Importance (pairwise comparisons)")
 
     SAATY_OPTIONS = [

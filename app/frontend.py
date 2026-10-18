@@ -27,9 +27,7 @@ import numpy as np
 
 st.set_page_config(layout="wide", page_title="TRUE-X")
 
-# ---------------------------------------------------------------
 # Sidebar — mode selector
-# ---------------------------------------------------------------
 st.sidebar.title("TRUE-X")
 st.sidebar.markdown("*Decision Support for XAI Trustworthiness*")
 st.sidebar.divider()
@@ -45,9 +43,7 @@ mode = st.sidebar.radio(
 
 st.sidebar.divider()
 
-# ---------------------------------------------------------------
 # ENTRY A — Browse pre-computed benchmark results
-# ---------------------------------------------------------------
 if mode == MODE_BROWSE:
 
     df_rank = pd.read_csv(RANKS_CSV)
@@ -108,7 +104,7 @@ if mode == MODE_BROWSE:
             df_rank["Metric"].isin(all_selected_metrics)
         ]
 
-        # ---- AHP weighting ----
+        # AHP weighting
         st.header("AHP-Based Metric Importance (pairwise comparisons)")
 
         SAATY_OPTIONS = [
@@ -212,9 +208,7 @@ if mode == MODE_BROWSE:
         else:
             st.warning("Consistency is poor. Please review your comparisons.")
 
-# ---------------------------------------------------------------
 # ENTRY B — Upload dataset + pre-trained model → live evaluation
-# ---------------------------------------------------------------
 elif mode == MODE_EVALUATE:
     st.header("Evaluate My Data")
     st.markdown(
@@ -246,9 +240,7 @@ elif mode == MODE_EVALUATE:
                         st.divider()
                         render_results_visualisation(live_results)
 
-# ---------------------------------------------------------------
 # ENTRY C — Upload dataset → train from scratch → evaluate
-# ---------------------------------------------------------------
 elif mode == MODE_TRAIN:
     st.header("Train From Scratch")
     st.info(

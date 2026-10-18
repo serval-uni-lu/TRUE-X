@@ -22,7 +22,7 @@ NB_CLASSES = 3
 INPUT_SHAPE = (T, C)  # models expect (T, C) as input_shape arg
 
 
-# ---- Classifiers ----
+# Classifiers
 
 def test_encoder_tsc():
     m = EncoderTSC(INPUT_SHAPE, NB_CLASSES)
@@ -75,7 +75,7 @@ def test_logistic_classifier():
     assert out.shape == (B, NB_CLASSES)
 
 
-# ---- Regressors ----
+# Regressors
 
 def test_mlp_lstm_attention():
     m = MLP_LSTM_Attention(input_dim=C, output_dim=1, hidden_dim=16, lstm_hidden_dim=16)
@@ -135,7 +135,7 @@ def test_linear_regressor():
     assert out.shape == (B,)
 
 
-# ---- Interpretable ----
+# Interpretable
 
 def test_namts_classifier():
     m = NAMTS_Classifier(INPUT_SHAPE, NB_CLASSES, d_hidden=16)

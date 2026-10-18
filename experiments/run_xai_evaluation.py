@@ -18,7 +18,7 @@ import torch
 from torch import nn
 from torch.utils.data import DataLoader
 
-# ==== XRUL imports (your repo) ====
+# XRUL imports
 from ml_models.model_registry import Model, ModelRegistry
 from ml_models.experiment_model import ExperimentModel
 from ml_models.model_builder import build_model_with_params
@@ -41,9 +41,7 @@ logger = logging.getLogger("xrul.xai_eval")
 if not logger.handlers:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
-# ------------------------
 # Device / seed / logging
-# ------------------------
 def device_str() -> str:
     # if torch.backends.mps.is_available() and torch.backends.mps.is_built():
     #     return "mps"
@@ -63,9 +61,7 @@ def set_verbosity(verbosity: int):
     level = logging.INFO if verbosity <= 1 else logging.DEBUG
     logging.getLogger().setLevel(level)
 
-# ------------------------
 # YAML / adapter utilities
-# ------------------------
 def load_yaml_file(path: str) -> dict:
     import yaml
     with open(path, "r") as f:
@@ -165,9 +161,7 @@ def _build_xai_metrics(kind: str) -> Dict[str, Any]:
         f"Complexity ({suffix}, Chan)":          FAMVComplexityEntropyChannel(),
     }
 
-# ------------------------
 # Tuning + model builders
-# ------------------------
 def read_best_params_from_csv(dataset: str, model: str, direction: str) -> Optional[Dict[str, Any]]:
     csv_path = os.path.join("tuning", "tuning_results", f"optuna_{dataset}_{model}_tuning_results.csv")
     if not os.path.isfile(csv_path):
@@ -268,9 +262,7 @@ def load_weights_into_exp(exp: ExperimentModel, artifact_path: str):
     else:
         raise ValueError(f"Unknown artifact format: {artifact_path}")
 
-# ------------------------
 # Data helpers
-# ------------------------
 def _gather_from_loader(loader: DataLoader, n_max: int) -> np.ndarray:
     Xs, total = [], 0
     for b in loader:
@@ -377,9 +369,7 @@ def build_train_background(train_loader: DataLoader, max_pool: int = 2000, kmean
     baseline_mean = X_pool.mean(axis=0)  # (C,T)
     return background_small, baseline_mean
 
-# ------------------------
 # Fallback explainer (grad*input)
-# ------------------------
 class _FallbackExplainer:
     def __init__(self, model: torch.nn.Module, device: torch.device):
         self.model = model.to(device).eval()
@@ -399,9 +389,7 @@ class _FallbackExplainer:
         x.grad = None
         return attr
 
-# ------------------------
 # Explain + Metrics
-# ------------------------
 def compute_attributions_for_method(
     exp_model: ExperimentModel,
     method: str,
@@ -509,9 +497,7 @@ def run_xai_metrics_for_batch(
 
     return results
 
-# ------------------------
 # Saved model discovery (general + CWRU)
-# ------------------------
 def find_saved_model_path(saved_root: Path, dataset: str, model_name: str) -> Optional[Path]:
     """
     Try common patterns:
@@ -536,9 +522,7 @@ def find_saved_model_path(saved_root: Path, dataset: str, model_name: str) -> Op
     hits = list(saved_root.rglob(f"*{dataset}*{model_name}*.*"))
     return hits[-1] if hits else None
 
-# ------------------------
 # CSV helpers (per-dataset files)
-# ------------------------
 def dataset_csv_path(out_dir: Path, dataset: str) -> Path:
     return out_dir / f"{dataset}.csv"
 
@@ -565,9 +549,7 @@ def log_sample_rows(path: Path,
             row = [ts, dataset, model, method, split, i, metric_name, float(v), model_path, n]
             f.write(",".join(map(str, row)) + "\n")
 
-# ------------------------
 # Per-dataset/model runner
-# ------------------------
 def run_for_dataset_model(
     dataset_name: str,
     model_name: str,
@@ -643,7 +625,7 @@ def run_for_dataset_model(
         logger.warning(f"[skip] {dataset_name}/{model_name}: no explicand samples.")
         return
 
-    # background & baseline strictly from TRAIN
+    # background & baseline strictly from the training split
     bg_small, baseline = build_train_background(train_loader, max_pool=2000, kmeans_k=50)
 
     # run explainers → metrics (+ optional save attrs)
@@ -664,7 +646,7 @@ def run_for_dataset_model(
             X_bct = np.asarray(X_exp)  # already (N, C, T) — channels-first throughout
             metrics = run_xai_metrics_for_batch(exp, X_bct, A)
 
-            # === per-dataset CSV logging, one row per sample ===
+            # per-dataset CSV logging, one row per sample
             ds_csv = dataset_csv_path(out_dir, dataset_name)
             for metric_name, arr in metrics.items():
                 log_sample_rows(
@@ -678,7 +660,7 @@ def run_for_dataset_model(
                     values=arr,
                 )
 
-            # === structured dumps per (dataset/model/method/split) ===
+            # structured dumps per (dataset/model/method/split)
             dump_root = out_dir / dataset_name / model_name / method / split_name
             (dump_root / "metrics").mkdir(parents=True, exist_ok=True)
 
@@ -736,9 +718,7 @@ def run_for_dataset_model(
         except Exception: pass
     gc.collect()
 
-# ------------------------
 # Dataset factory (from datasets_config.yaml)
-# ------------------------
 def get_loaders_from_config(dataset_name: str, datasets_cfg: dict):
     entry = datasets_cfg[dataset_name]
     adapter_path = entry["adapter"]
@@ -771,9 +751,7 @@ def get_loaders_from_config(dataset_name: str, datasets_cfg: dict):
         "task": task,
     }
 
-# ------------------------
 # CLI
-# ------------------------
 def main():
     parser = argparse.ArgumentParser(
         description="Run explainers + XAI metrics on saved models; store per-sample metric arrays."

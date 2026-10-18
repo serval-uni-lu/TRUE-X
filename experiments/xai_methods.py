@@ -20,7 +20,7 @@ from captum.attr import (
 Tensor = torch.Tensor
 NDArray = np.ndarray
 
-# --- Optional extras (LIME / SHAP) ---
+# Optional extras (LIME / SHAP)
 try:
     import lime
     from lime.lime_tabular import LimeTabularExplainer as _LimeTabularExplainer
@@ -37,7 +37,7 @@ except Exception:
     _shap = None  # type: ignore
 
 
-# --- optional wrapper for VAE_RUL (if present) ---
+# optional wrapper for VAE_RUL (if present)
 try:
     from ml_models.vae_rul_wrapper import VAE_RUL_Wrapper  # type: ignore
     _HAVE_VAE_WRAPPER = True
@@ -46,7 +46,6 @@ except Exception:
     _HAVE_VAE_WRAPPER = False
 
 
-# ---------------- Base ----------------
 class BaseExplainer:
     def __init__(self, model: Union[torch.nn.Module, List[torch.nn.Module]]):
         self.model = model
@@ -133,7 +132,7 @@ class BaseExplainer:
         return None
 
 
-# ---------------- Expected Gradients ----------------
+# Expected Gradients
 class ExpectedGradientsExplainer(BaseExplainer):
     def explain(
         self,
@@ -194,7 +193,7 @@ class ExpectedGradientsExplainer(BaseExplainer):
         return np.abs(attr) if return_abs else attr
 
 
-# ---------------- Captum explainers ----------------
+# Captum explainers
 class IntegratedGradientsExplainer(BaseExplainer):
     def explain(
         self,
@@ -590,7 +589,7 @@ class SmoothGradientExplainer(BaseExplainer):
         return np.abs(out) if return_abs else out
 
 
-# ---------------- Extra explainers ----------------
+# Extra explainers
 class ShapleySamplingExplainer(BaseExplainer):
     def __init__(self, model):
         super().__init__(model)
@@ -885,7 +884,6 @@ class KernelShapExplainer(BaseExplainer):
         return np.abs(out) if return_abs else out
 
 
-# ---------------- Factory ----------------
 class ExplainerFactory:
     _REGISTRY = {
         "expected_gradients": ExpectedGradientsExplainer,

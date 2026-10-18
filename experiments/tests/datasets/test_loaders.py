@@ -4,7 +4,7 @@ import numpy as np
 import torch
 from pathlib import Path
 
-# ── Data paths ────────────────────────────────────────────────────────────────
+# Data paths
 # This file lives at  xurl/tests/datasets/test_loaders.py
 # parents[2] resolves to  xurl/
 # parents[3] resolves to  XRUL/
@@ -15,14 +15,14 @@ _HYD_ROOT    = _DATA_ROOT / "hydraulic_systems"
 _CMAPSS_ROOT = _DATA_ROOT / "CMAPPS_Dataset"
 _ECO_ROOT    = _DATA_ROOT / "E-coating"
 
-# ── Skip markers (skip gracefully when data is absent) ────────────────────────
+# Skip markers (skip gracefully when data is absent)
 needs_cwru   = pytest.mark.skipif(not _CWRU_ROOT.exists(),   reason="CWRU data not found")
 needs_hyd    = pytest.mark.skipif(not _HYD_ROOT.exists(),    reason="Hydraulic data not found")
 needs_cmapss = pytest.mark.skipif(not _CMAPSS_ROOT.exists(), reason="CMAPSS data not found")
 needs_eco    = pytest.mark.skipif(not _ECO_ROOT.exists(),    reason="E-coating data not found")
 
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
+# Helpers
 def _first_batch(loader):
     return next(iter(loader))
 
@@ -39,9 +39,7 @@ def _assert_loader_batch(batch, expected_C, expected_T, task):
         assert y.dtype == torch.float32
 
 
-# ══════════════════════════════════════════════════════════════════════════════
 # CWRU
-# ══════════════════════════════════════════════════════════════════════════════
 class TestCWRU:
     WINDOW = 2048
     STRIDE = 512
@@ -122,9 +120,7 @@ class TestCWRU:
         assert X_va.shape[0] > 0
 
 
-# ══════════════════════════════════════════════════════════════════════════════
 # Hydraulic
-# ══════════════════════════════════════════════════════════════════════════════
 class TestHydraulic:
     CHANNELS = ["CP", "FS1", "PS1", "PS2", "PS3", "PS4", "PS5", "SE", "VS1"]
     SEQ_LEN  = 50
@@ -187,9 +183,7 @@ class TestHydraulic:
         assert X_filt.shape[0] <= X_all.shape[0]
 
 
-# ══════════════════════════════════════════════════════════════════════════════
 # CMAPSS
-# ══════════════════════════════════════════════════════════════════════════════
 class TestCMAPSS:
     WINDOW    = 30
     N_FEATS   = 14   # after default column drops
@@ -252,9 +246,7 @@ class TestCMAPSS:
             make_cmapss_loaders(root=str(_CMAPSS_ROOT), fd="FD999", num_workers=0)
 
 
-# ══════════════════════════════════════════════════════════════════════════════
 # E-coating
-# ══════════════════════════════════════════════════════════════════════════════
 class TestEcoating:
     WINDOW = 30
 

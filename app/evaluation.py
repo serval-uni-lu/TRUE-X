@@ -50,9 +50,7 @@ def _load_json_meta(weight_path: str) -> dict:
     return json.loads(p.read_text()) if p.exists() else {}
 
 
-# ---------------------------------------------------------------
 # Performance helpers
-# ---------------------------------------------------------------
 
 def _compute_performance(exp, X_exp: np.ndarray, Y_exp, task: str):
     """
@@ -77,9 +75,7 @@ def _compute_performance(exp, X_exp: np.ndarray, Y_exp, task: str):
         return None, None
 
 
-# ---------------------------------------------------------------
 # B1 — benchmark datasets + pre-trained models
-# ---------------------------------------------------------------
 
 def _run_b1(
     dataset_info: dict,
@@ -158,7 +154,7 @@ def _run_b1(
             logger.error(f"Could not load {architecture}: {e}")
             continue
 
-        # ---- Performance score (model-level, repeated per explainer) ----
+        # Performance score (model-level, repeated per explainer)
         perf_metric, perf_value = _compute_performance(exp, X_exp, Y_exp, task)
 
         for method in methods:
@@ -189,9 +185,7 @@ def _run_b1(
     return pd.DataFrame(rows, columns=["Dataset", "Model", "Explainer", "Metric", "Value"])
 
 
-# ---------------------------------------------------------------
 # B2 — custom dataset (stub)
-# ---------------------------------------------------------------
 
 def _run_b2(*_args, **_kwargs) -> pd.DataFrame:
     raise NotImplementedError(
@@ -200,9 +194,7 @@ def _run_b2(*_args, **_kwargs) -> pd.DataFrame:
     )
 
 
-# ---------------------------------------------------------------
 # Public entry point
-# ---------------------------------------------------------------
 
 def run_evaluation(
     dataset_info: dict,
