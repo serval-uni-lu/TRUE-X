@@ -1,0 +1,4 @@
+dataset,prediction_agreement_vs_P0_median,prediction_agreement_vs_P0_min,prediction_agreement_vs_P0_max,attr_spearman_vs_P0_saliency_median,attr_spearman_vs_P0_saliency_min,attr_spearman_vs_P0_saliency_max,attr_spearman_vs_P0_integrated_gradients_median,attr_spearman_vs_P0_integrated_gradients_min,attr_spearman_vs_P0_integrated_gradients_max,attr_spearman_vs_P0_feature_ablation_median,attr_spearman_vs_P0_feature_ablation_min,attr_spearman_vs_P0_feature_ablation_max
+FD001,0.962,0.935,0.996,0.179,0.032,0.916,0.583,0.448,0.934,0.509,0.407,0.934
+Hydraulic,0.959,0.759,1.0,0.857,0.529,0.997,0.912,0.76,0.996,0.844,0.688,0.994
+

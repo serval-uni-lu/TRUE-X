@@ -1,0 +1,29 @@
+alias,canonical,source_of_alias,appendix_rows,appendix_stat_cells_matching_data,appendix_stat_cells_checked
+Saliency,saliency,submitted appendix tables_appendix_all_datasets.tex + revision acronyms,37,444,444
+GradX,gradient_x_input,submitted appendix tables_appendix_all_datasets.tex + revision acronyms,37,444,444
+GuidedBP,guided_back_prop,submitted appendix tables_appendix_all_datasets.tex + revision acronyms,37,444,444
+SmoothGrad,smooth_gradient,submitted appendix tables_appendix_all_datasets.tex + revision acronyms,35,420,420
+IntegGrad,integrated_gradients,submitted appendix tables_appendix_all_datasets.tex + revision acronyms,37,444,444
+ExpectGrad,expected_gradients,submitted appendix tables_appendix_all_datasets.tex + revision acronyms,33,396,396
+DeepLift,deeplift,submitted appendix tables_appendix_all_datasets.tex + revision acronyms,37,444,444
+DeepSHAP,deepliftshap,submitted appendix tables_appendix_all_datasets.tex + revision acronyms,33,396,396
+GradSHAP,gradientshap,submitted appendix tables_appendix_all_datasets.tex + revision acronyms,35,420,420
+Occlusion,occlusion,submitted appendix tables_appendix_all_datasets.tex + revision acronyms,35,420,420
+FeatAbl,feature_ablation,submitted appendix tables_appendix_all_datasets.tex + revision acronyms,35,420,420
+LIME,lime_tabular,submitted appendix tables_appendix_all_datasets.tex + revision acronyms,34,408,408
+PermutationSHAP,shap_permutation,submitted appendix tables_appendix_all_datasets.tex + revision acronyms,0,0,0
+KernelSHAP,kernelshap,submitted appendix tables_appendix_all_datasets.tex + revision acronyms,0,0,0
+saliency,saliency,repository name (all merged sources use it verbatim),,,
+gradient_x_input,gradient_x_input,repository name (all merged sources use it verbatim),,,
+guided_back_prop,guided_back_prop,repository name (all merged sources use it verbatim),,,
+smooth_gradient,smooth_gradient,repository name (all merged sources use it verbatim),,,
+integrated_gradients,integrated_gradients,repository name (all merged sources use it verbatim),,,
+expected_gradients,expected_gradients,repository name (all merged sources use it verbatim),,,
+deeplift,deeplift,repository name (all merged sources use it verbatim),,,
+deepliftshap,deepliftshap,repository name (all merged sources use it verbatim),,,
+gradientshap,gradientshap,repository name (all merged sources use it verbatim),,,
+occlusion,occlusion,repository name (all merged sources use it verbatim),,,
+feature_ablation,feature_ablation,repository name (all merged sources use it verbatim),,,
+lime_tabular,lime_tabular,repository name (all merged sources use it verbatim),,,
+shap_permutation,shap_permutation,repository name (all merged sources use it verbatim),,,
+kernelshap,kernelshap,repository name (all merged sources use it verbatim),,,

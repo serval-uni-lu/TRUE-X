@@ -1,0 +1,449 @@
+Dataset,Metric,Explainer,mean_rank_ds,sd_rank_ds,n_blocks,Col,final_metric,mean_rank_exact
+CWRU_12k,Average Sensitivity (Classif),deeplift,7.055555555555555,2.697735676039774,9,AvgSen,AvgSen,127/18
+CWRU_12k,Average Sensitivity (Classif),deepliftshap,6.583333333333333,2.615657979680575,6,AvgSen,AvgSen,79/12
+CWRU_12k,Average Sensitivity (Classif),expected_gradients,8.25,1.08397416943394,6,AvgSen,AvgSen,33/4
+CWRU_12k,Average Sensitivity (Classif),feature_ablation,6.375,3.113908889391045,8,AvgSen,AvgSen,51/8
+CWRU_12k,Average Sensitivity (Classif),gradient_x_input,5.444444444444445,2.7436796055257213,9,AvgSen,AvgSen,49/9
+CWRU_12k,Average Sensitivity (Classif),gradientshap,7.125,2.799872446074234,8,AvgSen,AvgSen,57/8
+CWRU_12k,Average Sensitivity (Classif),guided_back_prop,3.0555555555555554,3.745367509040705,9,AvgSen,AvgSen,55/18
+CWRU_12k,Average Sensitivity (Classif),integrated_gradients,8.055555555555555,2.627313795072408,9,AvgSen,AvgSen,145/18
+CWRU_12k,Average Sensitivity (Classif),kernelshap,10.88888888888889,3.218867985971327,9,AvgSen,AvgSen,98/9
+CWRU_12k,Average Sensitivity (Classif),lime_tabular,10.142857142857142,2.7945525240230875,7,AvgSen,AvgSen,71/7
+CWRU_12k,Average Sensitivity (Classif),occlusion,13.25,1.3887301496588271,8,AvgSen,AvgSen,53/4
+CWRU_12k,Average Sensitivity (Classif),saliency,2.1666666666666665,1.8708286933869709,9,AvgSen,AvgSen,13/6
+CWRU_12k,Average Sensitivity (Classif),shap_permutation,8.444444444444445,2.351122663277647,9,AvgSen,AvgSen,76/9
+CWRU_12k,Average Sensitivity (Classif),smooth_gradient,2.75,0.4629100498862757,8,AvgSen,AvgSen,11/4
+CWRU_12k,"Complexity (Classif, Chan)",deeplift,5.722222222222222,1.7873008824606014,9,Compl-C,Complexity_C,103/18
+CWRU_12k,"Complexity (Classif, Chan)",deepliftshap,5.5,2.0736441353327724,6,Compl-C,Complexity_C,11/2
+CWRU_12k,"Complexity (Classif, Chan)",expected_gradients,5.333333333333333,1.8618986725025257,6,Compl-C,Complexity_C,16/3
+CWRU_12k,"Complexity (Classif, Chan)",feature_ablation,5.875,3.090885217631258,8,Compl-C,Complexity_C,47/8
+CWRU_12k,"Complexity (Classif, Chan)",gradient_x_input,4.777777777777778,2.223610677354389,9,Compl-C,Complexity_C,43/9
+CWRU_12k,"Complexity (Classif, Chan)",gradientshap,4.5,2.449489742783178,8,Compl-C,Complexity_C,9/2
+CWRU_12k,"Complexity (Classif, Chan)",guided_back_prop,9.0,3.7416573867739413,9,Compl-C,Complexity_C,9
+CWRU_12k,"Complexity (Classif, Chan)",integrated_gradients,4.722222222222222,2.88434471664613,9,Compl-C,Complexity_C,85/18
+CWRU_12k,"Complexity (Classif, Chan)",kernelshap,11.444444444444445,3.844187531556932,9,Compl-C,Complexity_C,103/9
+CWRU_12k,"Complexity (Classif, Chan)",lime_tabular,12.285714285714286,1.3801311186847085,7,Compl-C,Complexity_C,86/7
+CWRU_12k,"Complexity (Classif, Chan)",occlusion,3.5,3.9999999999999996,8,Compl-C,Complexity_C,7/2
+CWRU_12k,"Complexity (Classif, Chan)",saliency,8.88888888888889,3.018461712712472,9,Compl-C,Complexity_C,80/9
+CWRU_12k,"Complexity (Classif, Chan)",shap_permutation,6.333333333333333,3.605551275463989,9,Compl-C,Complexity_C,19/3
+CWRU_12k,"Complexity (Classif, Chan)",smooth_gradient,10.25,3.9188190640986296,8,Compl-C,Complexity_C,41/4
+CWRU_12k,"Complexity (Classif, Elem)",deeplift,2.6666666666666665,1.0,9,Compl-E,Complexity_E,8/3
+CWRU_12k,"Complexity (Classif, Elem)",deepliftshap,5.666666666666667,2.3380903889000244,6,Compl-E,Complexity_E,17/3
+CWRU_12k,"Complexity (Classif, Elem)",expected_gradients,7.333333333333333,0.5163977794943223,6,Compl-E,Complexity_E,22/3
+CWRU_12k,"Complexity (Classif, Elem)",feature_ablation,2.625,1.1877349391654208,8,Compl-E,Complexity_E,21/8
+CWRU_12k,"Complexity (Classif, Elem)",gradient_x_input,1.8888888888888888,0.7817359599705717,9,Compl-E,Complexity_E,17/9
+CWRU_12k,"Complexity (Classif, Elem)",gradientshap,6.625,1.3024701806293193,8,Compl-E,Complexity_E,53/8
+CWRU_12k,"Complexity (Classif, Elem)",guided_back_prop,9.166666666666666,3.1424512724941334,9,Compl-E,Complexity_E,55/6
+CWRU_12k,"Complexity (Classif, Elem)",integrated_gradients,3.111111111111111,1.9002923751652299,9,Compl-E,Complexity_E,28/9
+CWRU_12k,"Complexity (Classif, Elem)",kernelshap,10.777777777777779,2.9907264074877267,9,Compl-E,Complexity_E,97/9
+CWRU_12k,"Complexity (Classif, Elem)",lime_tabular,11.285714285714286,2.0586634591635513,7,Compl-E,Complexity_E,79/7
+CWRU_12k,"Complexity (Classif, Elem)",occlusion,11.375,1.6850180160122066,8,Compl-E,Complexity_E,91/8
+CWRU_12k,"Complexity (Classif, Elem)",saliency,9.166666666666666,2.263846284534354,9,Compl-E,Complexity_E,55/6
+CWRU_12k,"Complexity (Classif, Elem)",shap_permutation,6.555555555555555,1.6666666666666665,9,Compl-E,Complexity_E,59/9
+CWRU_12k,"Complexity (Classif, Elem)",smooth_gradient,11.25,2.5495097567963922,8,Compl-E,Complexity_E,45/4
+CWRU_12k,Continuity (Classif),deeplift,6.055555555555555,2.2699730786460393,9,Cont,Continuity,109/18
+CWRU_12k,Continuity (Classif),deepliftshap,6.5,3.0166206257996713,6,Cont,Continuity,13/2
+CWRU_12k,Continuity (Classif),expected_gradients,8.5,1.3784048752090226,6,Cont,Continuity,17/2
+CWRU_12k,Continuity (Classif),feature_ablation,6.5,2.5634797778466227,8,Cont,Continuity,13/2
+CWRU_12k,Continuity (Classif),gradient_x_input,5.0,2.5495097567963922,9,Cont,Continuity,5
+CWRU_12k,Continuity (Classif),gradientshap,7.875,1.9594095320493148,8,Cont,Continuity,63/8
+CWRU_12k,Continuity (Classif),guided_back_prop,3.3333333333333335,3.8078865529319543,9,Cont,Continuity,10/3
+CWRU_12k,Continuity (Classif),integrated_gradients,6.722222222222222,1.8219342590896204,9,Cont,Continuity,121/18
+CWRU_12k,Continuity (Classif),kernelshap,10.666666666666666,2.9999999999999996,9,Cont,Continuity,32/3
+CWRU_12k,Continuity (Classif),lime_tabular,13.0,0.816496580927726,7,Cont,Continuity,13
+CWRU_12k,Continuity (Classif),occlusion,11.875,2.232071427428535,8,Cont,Continuity,95/8
+CWRU_12k,Continuity (Classif),saliency,2.111111111111111,1.9002923751652299,9,Cont,Continuity,19/9
+CWRU_12k,Continuity (Classif),shap_permutation,9.444444444444445,2.788866755113585,9,Cont,Continuity,85/9
+CWRU_12k,Continuity (Classif),smooth_gradient,2.625,0.5175491695067657,8,Cont,Continuity,21/8
+CWRU_12k,Faithfulness Correlation (Classif),deeplift,4.388888888888889,2.315407331574968,9,FC,FC_abs,79/18
+CWRU_12k,Faithfulness Correlation (Classif),deepliftshap,5.75,2.564176280991617,6,FC,FC_abs,23/4
+CWRU_12k,Faithfulness Correlation (Classif),expected_gradients,6.083333333333333,2.4169540059063324,6,FC,FC_abs,73/12
+CWRU_12k,Faithfulness Correlation (Classif),feature_ablation,1.0625,0.1767766952966369,8,FC,FC_abs,17/16
+CWRU_12k,Faithfulness Correlation (Classif),gradient_x_input,3.2777777777777777,2.3333333333333335,9,FC,FC_abs,59/18
+CWRU_12k,Faithfulness Correlation (Classif),gradientshap,8.625,1.7677669529663687,8,FC,FC_abs,69/8
+CWRU_12k,Faithfulness Correlation (Classif),guided_back_prop,7.333333333333333,2.75,9,FC,FC_abs,22/3
+CWRU_12k,Faithfulness Correlation (Classif),integrated_gradients,3.7222222222222223,1.3944333775567925,9,FC,FC_abs,67/18
+CWRU_12k,Faithfulness Correlation (Classif),kernelshap,11.166666666666666,3.181980515339464,9,FC,FC_abs,67/6
+CWRU_12k,Faithfulness Correlation (Classif),lime_tabular,11.714285714285714,2.3603873774083297,7,FC,FC_abs,82/7
+CWRU_12k,Faithfulness Correlation (Classif),occlusion,11.875,1.807721533549109,8,FC,FC_abs,95/8
+CWRU_12k,Faithfulness Correlation (Classif),saliency,8.88888888888889,2.9872413881558204,9,FC,FC_abs,80/9
+CWRU_12k,Faithfulness Correlation (Classif),shap_permutation,6.722222222222222,2.75126233653653,9,FC,FC_abs,121/18
+CWRU_12k,Faithfulness Correlation (Classif),smooth_gradient,8.375,3.1594529363709243,8,FC,FC_abs,67/8
+CWRU_12k,Pixel Flipping (Classif),deeplift,6.944444444444445,3.811532208676424,9,PF,PF_AUC,125/18
+CWRU_12k,Pixel Flipping (Classif),deepliftshap,6.0,5.621387729022079,6,PF,PF_AUC,6
+CWRU_12k,Pixel Flipping (Classif),expected_gradients,3.3333333333333335,1.9663841605003498,6,PF,PF_AUC,10/3
+CWRU_12k,Pixel Flipping (Classif),feature_ablation,6.75,3.4121631178560534,8,PF,PF_AUC,27/4
+CWRU_12k,Pixel Flipping (Classif),gradient_x_input,8.0,1.8708286933869704,9,PF,PF_AUC,8
+CWRU_12k,Pixel Flipping (Classif),gradientshap,7.0,2.9277002188455996,8,PF,PF_AUC,7
+CWRU_12k,Pixel Flipping (Classif),guided_back_prop,8.277777777777779,4.243459018824672,9,PF,PF_AUC,149/18
+CWRU_12k,Pixel Flipping (Classif),integrated_gradients,7.166666666666667,3.427827300200522,9,PF,PF_AUC,43/6
+CWRU_12k,Pixel Flipping (Classif),kernelshap,6.444444444444445,4.126472801046649,9,PF,PF_AUC,58/9
+CWRU_12k,Pixel Flipping (Classif),lime_tabular,6.571428571428571,4.197504927816954,7,PF,PF_AUC,46/7
+CWRU_12k,Pixel Flipping (Classif),occlusion,9.0,4.59813626840888,8,PF,PF_AUC,9
+CWRU_12k,Pixel Flipping (Classif),saliency,8.833333333333334,4.493050188902857,9,PF,PF_AUC,53/6
+CWRU_12k,Pixel Flipping (Classif),shap_permutation,3.111111111111111,1.9002923751652299,9,PF,PF_AUC,28/9
+CWRU_12k,Pixel Flipping (Classif),smooth_gradient,9.875,3.3567628964311944,8,PF,PF_AUC,79/8
+CWRU_12k,"Sparseness (Classif, Chan)",deeplift,5.722222222222222,1.7873008824606014,9,Spars-C,Sparseness_C,103/18
+CWRU_12k,"Sparseness (Classif, Chan)",deepliftshap,5.5,2.0736441353327724,6,Spars-C,Sparseness_C,11/2
+CWRU_12k,"Sparseness (Classif, Chan)",expected_gradients,5.333333333333333,1.8618986725025257,6,Spars-C,Sparseness_C,16/3
+CWRU_12k,"Sparseness (Classif, Chan)",feature_ablation,5.875,3.090885217631258,8,Spars-C,Sparseness_C,47/8
+CWRU_12k,"Sparseness (Classif, Chan)",gradient_x_input,4.777777777777778,2.223610677354389,9,Spars-C,Sparseness_C,43/9
+CWRU_12k,"Sparseness (Classif, Chan)",gradientshap,4.5,2.449489742783178,8,Spars-C,Sparseness_C,9/2
+CWRU_12k,"Sparseness (Classif, Chan)",guided_back_prop,9.0,3.7416573867739413,9,Spars-C,Sparseness_C,9
+CWRU_12k,"Sparseness (Classif, Chan)",integrated_gradients,4.722222222222222,2.88434471664613,9,Spars-C,Sparseness_C,85/18
+CWRU_12k,"Sparseness (Classif, Chan)",kernelshap,11.444444444444445,3.844187531556932,9,Spars-C,Sparseness_C,103/9
+CWRU_12k,"Sparseness (Classif, Chan)",lime_tabular,12.285714285714286,1.3801311186847085,7,Spars-C,Sparseness_C,86/7
+CWRU_12k,"Sparseness (Classif, Chan)",occlusion,3.5,3.9999999999999996,8,Spars-C,Sparseness_C,7/2
+CWRU_12k,"Sparseness (Classif, Chan)",saliency,8.88888888888889,3.018461712712472,9,Spars-C,Sparseness_C,80/9
+CWRU_12k,"Sparseness (Classif, Chan)",shap_permutation,6.333333333333333,3.605551275463989,9,Spars-C,Sparseness_C,19/3
+CWRU_12k,"Sparseness (Classif, Chan)",smooth_gradient,10.25,3.9188190640986296,8,Spars-C,Sparseness_C,41/4
+CWRU_12k,"Sparseness (Classif, Elem)",deeplift,2.888888888888889,1.1666666666666667,9,Spars-E,Sparseness_E,26/9
+CWRU_12k,"Sparseness (Classif, Elem)",deepliftshap,5.666666666666667,2.8751811537130436,6,Spars-E,Sparseness_E,17/3
+CWRU_12k,"Sparseness (Classif, Elem)",expected_gradients,7.333333333333333,0.5163977794943223,6,Spars-E,Sparseness_E,22/3
+CWRU_12k,"Sparseness (Classif, Elem)",feature_ablation,1.875,0.8345229603962802,8,Spars-E,Sparseness_E,15/8
+CWRU_12k,"Sparseness (Classif, Elem)",gradient_x_input,2.3333333333333335,0.8660254037844386,9,Spars-E,Sparseness_E,7/3
+CWRU_12k,"Sparseness (Classif, Elem)",gradientshap,6.625,1.3024701806293193,8,Spars-E,Sparseness_E,53/8
+CWRU_12k,"Sparseness (Classif, Elem)",guided_back_prop,9.166666666666666,2.9368350311176825,9,Spars-E,Sparseness_E,55/6
+CWRU_12k,"Sparseness (Classif, Elem)",integrated_gradients,3.2222222222222223,1.855921454276674,9,Spars-E,Sparseness_E,29/9
+CWRU_12k,"Sparseness (Classif, Elem)",kernelshap,10.666666666666666,2.91547594742265,9,Spars-E,Sparseness_E,32/3
+CWRU_12k,"Sparseness (Classif, Elem)",lime_tabular,11.285714285714286,2.0586634591635513,7,Spars-E,Sparseness_E,79/7
+CWRU_12k,"Sparseness (Classif, Elem)",occlusion,11.5,1.7728105208558367,8,Spars-E,Sparseness_E,23/2
+CWRU_12k,"Sparseness (Classif, Elem)",saliency,9.055555555555555,2.5055493963954847,9,Spars-E,Sparseness_E,163/18
+CWRU_12k,"Sparseness (Classif, Elem)",shap_permutation,6.555555555555555,1.6666666666666665,9,Spars-E,Sparseness_E,59/9
+CWRU_12k,"Sparseness (Classif, Elem)",smooth_gradient,11.25,2.5495097567963922,8,Spars-E,Sparseness_E,45/4
+Ecoating,Average Sensitivity (Reg),deeplift,6.833333333333333,1.7677669529663689,9,AvgSen,AvgSen,41/6
+Ecoating,Average Sensitivity (Reg),deepliftshap,8.166666666666666,2.1505813167606567,9,AvgSen,AvgSen,49/6
+Ecoating,Average Sensitivity (Reg),expected_gradients,9.277777777777779,1.7519830034690533,9,AvgSen,AvgSen,167/18
+Ecoating,Average Sensitivity (Reg),feature_ablation,8.444444444444445,3.320809807528546,9,AvgSen,AvgSen,76/9
+Ecoating,Average Sensitivity (Reg),gradient_x_input,8.444444444444445,1.8782379449307738,9,AvgSen,AvgSen,76/9
+Ecoating,Average Sensitivity (Reg),gradientshap,11.11111111111111,2.2607766610417563,9,AvgSen,AvgSen,100/9
+Ecoating,Average Sensitivity (Reg),guided_back_prop,2.2777777777777777,0.97182531580755,9,AvgSen,AvgSen,41/18
+Ecoating,Average Sensitivity (Reg),integrated_gradients,10.277777777777779,3.5276684147527875,9,AvgSen,AvgSen,185/18
+Ecoating,Average Sensitivity (Reg),kernelshap,8.444444444444445,2.877112750272011,9,AvgSen,AvgSen,76/9
+Ecoating,Average Sensitivity (Reg),lime_tabular,4.0,0.5,9,AvgSen,AvgSen,4
+Ecoating,Average Sensitivity (Reg),occlusion,13.666666666666666,0.7071067811865477,9,AvgSen,AvgSen,41/3
+Ecoating,Average Sensitivity (Reg),saliency,1.2777777777777777,0.26352313834736496,9,AvgSen,AvgSen,23/18
+Ecoating,Average Sensitivity (Reg),shap_permutation,10.222222222222221,2.1666666666666665,9,AvgSen,AvgSen,92/9
+Ecoating,Average Sensitivity (Reg),smooth_gradient,2.5555555555555554,0.5270462766947299,9,AvgSen,AvgSen,23/9
+Ecoating,"Complexity (Reg, Chan)",deeplift,8.666666666666666,4.242640687119285,9,Compl-C,Complexity_C,26/3
+Ecoating,"Complexity (Reg, Chan)",deepliftshap,8.555555555555555,2.185812841434,9,Compl-C,Complexity_C,77/9
+Ecoating,"Complexity (Reg, Chan)",expected_gradients,9.222222222222221,2.048034287907418,9,Compl-C,Complexity_C,83/9
+Ecoating,"Complexity (Reg, Chan)",feature_ablation,4.333333333333333,3.122498999199199,9,Compl-C,Complexity_C,13/3
+Ecoating,"Complexity (Reg, Chan)",gradient_x_input,8.88888888888889,3.4439963866286374,9,Compl-C,Complexity_C,80/9
+Ecoating,"Complexity (Reg, Chan)",gradientshap,6.444444444444445,3.5039660069381062,9,Compl-C,Complexity_C,58/9
+Ecoating,"Complexity (Reg, Chan)",guided_back_prop,7.333333333333333,4.077376607575023,9,Compl-C,Complexity_C,22/3
+Ecoating,"Complexity (Reg, Chan)",integrated_gradients,7.666666666666667,5.361902647381804,9,Compl-C,Complexity_C,23/3
+Ecoating,"Complexity (Reg, Chan)",kernelshap,7.333333333333333,4.153311931459037,9,Compl-C,Complexity_C,22/3
+Ecoating,"Complexity (Reg, Chan)",lime_tabular,7.666666666666667,4.358898943540674,9,Compl-C,Complexity_C,23/3
+Ecoating,"Complexity (Reg, Chan)",occlusion,3.111111111111111,2.934469476943168,9,Compl-C,Complexity_C,28/9
+Ecoating,"Complexity (Reg, Chan)",saliency,9.222222222222221,4.724345927686122,9,Compl-C,Complexity_C,83/9
+Ecoating,"Complexity (Reg, Chan)",shap_permutation,7.0,3.427827300200522,9,Compl-C,Complexity_C,7
+Ecoating,"Complexity (Reg, Chan)",smooth_gradient,9.555555555555555,4.390646624106497,9,Compl-C,Complexity_C,86/9
+Ecoating,"Complexity (Reg, Elem)",deeplift,5.888888888888889,2.4209731743889917,9,Compl-E,Complexity_E,53/9
+Ecoating,"Complexity (Reg, Elem)",deepliftshap,5.777777777777778,1.3944333775567923,9,Compl-E,Complexity_E,52/9
+Ecoating,"Complexity (Reg, Elem)",expected_gradients,6.888888888888889,3.515837184954831,9,Compl-E,Complexity_E,62/9
+Ecoating,"Complexity (Reg, Elem)",feature_ablation,4.0,2.345207879911715,9,Compl-E,Complexity_E,4
+Ecoating,"Complexity (Reg, Elem)",gradient_x_input,5.666666666666667,2.9154759474226504,9,Compl-E,Complexity_E,17/3
+Ecoating,"Complexity (Reg, Elem)",gradientshap,6.111111111111111,4.196559437338057,9,Compl-E,Complexity_E,55/9
+Ecoating,"Complexity (Reg, Elem)",guided_back_prop,7.722222222222222,4.206476488041321,9,Compl-E,Complexity_E,139/18
+Ecoating,"Complexity (Reg, Elem)",integrated_gradients,5.0,3.3166247903554,9,Compl-E,Complexity_E,5
+Ecoating,"Complexity (Reg, Elem)",kernelshap,9.555555555555555,4.304390523381652,9,Compl-E,Complexity_E,86/9
+Ecoating,"Complexity (Reg, Elem)",lime_tabular,14.0,0.0,9,Compl-E,Complexity_E,14
+Ecoating,"Complexity (Reg, Elem)",occlusion,8.88888888888889,3.9193253387682825,9,Compl-E,Complexity_E,80/9
+Ecoating,"Complexity (Reg, Elem)",saliency,8.722222222222221,4.008671156935231,9,Compl-E,Complexity_E,157/18
+Ecoating,"Complexity (Reg, Elem)",shap_permutation,7.111111111111111,3.9510898637098992,9,Compl-E,Complexity_E,64/9
+Ecoating,"Complexity (Reg, Elem)",smooth_gradient,9.666666666666666,3.8078865529319543,9,Compl-E,Complexity_E,29/3
+Ecoating,Continuity (Reg),deeplift,5.722222222222222,2.279132388529557,9,Cont,Continuity,103/18
+Ecoating,Continuity (Reg),deepliftshap,5.055555555555555,0.8819171036881968,9,Cont,Continuity,91/18
+Ecoating,Continuity (Reg),expected_gradients,8.833333333333334,2.179449471770337,9,Cont,Continuity,53/6
+Ecoating,Continuity (Reg),feature_ablation,6.722222222222222,1.8219342590896204,9,Cont,Continuity,121/18
+Ecoating,Continuity (Reg),gradient_x_input,4.611111111111111,2.0883273476902784,9,Cont,Continuity,83/18
+Ecoating,Continuity (Reg),gradientshap,10.11111111111111,2.7131367660166177,9,Cont,Continuity,91/9
+Ecoating,Continuity (Reg),guided_back_prop,4.222222222222222,3.2892923926650917,9,Cont,Continuity,38/9
+Ecoating,Continuity (Reg),integrated_gradients,9.5,1.8708286933869707,9,Cont,Continuity,19/2
+Ecoating,Continuity (Reg),kernelshap,11.722222222222221,2.3333333333333335,9,Cont,Continuity,211/18
+Ecoating,Continuity (Reg),lime_tabular,13.444444444444445,1.3333333333333335,9,Cont,Continuity,121/9
+Ecoating,Continuity (Reg),occlusion,10.444444444444445,2.185812841434,9,Cont,Continuity,94/9
+Ecoating,Continuity (Reg),saliency,1.3333333333333333,0.35355339059327373,9,Cont,Continuity,4/3
+Ecoating,Continuity (Reg),shap_permutation,10.833333333333334,1.5811388300841893,9,Cont,Continuity,65/6
+Ecoating,Continuity (Reg),smooth_gradient,2.4444444444444446,0.5270462766947298,9,Cont,Continuity,22/9
+Ecoating,Faithfulness Correlation (Reg),deeplift,6.944444444444445,1.467234738471584,9,FC,FC_abs,125/18
+Ecoating,Faithfulness Correlation (Reg),deepliftshap,7.166666666666667,2.23606797749979,9,FC,FC_abs,43/6
+Ecoating,Faithfulness Correlation (Reg),expected_gradients,8.61111111111111,3.079953102096055,9,FC,FC_abs,155/18
+Ecoating,Faithfulness Correlation (Reg),feature_ablation,7.833333333333333,2.318404623873926,9,FC,FC_abs,47/6
+Ecoating,Faithfulness Correlation (Reg),gradient_x_input,5.722222222222222,2.488864087178013,9,FC,FC_abs,103/18
+Ecoating,Faithfulness Correlation (Reg),gradientshap,8.666666666666666,3.2015621187164243,9,FC,FC_abs,26/3
+Ecoating,Faithfulness Correlation (Reg),guided_back_prop,4.0,3.1622776601683795,9,FC,FC_abs,4
+Ecoating,Faithfulness Correlation (Reg),integrated_gradients,8.5,2.4748737341529163,9,FC,FC_abs,17/2
+Ecoating,Faithfulness Correlation (Reg),kernelshap,9.722222222222221,3.2510682005218596,9,FC,FC_abs,175/18
+Ecoating,Faithfulness Correlation (Reg),lime_tabular,14.0,0.0,9,FC,FC_abs,14
+Ecoating,Faithfulness Correlation (Reg),occlusion,9.88888888888889,4.428443418528808,9,FC,FC_abs,89/9
+Ecoating,Faithfulness Correlation (Reg),saliency,2.0,0.7071067811865476,9,FC,FC_abs,2
+Ecoating,Faithfulness Correlation (Reg),shap_permutation,10.277777777777779,2.5873624493766707,9,FC,FC_abs,185/18
+Ecoating,Faithfulness Correlation (Reg),smooth_gradient,1.6666666666666667,0.8660254037844386,9,FC,FC_abs,5/3
+Ecoating,Pixel Flipping (Reg),deeplift,8.722222222222221,3.649581406743031,9,PF,PF_AUC,157/18
+Ecoating,Pixel Flipping (Reg),deepliftshap,8.38888888888889,2.803767306876787,9,PF,PF_AUC,151/18
+Ecoating,Pixel Flipping (Reg),expected_gradients,7.055555555555555,2.7436796055257213,9,PF,PF_AUC,127/18
+Ecoating,Pixel Flipping (Reg),feature_ablation,10.277777777777779,3.327077462946188,9,PF,PF_AUC,185/18
+Ecoating,Pixel Flipping (Reg),gradient_x_input,7.833333333333333,3.142451272494134,9,PF,PF_AUC,47/6
+Ecoating,Pixel Flipping (Reg),gradientshap,6.666666666666667,2.598076211353316,9,PF,PF_AUC,20/3
+Ecoating,Pixel Flipping (Reg),guided_back_prop,7.444444444444445,4.034572812303401,9,PF,PF_AUC,67/9
+Ecoating,Pixel Flipping (Reg),integrated_gradients,7.944444444444445,4.719934086168766,9,PF,PF_AUC,143/18
+Ecoating,Pixel Flipping (Reg),kernelshap,7.944444444444445,4.419024527854284,9,PF,PF_AUC,143/18
+Ecoating,Pixel Flipping (Reg),lime_tabular,3.2222222222222223,4.3237072570242825,9,PF,PF_AUC,29/9
+Ecoating,Pixel Flipping (Reg),occlusion,7.888888888888889,6.132789830991366,9,PF,PF_AUC,71/9
+Ecoating,Pixel Flipping (Reg),saliency,7.222222222222222,3.9616214413349042,9,PF,PF_AUC,65/9
+Ecoating,Pixel Flipping (Reg),shap_permutation,7.388888888888889,5.1221197868764365,9,PF,PF_AUC,133/18
+Ecoating,Pixel Flipping (Reg),smooth_gradient,7.0,2.9154759474226504,9,PF,PF_AUC,7
+Ecoating,"Sparseness (Reg, Chan)",deeplift,8.555555555555555,4.390646624106497,9,Spars-C,Sparseness_C,77/9
+Ecoating,"Sparseness (Reg, Chan)",deepliftshap,8.666666666666666,2.179449471770337,9,Spars-C,Sparseness_C,26/3
+Ecoating,"Sparseness (Reg, Chan)",expected_gradients,9.222222222222221,2.279132388529557,9,Spars-C,Sparseness_C,83/9
+Ecoating,"Sparseness (Reg, Chan)",feature_ablation,4.666666666666667,3.6400549446402595,9,Spars-C,Sparseness_C,14/3
+Ecoating,"Sparseness (Reg, Chan)",gradient_x_input,8.444444444444445,3.2446537223219645,9,Spars-C,Sparseness_C,76/9
+Ecoating,"Sparseness (Reg, Chan)",gradientshap,6.111111111111111,3.2956199888808646,9,Spars-C,Sparseness_C,55/9
+Ecoating,"Sparseness (Reg, Chan)",guided_back_prop,7.333333333333333,4.077376607575023,9,Spars-C,Sparseness_C,22/3
+Ecoating,"Sparseness (Reg, Chan)",integrated_gradients,7.444444444444445,5.270462766947299,9,Spars-C,Sparseness_C,67/9
+Ecoating,"Sparseness (Reg, Chan)",kernelshap,7.666666666666667,4.0,9,Spars-C,Sparseness_C,23/3
+Ecoating,"Sparseness (Reg, Chan)",lime_tabular,7.555555555555555,4.585605497399202,9,Spars-C,Sparseness_C,68/9
+Ecoating,"Sparseness (Reg, Chan)",occlusion,3.2222222222222223,2.9059326290271157,9,Spars-C,Sparseness_C,29/9
+Ecoating,"Sparseness (Reg, Chan)",saliency,9.222222222222221,4.724345927686122,9,Spars-C,Sparseness_C,83/9
+Ecoating,"Sparseness (Reg, Chan)",shap_permutation,7.333333333333333,3.605551275463989,9,Spars-C,Sparseness_C,22/3
+Ecoating,"Sparseness (Reg, Chan)",smooth_gradient,9.555555555555555,4.390646624106497,9,Spars-C,Sparseness_C,86/9
+Ecoating,"Sparseness (Reg, Elem)",deeplift,5.666666666666667,2.2912878474779204,9,Spars-E,Sparseness_E,17/3
+Ecoating,"Sparseness (Reg, Elem)",deepliftshap,5.888888888888889,1.4529663145135578,9,Spars-E,Sparseness_E,53/9
+Ecoating,"Sparseness (Reg, Elem)",expected_gradients,6.888888888888889,3.655285366576885,9,Spars-E,Sparseness_E,62/9
+Ecoating,"Sparseness (Reg, Elem)",feature_ablation,3.7777777777777777,1.986062547968831,9,Spars-E,Sparseness_E,34/9
+Ecoating,"Sparseness (Reg, Elem)",gradient_x_input,5.555555555555555,2.7436796055257213,9,Spars-E,Sparseness_E,50/9
+Ecoating,"Sparseness (Reg, Elem)",gradientshap,6.111111111111111,4.196559437338057,9,Spars-E,Sparseness_E,55/9
+Ecoating,"Sparseness (Reg, Elem)",guided_back_prop,7.388888888888889,4.5261585380000895,9,Spars-E,Sparseness_E,133/18
+Ecoating,"Sparseness (Reg, Elem)",integrated_gradients,5.222222222222222,3.632415786283895,9,Spars-E,Sparseness_E,47/9
+Ecoating,"Sparseness (Reg, Elem)",kernelshap,10.444444444444445,3.811532208676424,9,Spars-E,Sparseness_E,94/9
+Ecoating,"Sparseness (Reg, Elem)",lime_tabular,14.0,0.0,9,Spars-E,Sparseness_E,14
+Ecoating,"Sparseness (Reg, Elem)",occlusion,8.555555555555555,3.7453675090407055,9,Spars-E,Sparseness_E,77/9
+Ecoating,"Sparseness (Reg, Elem)",saliency,8.722222222222221,3.7174513371992437,9,Spars-E,Sparseness_E,157/18
+Ecoating,"Sparseness (Reg, Elem)",shap_permutation,7.111111111111111,4.106228331584973,9,Spars-E,Sparseness_E,64/9
+Ecoating,"Sparseness (Reg, Elem)",smooth_gradient,9.666666666666666,3.5,9,Spars-E,Sparseness_E,29/3
+FD001,Average Sensitivity (Reg),deeplift,6.277777777777778,2.773886162848873,9,AvgSen,AvgSen,113/18
+FD001,Average Sensitivity (Reg),deepliftshap,5.4375,1.3999362230371168,8,AvgSen,AvgSen,87/16
+FD001,Average Sensitivity (Reg),expected_gradients,9.4375,2.555631037532609,8,AvgSen,AvgSen,151/16
+FD001,Average Sensitivity (Reg),feature_ablation,7.5,1.7728105208558365,8,AvgSen,AvgSen,15/2
+FD001,Average Sensitivity (Reg),gradient_x_input,5.0,2.1213203435596424,9,AvgSen,AvgSen,5
+FD001,Average Sensitivity (Reg),gradientshap,11.0,1.6903085094570331,8,AvgSen,AvgSen,11
+FD001,Average Sensitivity (Reg),guided_back_prop,2.2777777777777777,1.4813657362192647,9,AvgSen,AvgSen,41/18
+FD001,Average Sensitivity (Reg),integrated_gradients,11.38888888888889,2.088327347690278,9,AvgSen,AvgSen,205/18
+FD001,Average Sensitivity (Reg),kernelshap,8.222222222222221,1.922093765778466,9,AvgSen,AvgSen,74/9
+FD001,Average Sensitivity (Reg),lime_tabular,9.25,2.9154759474226504,8,AvgSen,AvgSen,37/4
+FD001,Average Sensitivity (Reg),occlusion,14.0,0.0,8,AvgSen,AvgSen,14
+FD001,Average Sensitivity (Reg),saliency,1.2777777777777777,0.26352313834736496,9,AvgSen,AvgSen,23/18
+FD001,Average Sensitivity (Reg),shap_permutation,9.222222222222221,2.5385910352879693,9,AvgSen,AvgSen,83/9
+FD001,Average Sensitivity (Reg),smooth_gradient,2.75,0.4629100498862757,8,AvgSen,AvgSen,11/4
+FD001,"Complexity (Reg, Chan)",deeplift,4.333333333333333,3.7416573867739413,9,Compl-C,Complexity_C,13/3
+FD001,"Complexity (Reg, Chan)",deepliftshap,6.0,1.6035674514745462,8,Compl-C,Complexity_C,6
+FD001,"Complexity (Reg, Chan)",expected_gradients,7.125,2.5877458475338284,8,Compl-C,Complexity_C,57/8
+FD001,"Complexity (Reg, Chan)",feature_ablation,4.125,3.090885217631258,8,Compl-C,Complexity_C,33/8
+FD001,"Complexity (Reg, Chan)",gradient_x_input,5.333333333333333,2.8284271247461903,9,Compl-C,Complexity_C,16/3
+FD001,"Complexity (Reg, Chan)",gradientshap,7.375,1.1877349391654208,8,Compl-C,Complexity_C,59/8
+FD001,"Complexity (Reg, Chan)",guided_back_prop,9.5,3.48209706929603,9,Compl-C,Complexity_C,19/2
+FD001,"Complexity (Reg, Chan)",integrated_gradients,4.333333333333333,3.5355339059327378,9,Compl-C,Complexity_C,13/3
+FD001,"Complexity (Reg, Chan)",kernelshap,10.88888888888889,2.4720661623652207,9,Compl-C,Complexity_C,98/9
+FD001,"Complexity (Reg, Chan)",lime_tabular,10.25,3.9910614413425693,8,Compl-C,Complexity_C,41/4
+FD001,"Complexity (Reg, Chan)",occlusion,2.125,3.181980515339464,8,Compl-C,Complexity_C,17/8
+FD001,"Complexity (Reg, Chan)",saliency,9.722222222222221,3.3644382063643916,9,Compl-C,Complexity_C,175/18
+FD001,"Complexity (Reg, Chan)",shap_permutation,8.88888888888889,1.9649710204252662,9,Compl-C,Complexity_C,80/9
+FD001,"Complexity (Reg, Chan)",smooth_gradient,11.875,3.48209706929603,8,Compl-C,Complexity_C,95/8
+FD001,"Complexity (Reg, Elem)",deeplift,2.5555555555555554,2.8333333333333335,9,Compl-E,Complexity_E,23/9
+FD001,"Complexity (Reg, Elem)",deepliftshap,3.875,0.991031208965115,8,Compl-E,Complexity_E,31/8
+FD001,"Complexity (Reg, Elem)",expected_gradients,7.0,1.9999999999999998,8,Compl-E,Complexity_E,7
+FD001,"Complexity (Reg, Elem)",feature_ablation,2.625,2.4458419526091335,8,Compl-E,Complexity_E,21/8
+FD001,"Complexity (Reg, Elem)",gradient_x_input,3.0,1.6583123951777,9,Compl-E,Complexity_E,3
+FD001,"Complexity (Reg, Elem)",gradientshap,7.5,0.9258200997725514,8,Compl-E,Complexity_E,15/2
+FD001,"Complexity (Reg, Elem)",guided_back_prop,9.944444444444445,3.2829526005987013,9,Compl-E,Complexity_E,179/18
+FD001,"Complexity (Reg, Elem)",integrated_gradients,5.555555555555555,1.4240006242195884,9,Compl-E,Complexity_E,50/9
+FD001,"Complexity (Reg, Elem)",kernelshap,9.88888888888889,2.6666666666666665,9,Compl-E,Complexity_E,89/9
+FD001,"Complexity (Reg, Elem)",lime_tabular,11.125,4.189698250300543,8,Compl-E,Complexity_E,89/8
+FD001,"Complexity (Reg, Elem)",occlusion,7.625,2.774243783705493,8,Compl-E,Complexity_E,61/8
+FD001,"Complexity (Reg, Elem)",saliency,10.5,2.57390753524675,9,Compl-E,Complexity_E,21/2
+FD001,"Complexity (Reg, Elem)",shap_permutation,7.333333333333333,1.6583123951777001,9,Compl-E,Complexity_E,22/3
+FD001,"Complexity (Reg, Elem)",smooth_gradient,13.875,0.35355339059327373,8,Compl-E,Complexity_E,111/8
+FD001,Continuity (Reg),deeplift,6.166666666666667,2.4748737341529163,9,Cont,Continuity,37/6
+FD001,Continuity (Reg),deepliftshap,5.3125,1.5338443765351724,8,Cont,Continuity,85/16
+FD001,Continuity (Reg),expected_gradients,8.8125,0.8425090080061033,8,Cont,Continuity,141/16
+FD001,Continuity (Reg),feature_ablation,6.6875,2.051784937212336,8,Cont,Continuity,107/16
+FD001,Continuity (Reg),gradient_x_input,4.833333333333333,2.3717082451262845,9,Cont,Continuity,29/6
+FD001,Continuity (Reg),gradientshap,9.375,1.9955307206712842,8,Cont,Continuity,75/8
+FD001,Continuity (Reg),guided_back_prop,3.2222222222222223,3.0934518655450978,9,Cont,Continuity,29/9
+FD001,Continuity (Reg),integrated_gradients,9.055555555555555,2.2699730786460393,9,Cont,Continuity,163/18
+FD001,Continuity (Reg),kernelshap,11.277777777777779,2.6588426889239694,9,Cont,Continuity,203/18
+FD001,Continuity (Reg),lime_tabular,12.75,3.5355339059327378,8,Cont,Continuity,51/4
+FD001,Continuity (Reg),occlusion,10.75,2.4928469095164494,8,Cont,Continuity,43/4
+FD001,Continuity (Reg),saliency,1.3333333333333333,0.35355339059327373,9,Cont,Continuity,4/3
+FD001,Continuity (Reg),shap_permutation,10.5,2.449489742783178,9,Cont,Continuity,21/2
+FD001,Continuity (Reg),smooth_gradient,2.625,0.5175491695067655,8,Cont,Continuity,21/8
+FD001,Faithfulness Correlation (Reg),deeplift,4.388888888888889,1.2190615698606495,9,FC,FC_abs,79/18
+FD001,Faithfulness Correlation (Reg),deepliftshap,6.3125,1.9074571704609407,8,FC,FC_abs,101/16
+FD001,Faithfulness Correlation (Reg),expected_gradients,8.9375,1.083562246877005,8,FC,FC_abs,143/16
+FD001,Faithfulness Correlation (Reg),feature_ablation,1.6875,1.9445436482630056,8,FC,FC_abs,27/16
+FD001,Faithfulness Correlation (Reg),gradient_x_input,4.944444444444445,2.0069324297987157,9,FC,FC_abs,89/18
+FD001,Faithfulness Correlation (Reg),gradientshap,10.625,1.0606601717798214,8,FC,FC_abs,85/8
+FD001,Faithfulness Correlation (Reg),guided_back_prop,4.666666666666667,2.6457513110645903,9,FC,FC_abs,14/3
+FD001,Faithfulness Correlation (Reg),integrated_gradients,7.611111111111111,1.7638342073763935,9,FC,FC_abs,137/18
+FD001,Faithfulness Correlation (Reg),kernelshap,10.055555555555555,1.5898986690282426,9,FC,FC_abs,181/18
+FD001,Faithfulness Correlation (Reg),lime_tabular,13.875,0.3535533905932736,8,FC,FC_abs,111/8
+FD001,Faithfulness Correlation (Reg),occlusion,12.25,1.9086270308410553,8,FC,FC_abs,49/4
+FD001,Faithfulness Correlation (Reg),saliency,3.6666666666666665,1.7320508075688772,9,FC,FC_abs,11/3
+FD001,Faithfulness Correlation (Reg),shap_permutation,11.166666666666666,2.345207879911715,9,FC,FC_abs,67/6
+FD001,Faithfulness Correlation (Reg),smooth_gradient,2.5,1.0690449676496976,8,FC,FC_abs,5/2
+FD001,Pixel Flipping (Reg),deeplift,7.611111111111111,3.5158371849548313,9,PF,PF_AUC,137/18
+FD001,Pixel Flipping (Reg),deepliftshap,4.4375,3.0640484423623033,8,PF,PF_AUC,71/16
+FD001,Pixel Flipping (Reg),expected_gradients,3.0625,1.8980723303996008,8,PF,PF_AUC,49/16
+FD001,Pixel Flipping (Reg),feature_ablation,9.3125,3.6148256231406637,8,PF,PF_AUC,149/16
+FD001,Pixel Flipping (Reg),gradient_x_input,9.5,4.031128874149275,9,PF,PF_AUC,19/2
+FD001,Pixel Flipping (Reg),gradientshap,3.875,1.9594095320493148,8,PF,PF_AUC,31/8
+FD001,Pixel Flipping (Reg),guided_back_prop,8.777777777777779,3.509906614775448,9,PF,PF_AUC,79/9
+FD001,Pixel Flipping (Reg),integrated_gradients,7.277777777777778,4.309227824615965,9,PF,PF_AUC,131/18
+FD001,Pixel Flipping (Reg),kernelshap,3.1666666666666665,1.6583123951777,9,PF,PF_AUC,19/6
+FD001,Pixel Flipping (Reg),lime_tabular,10.25,3.24037034920393,8,PF,PF_AUC,41/4
+FD001,Pixel Flipping (Reg),occlusion,11.75,3.693623849670827,8,PF,PF_AUC,47/4
+FD001,Pixel Flipping (Reg),saliency,9.444444444444445,2.5792979234236935,9,PF,PF_AUC,85/9
+FD001,Pixel Flipping (Reg),shap_permutation,4.166666666666667,0.9354143466934853,9,PF,PF_AUC,25/6
+FD001,Pixel Flipping (Reg),smooth_gradient,9.625,2.1339098923270936,8,PF,PF_AUC,77/8
+FD001,"Sparseness (Reg, Chan)",deeplift,4.555555555555555,3.431876713662333,9,Spars-C,Sparseness_C,41/9
+FD001,"Sparseness (Reg, Chan)",deepliftshap,5.75,1.9086270308410553,8,Spars-C,Sparseness_C,23/4
+FD001,"Sparseness (Reg, Chan)",expected_gradients,7.0,2.5634797778466227,8,Spars-C,Sparseness_C,7
+FD001,"Sparseness (Reg, Chan)",feature_ablation,4.625,3.113908889391045,8,Spars-C,Sparseness_C,37/8
+FD001,"Sparseness (Reg, Chan)",gradient_x_input,5.111111111111111,2.934469476943168,9,Spars-C,Sparseness_C,46/9
+FD001,"Sparseness (Reg, Chan)",gradientshap,6.75,2.1213203435596424,8,Spars-C,Sparseness_C,27/4
+FD001,"Sparseness (Reg, Chan)",guided_back_prop,9.5,3.24037034920393,9,Spars-C,Sparseness_C,19/2
+FD001,"Sparseness (Reg, Chan)",integrated_gradients,4.555555555555555,3.8765677832043357,9,Spars-C,Sparseness_C,41/9
+FD001,"Sparseness (Reg, Chan)",kernelshap,11.11111111111111,2.260776661041756,9,Spars-C,Sparseness_C,100/9
+FD001,"Sparseness (Reg, Chan)",lime_tabular,10.25,3.9910614413425693,8,Spars-C,Sparseness_C,41/4
+FD001,"Sparseness (Reg, Chan)",occlusion,1.5,1.4142135623730951,8,Spars-C,Sparseness_C,3/2
+FD001,"Sparseness (Reg, Chan)",saliency,9.944444444444445,3.320809807528546,9,Spars-C,Sparseness_C,179/18
+FD001,"Sparseness (Reg, Chan)",shap_permutation,8.777777777777779,2.166666666666667,9,Spars-C,Sparseness_C,79/9
+FD001,"Sparseness (Reg, Chan)",smooth_gradient,12.375,2.2638462845343543,8,Spars-C,Sparseness_C,99/8
+FD001,"Sparseness (Reg, Elem)",deeplift,2.4444444444444446,2.5549516194593154,9,Spars-E,Sparseness_E,22/9
+FD001,"Sparseness (Reg, Elem)",deepliftshap,4.0,1.3093073414159544,8,Spars-E,Sparseness_E,4
+FD001,"Sparseness (Reg, Elem)",expected_gradients,6.875,2.2951812875799473,8,Spars-E,Sparseness_E,55/8
+FD001,"Sparseness (Reg, Elem)",feature_ablation,2.375,2.065879266282796,8,Spars-E,Sparseness_E,19/8
+FD001,"Sparseness (Reg, Elem)",gradient_x_input,3.111111111111111,1.90029237516523,9,Spars-E,Sparseness_E,28/9
+FD001,"Sparseness (Reg, Elem)",gradientshap,7.5,0.9258200997725514,8,Spars-E,Sparseness_E,15/2
+FD001,"Sparseness (Reg, Elem)",guided_back_prop,10.055555555555555,3.025355810111891,9,Spars-E,Sparseness_E,181/18
+FD001,"Sparseness (Reg, Elem)",integrated_gradients,5.555555555555555,1.810463415200036,9,Spars-E,Sparseness_E,50/9
+FD001,"Sparseness (Reg, Elem)",kernelshap,9.666666666666666,3.1622776601683795,9,Spars-E,Sparseness_E,29/3
+FD001,"Sparseness (Reg, Elem)",lime_tabular,11.625,2.8252686345094435,8,Spars-E,Sparseness_E,93/8
+FD001,"Sparseness (Reg, Elem)",occlusion,7.625,2.774243783705493,8,Spars-E,Sparseness_E,61/8
+FD001,"Sparseness (Reg, Elem)",saliency,10.38888888888889,2.891558595482912,9,Spars-E,Sparseness_E,187/18
+FD001,"Sparseness (Reg, Elem)",shap_permutation,7.333333333333333,1.6583123951777001,9,Spars-E,Sparseness_E,22/3
+FD001,"Sparseness (Reg, Elem)",smooth_gradient,13.875,0.35355339059327373,8,Spars-E,Sparseness_E,111/8
+Hydraulic,Average Sensitivity (Classif),deeplift,8.38888888888889,1.964971020425266,9,AvgSen,AvgSen,151/18
+Hydraulic,Average Sensitivity (Classif),deepliftshap,7.166666666666667,2.8722813232690143,9,AvgSen,AvgSen,43/6
+Hydraulic,Average Sensitivity (Classif),expected_gradients,9.277777777777779,1.954339899926429,9,AvgSen,AvgSen,167/18
+Hydraulic,Average Sensitivity (Classif),feature_ablation,5.444444444444445,1.4240006242195884,9,AvgSen,AvgSen,49/9
+Hydraulic,Average Sensitivity (Classif),gradient_x_input,4.222222222222222,0.4409585518440984,9,AvgSen,AvgSen,38/9
+Hydraulic,Average Sensitivity (Classif),gradientshap,9.88888888888889,1.8333333333333333,9,AvgSen,AvgSen,89/9
+Hydraulic,Average Sensitivity (Classif),guided_back_prop,1.8333333333333333,0.6614378277661477,9,AvgSen,AvgSen,11/6
+Hydraulic,Average Sensitivity (Classif),integrated_gradients,9.055555555555555,2.697735676039774,9,AvgSen,AvgSen,163/18
+Hydraulic,Average Sensitivity (Classif),kernelshap,9.444444444444445,1.509230856356236,9,AvgSen,AvgSen,85/9
+Hydraulic,Average Sensitivity (Classif),lime_tabular,11.666666666666666,2.6457513110645903,9,AvgSen,AvgSen,35/3
+Hydraulic,Average Sensitivity (Classif),occlusion,14.0,0.0,9,AvgSen,AvgSen,14
+Hydraulic,Average Sensitivity (Classif),saliency,1.3888888888888888,0.22047927592204922,9,AvgSen,AvgSen,25/18
+Hydraulic,Average Sensitivity (Classif),shap_permutation,10.444444444444445,1.3333333333333333,9,AvgSen,AvgSen,94/9
+Hydraulic,Average Sensitivity (Classif),smooth_gradient,2.7777777777777777,0.44095855184409843,9,AvgSen,AvgSen,25/9
+Hydraulic,"Complexity (Classif, Chan)",deeplift,5.111111111111111,3.407508050043479,9,Compl-C,Complexity_C,46/9
+Hydraulic,"Complexity (Classif, Chan)",deepliftshap,5.611111111111111,1.8333333333333333,9,Compl-C,Complexity_C,101/18
+Hydraulic,"Complexity (Classif, Chan)",expected_gradients,7.388888888888889,3.551212625443753,9,Compl-C,Complexity_C,133/18
+Hydraulic,"Complexity (Classif, Chan)",feature_ablation,7.666666666666667,3.905124837953327,9,Compl-C,Complexity_C,23/3
+Hydraulic,"Complexity (Classif, Chan)",gradient_x_input,8.11111111111111,3.140240613569462,9,Compl-C,Complexity_C,73/9
+Hydraulic,"Complexity (Classif, Chan)",gradientshap,6.555555555555555,3.6094013046179527,9,Compl-C,Complexity_C,59/9
+Hydraulic,"Complexity (Classif, Chan)",guided_back_prop,9.555555555555555,4.011268848852914,9,Compl-C,Complexity_C,86/9
+Hydraulic,"Complexity (Classif, Chan)",integrated_gradients,4.666666666666667,3.570714214271425,9,Compl-C,Complexity_C,14/3
+Hydraulic,"Complexity (Classif, Chan)",kernelshap,11.11111111111111,3.982601048449507,9,Compl-C,Complexity_C,100/9
+Hydraulic,"Complexity (Classif, Chan)",lime_tabular,12.222222222222221,1.922093765778466,9,Compl-C,Complexity_C,110/9
+Hydraulic,"Complexity (Classif, Chan)",occlusion,4.222222222222222,2.948634335492355,9,Compl-C,Complexity_C,38/9
+Hydraulic,"Complexity (Classif, Chan)",saliency,7.444444444444445,4.700029550734524,9,Compl-C,Complexity_C,67/9
+Hydraulic,"Complexity (Classif, Chan)",shap_permutation,7.888888888888889,3.6552853665768845,9,Compl-C,Complexity_C,71/9
+Hydraulic,"Complexity (Classif, Chan)",smooth_gradient,7.444444444444445,4.3906466241064965,9,Compl-C,Complexity_C,67/9
+Hydraulic,"Complexity (Classif, Elem)",deeplift,3.5555555555555554,2.455153310442706,9,Compl-E,Complexity_E,32/9
+Hydraulic,"Complexity (Classif, Elem)",deepliftshap,4.0,1.8027756377319946,9,Compl-E,Complexity_E,4
+Hydraulic,"Complexity (Classif, Elem)",expected_gradients,5.444444444444445,1.8104634152000358,9,Compl-E,Complexity_E,49/9
+Hydraulic,"Complexity (Classif, Elem)",feature_ablation,6.555555555555555,2.6034165586355513,9,Compl-E,Complexity_E,59/9
+Hydraulic,"Complexity (Classif, Elem)",gradient_x_input,7.444444444444445,2.96273147243853,9,Compl-E,Complexity_E,67/9
+Hydraulic,"Complexity (Classif, Elem)",gradientshap,5.666666666666667,2.5495097567963927,9,Compl-E,Complexity_E,17/3
+Hydraulic,"Complexity (Classif, Elem)",guided_back_prop,11.722222222222221,1.5023130314433286,9,Compl-E,Complexity_E,211/18
+Hydraulic,"Complexity (Classif, Elem)",integrated_gradients,3.888888888888889,3.295619988880865,9,Compl-E,Complexity_E,35/9
+Hydraulic,"Complexity (Classif, Elem)",kernelshap,9.88888888888889,3.8873012632302006,9,Compl-E,Complexity_E,89/9
+Hydraulic,"Complexity (Classif, Elem)",lime_tabular,12.333333333333334,2.0615528128088303,9,Compl-E,Complexity_E,37/3
+Hydraulic,"Complexity (Classif, Elem)",occlusion,8.444444444444445,3.320809807528546,9,Compl-E,Complexity_E,76/9
+Hydraulic,"Complexity (Classif, Elem)",saliency,10.38888888888889,3.150176361905966,9,Compl-E,Complexity_E,187/18
+Hydraulic,"Complexity (Classif, Elem)",shap_permutation,4.111111111111111,2.8480012484391772,9,Compl-E,Complexity_E,37/9
+Hydraulic,"Complexity (Classif, Elem)",smooth_gradient,11.555555555555555,3.0459444804161775,9,Compl-E,Complexity_E,104/9
+Hydraulic,Continuity (Classif),deeplift,8.944444444444445,2.2699730786460393,9,Cont,Continuity,161/18
+Hydraulic,Continuity (Classif),deepliftshap,7.833333333333333,2.8284271247461903,9,Cont,Continuity,47/6
+Hydraulic,Continuity (Classif),expected_gradients,8.722222222222221,1.9860625479688307,9,Cont,Continuity,157/18
+Hydraulic,Continuity (Classif),feature_ablation,4.888888888888889,0.33333333333333326,9,Cont,Continuity,44/9
+Hydraulic,Continuity (Classif),gradient_x_input,3.7777777777777777,0.44095855184409843,9,Cont,Continuity,34/9
+Hydraulic,Continuity (Classif),gradientshap,9.666666666666666,1.3228756555322951,9,Cont,Continuity,29/3
+Hydraulic,Continuity (Classif),guided_back_prop,3.6666666666666665,4.190763653560053,9,Cont,Continuity,11/3
+Hydraulic,Continuity (Classif),integrated_gradients,8.5,2.1505813167606567,9,Cont,Continuity,17/2
+Hydraulic,Continuity (Classif),kernelshap,12.277777777777779,1.8892973414591057,9,Cont,Continuity,221/18
+Hydraulic,Continuity (Classif),lime_tabular,13.0,1.224744871391589,9,Cont,Continuity,13
+Hydraulic,Continuity (Classif),occlusion,9.222222222222221,3.993049516903646,9,Cont,Continuity,83/9
+Hydraulic,Continuity (Classif),saliency,1.4444444444444444,0.3004626062886658,9,Cont,Continuity,13/9
+Hydraulic,Continuity (Classif),shap_permutation,10.38888888888889,1.4529663145135578,9,Cont,Continuity,187/18
+Hydraulic,Continuity (Classif),smooth_gradient,2.6666666666666665,0.5,9,Cont,Continuity,8/3
+Hydraulic,Faithfulness Correlation (Classif),deeplift,10.277777777777779,3.474110597612639,9,FC,FC_abs,185/18
+Hydraulic,Faithfulness Correlation (Classif),deepliftshap,8.722222222222221,3.192874010111336,9,FC,FC_abs,157/18
+Hydraulic,Faithfulness Correlation (Classif),expected_gradients,9.38888888888889,0.7817359599705717,9,FC,FC_abs,169/18
+Hydraulic,Faithfulness Correlation (Classif),feature_ablation,2.7222222222222223,1.5229722402080887,9,FC,FC_abs,49/18
+Hydraulic,Faithfulness Correlation (Classif),gradient_x_input,2.0555555555555554,1.467234738471584,9,FC,FC_abs,37/18
+Hydraulic,Faithfulness Correlation (Classif),gradientshap,10.222222222222221,2.3333333333333335,9,FC,FC_abs,92/9
+Hydraulic,Faithfulness Correlation (Classif),guided_back_prop,4.611111111111111,3.2956199888808646,9,FC,FC_abs,83/18
+Hydraulic,Faithfulness Correlation (Classif),integrated_gradients,9.055555555555555,3.2446537223219645,9,FC,FC_abs,163/18
+Hydraulic,Faithfulness Correlation (Classif),kernelshap,11.333333333333334,2.449489742783178,9,FC,FC_abs,34/3
+Hydraulic,Faithfulness Correlation (Classif),lime_tabular,12.333333333333334,1.8027756377319943,9,FC,FC_abs,37/3
+Hydraulic,Faithfulness Correlation (Classif),occlusion,7.0,2.345207879911715,9,FC,FC_abs,7
+Hydraulic,Faithfulness Correlation (Classif),saliency,3.1666666666666665,1.2747548783981961,9,FC,FC_abs,19/6
+Hydraulic,Faithfulness Correlation (Classif),shap_permutation,10.222222222222221,1.3944333775567928,9,FC,FC_abs,92/9
+Hydraulic,Faithfulness Correlation (Classif),smooth_gradient,3.888888888888889,1.166666666666667,9,FC,FC_abs,35/9
+Hydraulic,Pixel Flipping (Classif),deeplift,8.61111111111111,2.088327347690278,9,PF,PF_AUC,155/18
+Hydraulic,Pixel Flipping (Classif),deepliftshap,9.61111111111111,3.822448313726572,9,PF,PF_AUC,173/18
+Hydraulic,Pixel Flipping (Classif),expected_gradients,6.944444444444445,3.086709862908689,9,PF,PF_AUC,125/18
+Hydraulic,Pixel Flipping (Classif),feature_ablation,4.166666666666667,3.278719262151,9,PF,PF_AUC,25/6
+Hydraulic,Pixel Flipping (Classif),gradient_x_input,6.055555555555555,3.8278946926186173,9,PF,PF_AUC,109/18
+Hydraulic,Pixel Flipping (Classif),gradientshap,8.333333333333334,2.598076211353316,9,PF,PF_AUC,25/3
+Hydraulic,Pixel Flipping (Classif),guided_back_prop,4.777777777777778,3.3737137466661933,9,PF,PF_AUC,43/9
+Hydraulic,Pixel Flipping (Classif),integrated_gradients,7.388888888888889,2.5467844649893543,9,PF,PF_AUC,133/18
+Hydraulic,Pixel Flipping (Classif),kernelshap,12.11111111111111,3.2956199888808646,9,PF,PF_AUC,109/9
+Hydraulic,Pixel Flipping (Classif),lime_tabular,11.333333333333334,3.872983346207417,9,PF,PF_AUC,34/3
+Hydraulic,Pixel Flipping (Classif),occlusion,5.222222222222222,5.14241620684717,9,PF,PF_AUC,47/9
+Hydraulic,Pixel Flipping (Classif),saliency,5.444444444444445,2.994207370536947,9,PF,PF_AUC,49/9
+Hydraulic,Pixel Flipping (Classif),shap_permutation,9.777777777777779,2.6822461565718467,9,PF,PF_AUC,88/9
+Hydraulic,Pixel Flipping (Classif),smooth_gradient,5.222222222222222,3.8333333333333335,9,PF,PF_AUC,47/9
+Hydraulic,"Sparseness (Classif, Chan)",deeplift,5.333333333333333,3.3541019662496847,9,Spars-C,Sparseness_C,16/3
+Hydraulic,"Sparseness (Classif, Chan)",deepliftshap,5.277777777777778,1.8219342590896206,9,Spars-C,Sparseness_C,95/18
+Hydraulic,"Sparseness (Classif, Chan)",expected_gradients,7.388888888888889,2.9767618499152917,9,Spars-C,Sparseness_C,133/18
+Hydraulic,"Sparseness (Classif, Chan)",feature_ablation,7.444444444444445,3.0459444804161775,9,Spars-C,Sparseness_C,67/9
+Hydraulic,"Sparseness (Classif, Chan)",gradient_x_input,8.777777777777779,3.192874010111336,9,Spars-C,Sparseness_C,79/9
+Hydraulic,"Sparseness (Classif, Chan)",gradientshap,6.333333333333333,3.8078865529319543,9,Spars-C,Sparseness_C,19/3
+Hydraulic,"Sparseness (Classif, Chan)",guided_back_prop,9.333333333333334,4.038873605350878,9,Spars-C,Sparseness_C,28/3
+Hydraulic,"Sparseness (Classif, Chan)",integrated_gradients,4.555555555555555,3.844187531556932,9,Spars-C,Sparseness_C,41/9
+Hydraulic,"Sparseness (Classif, Chan)",kernelshap,11.222222222222221,3.833333333333333,9,Spars-C,Sparseness_C,101/9
+Hydraulic,"Sparseness (Classif, Chan)",lime_tabular,12.444444444444445,2.0069324297987157,9,Spars-C,Sparseness_C,112/9
+Hydraulic,"Sparseness (Classif, Chan)",occlusion,4.333333333333333,2.8284271247461903,9,Spars-C,Sparseness_C,13/3
+Hydraulic,"Sparseness (Classif, Chan)",saliency,7.111111111111111,4.735357548391791,9,Spars-C,Sparseness_C,64/9
+Hydraulic,"Sparseness (Classif, Chan)",shap_permutation,8.0,3.570714214271425,9,Spars-C,Sparseness_C,8
+Hydraulic,"Sparseness (Classif, Chan)",smooth_gradient,7.444444444444445,4.719934086168766,9,Spars-C,Sparseness_C,67/9
+Hydraulic,"Sparseness (Classif, Elem)",deeplift,3.0,1.8708286933869707,9,Spars-E,Sparseness_E,3
+Hydraulic,"Sparseness (Classif, Elem)",deepliftshap,4.777777777777778,2.8625940062196116,9,Spars-E,Sparseness_E,43/9
+Hydraulic,"Sparseness (Classif, Elem)",expected_gradients,5.666666666666667,2.0615528128088303,9,Spars-E,Sparseness_E,17/3
+Hydraulic,"Sparseness (Classif, Elem)",feature_ablation,6.777777777777778,2.3333333333333335,9,Spars-E,Sparseness_E,61/9
+Hydraulic,"Sparseness (Classif, Elem)",gradient_x_input,7.444444444444445,2.877112750272011,9,Spars-E,Sparseness_E,67/9
+Hydraulic,"Sparseness (Classif, Elem)",gradientshap,6.222222222222222,2.6352313834736494,9,Spars-E,Sparseness_E,56/9
+Hydraulic,"Sparseness (Classif, Elem)",guided_back_prop,11.166666666666666,2.704163456597992,9,Spars-E,Sparseness_E,67/6
+Hydraulic,"Sparseness (Classif, Elem)",integrated_gradients,3.4444444444444446,2.8771127502720115,9,Spars-E,Sparseness_E,31/9
+Hydraulic,"Sparseness (Classif, Elem)",kernelshap,10.333333333333334,3.774917217635375,9,Spars-E,Sparseness_E,31/3
+Hydraulic,"Sparseness (Classif, Elem)",lime_tabular,12.333333333333334,2.0615528128088303,9,Spars-E,Sparseness_E,37/3
+Hydraulic,"Sparseness (Classif, Elem)",occlusion,8.333333333333334,3.1622776601683795,9,Spars-E,Sparseness_E,25/3
+Hydraulic,"Sparseness (Classif, Elem)",saliency,9.833333333333334,3.648629879831606,9,Spars-E,Sparseness_E,59/6
+Hydraulic,"Sparseness (Classif, Elem)",shap_permutation,4.222222222222222,3.032234233110042,9,Spars-E,Sparseness_E,38/9
+Hydraulic,"Sparseness (Classif, Elem)",smooth_gradient,11.444444444444445,3.0867098629086893,9,Spars-E,Sparseness_E,103/9

@@ -1,0 +1,9 @@
+canonical_column,scorer_key,historical_metric_family,pillar,direction,sign_in_promethee,definition,promethee_label_classification,promethee_label_regression
+FC_abs,FC_abs,Faithfulness Correlation,Faithfulness,higher_is_better,1,"Spearman(sum_{j in S}|a_j|, |f(x)-f(x_S)|), q=10, M=100, seed 42, TemporalInterpolation, fixed clean target",Faithfulness Correlation (Classif),Faithfulness Correlation (Reg)
+PF_AUC,PF_AUC,Pixel Flipping,Faithfulness,lower_is_better,-1,"progressive deletion by descending |a| (TemporalInterpolation, each state from the clean input), trapezoidal AUC over x=k/D",Pixel Flipping (Classif),Pixel Flipping (Reg)
+AvgSen,AvgSen,Average Sensitivity,Robustness,lower_is_better,-1,"ExpliTest fa_ts_mv_avg_sensitivity, sigma 0.01, tau 0.05, M=5, seed 42, saliency re-explanation",Average Sensitivity (Classif),Average Sensitivity (Reg)
+Continuity,Cont,Continuity,Robustness,lower_is_better,-1,"ExpliTest fa_ts_mv_continuity, same perturbation stream as AvgSen",Continuity (Classif),Continuity (Reg)
+Sparseness_E,Spars_E,"Sparseness (*, Elem)",Complexity,higher_is_better,1,ExpliTest fa_ts_mv_sparseness_element (Gini of |a| over elements),"Sparseness (Classif, Elem)","Sparseness (Reg, Elem)"
+Sparseness_C,Spars_C,"Sparseness (*, Chan)",Complexity,higher_is_better,1,ExpliTest fa_ts_mv_sparseness_channel,"Sparseness (Classif, Chan)","Sparseness (Reg, Chan)"
+Complexity_E,Compl_E,"Complexity (*, Elem)",Complexity,lower_is_better,-1,ExpliTest fa_ts_mv_complexity_entropy_element,"Complexity (Classif, Elem)","Complexity (Reg, Elem)"
+Complexity_C,Compl_C,"Complexity (*, Chan)",Complexity,lower_is_better,-1,ExpliTest fa_ts_mv_complexity_entropy_channel,"Complexity (Classif, Chan)","Complexity (Reg, Chan)"
