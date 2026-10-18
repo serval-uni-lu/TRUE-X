@@ -767,13 +767,11 @@ class LimeTabularTimeseriesExplainer(BaseExplainer):
 
 class ShapExplainer(BaseExplainer):
     """
-    SHAP wrapper. Tries GradientExplainer for torch; falls back to KernelExplainer on flattened features.
+    Element-level SHAP with the default shap.Explainer (PermutationExplainer for a model
+    function and a background matrix). Each (channel, timestep) element is one feature.
+    Classification explains the raw score of the class predicted on the clean input.
     Returns (B,C,T) attributions.
     """
-    def __init__(self, model):
-        super().__init__(model)
-        self._last = None  # for optional additivity check
-
     def explain(
         self,
         x_val: NDArray,
@@ -783,155 +781,40 @@ class ShapExplainer(BaseExplainer):
         device: str = "auto",
         *,
         return_abs: bool = True,
-        background_k: int = 20,      # cap background for speed
-        max_samples_kernel: int = 10, # cap query samples for KernelExplainer
-        max_explain: Optional[int] = None,  # optional tighter cap (tiles back)
+        seed: int = 42,
         **_,
     ) -> NDArray:
-        if not _HAVE_SHAP:
-            warnings.warn("shap is not installed; returning zeros.")
-            return np.zeros_like(x_val, dtype=np.float32)
-
         device_t = self._resolve_device(self.model, device)
-        x = self._prepare_inputs(x_val, device_t)  # (B,C,T)
-        bg = torch.as_tensor(background_data, dtype=torch.float32, device=device_t)
-        if bg.ndim == 2:
-            bg = bg.unsqueeze(0)
-
-        # Subsample background to at most background_k to keep Kernel SHAP tractable
-        if bg.size(0) > int(background_k):
-            perm = torch.randperm(bg.size(0), device=bg.device)[: int(background_k)]
-            bg = bg[perm]
-
-        models = self.model if self.is_ensemble else [self.model]
-        m = models[0]  # SHAP doesn't natively average models; use first
+        m = self.model[0] if self.is_ensemble else self.model  # SHAP doesn't natively average models
         m.to(device_t).eval()
 
-        B, C, T = x.shape
-        # Try GradientExplainer (fast)
-        try:
-            explainer = _shap.GradientExplainer(m, bg)
-            # For classification: shap returns list [array per output]
+        x_np = np.asarray(x_val, dtype=np.float32)
+        B, C, T = x_np.shape
+        D = C * T
+        bg_flat = np.asarray(background_data, dtype=np.float64).reshape(-1, D)
+        classification = (task or "classification").lower() == "classification"
+
+        def _scores(X_ct: NDArray) -> NDArray:
             with torch.no_grad():
-                out = m(x)
+                out = m(torch.from_numpy(X_ct.astype(np.float32)).to(device_t))
                 if isinstance(out, (tuple, list)):
                     out = out[0]
-            if (task or "classification").lower() == "classification" and out.dim() == 2 and out.size(1) > 1:
-                # choose target per sample
-                if target_class is None:
-                    target_idx = out.argmax(dim=1).detach().cpu().numpy()
-                else:
-                    target_idx = np.full((B,), int(target_class), dtype=np.int64)
-                shap_vals = []
-                for i in range(B):
-                    sv = explainer.shap_values(x[i:i+1], ranked_outputs=None)
-                    # sv is list of arrays [K outputs]; pick target_idx[i]
-                    sv_i = sv[target_idx[i]]  # (1,C,T)
-                    shap_vals.append(sv_i)
-                a = np.concatenate(shap_vals, axis=0)
+            return out.detach().cpu().numpy()
+
+        attrs = []
+        for i in range(B):
+            if classification:
+                cls = int(np.argmax(_scores(x_np[i:i + 1]), axis=1)[0]) if target_class is None else int(target_class)
+                f = lambda Z, c=cls: _scores(Z.reshape(-1, C, T)).astype(np.float64)[:, c]
             else:
-                # regression or single output => returns one array
-                sv = explainer.shap_values(x)
-                a = sv if isinstance(sv, np.ndarray) else sv[0]
-            self._last = (x.detach().cpu().numpy(), bg.detach().cpu().numpy(), a.copy())
-            return np.abs(a) if return_abs else a
-        except Exception as _eg_err:
-            # Fall back to KernelExplainer on flattened input (CPU/numpy)
-            warnings.warn(f"GradientExplainer failed ({_eg_err}); falling back to SHAP KernelExplainer (slow).")
-
-            x_np = x.detach().cpu().numpy().astype(np.float32)
-            bg_np = bg.detach().cpu().numpy().astype(np.float32)
-            B, C, T = x_np.shape
-            D = C * T
-            X = x_np.reshape(B, D)
-            BG = bg_np.reshape(bg_np.shape[0], D)
-
-            mode = (task or "classification").lower()
-            models = self.model if self.is_ensemble else [self.model]
-
-            def _predict(Xtab: NDArray) -> NDArray:
-                Xb = torch.from_numpy(Xtab.astype(np.float32)).to(device_t).view(-1, C, T)
-                with torch.no_grad():
-                    outs = []
-                    for mm in models:
-                        mm.to(device_t).eval()
-                        out = mm(Xb)
-                        if isinstance(out, (tuple, list)):
-                            out = out[0]
-                        outs.append(out)
-                    out = torch.stack([o if o.dim() > 1 else o.unsqueeze(1) for o in outs], dim=0).mean(dim=0)
-                    if mode == "classification":
-                        if out.size(-1) > 1:
-                            prob = torch.softmax(out, dim=1)
-                        else:
-                            p1 = torch.sigmoid(out)
-                            prob = torch.cat([1 - p1, p1], dim=1)  # (N,2)
-                        return prob.detach().cpu().numpy()
-                    else:
-                        return out.detach().cpu().numpy()
-
-            try:
-                expl = _shap.KernelExplainer(_predict, BG)
-                # choose class to explain (classification)
-                if mode == "classification":
-                    if target_class is None:
-                        probs = _predict(X[:1])
-                        cls = int(probs.argmax(axis=1).item())
-                    else:
-                        cls = int(target_class)
-                # cap #query samples
-                limit = int(max_explain) if max_explain is not None else int(max_samples_kernel)
-                Xq = X if X.shape[0] <= limit else X[:limit]
-                sv = expl.shap_values(Xq)
-                if mode == "classification":
-                    if isinstance(sv, list):
-                        a_flat = sv[cls]  # (N,D)
-                    else:
-                        # binary often returns single ndarray (positive class)
-                        a_flat = sv      # (N,D)
-                else:
-                    a_flat = sv if isinstance(sv, np.ndarray) else sv[0]
-                # tile back if truncated
-                if Xq.shape[0] != X.shape[0]:
-                    reps = int(np.ceil(X.shape[0] / Xq.shape[0]))
-                    a_flat = np.vstack([a_flat] * reps)[: X.shape[0]]
-            except Exception:
-                # Catastrophic fallback
-                a_flat = np.zeros_like(X, dtype=np.float32)
-
-            a = a_flat.reshape(B, C, T).astype(np.float32)
-            self._last = (x_np, bg_np, a.copy())
-            return np.abs(a) if return_abs else a
-
-    def additivity_check(self):
-        if self._last is None:
-            return None
-        x, bg, a = self._last
-        try:
-            m = self.model[0] if self.is_ensemble else self.model
-            dev = self._resolve_device(self.model, "auto")
-            m.to(dev).eval()
-            with torch.no_grad():
-                xt = torch.tensor(x, dtype=torch.float32, device=dev)
-                bt = torch.tensor(bg, dtype=torch.float32, device=dev)
-                fx = m(xt)
-                if isinstance(fx, (tuple, list)):
-                    fx = fx[0]
-                if fx.dim() == 2 and fx.size(1) > 1:
-                    fx = fx.max(dim=1).values.mean()
-                else:
-                    fx = fx.mean()
-                fbg = m(bt)
-                if isinstance(fbg, (tuple, list)):
-                    fbg = fbg[0]
-                if fbg.dim() == 2 and fbg.size(1) > 1:
-                    fbg = fbg.max(dim=1).values.mean()
-                else:
-                    fbg = fbg.mean()
-                phi_sum = a.sum(axis=(1, 2)).mean()
-                return float(fx.item()), float(fbg.item()), float(phi_sum)
-        except Exception:
-            return None
+                f = lambda Z: _scores(Z.reshape(-1, C, T)).reshape(len(Z))
+            explainer = _shap.Explainer(f, bg_flat)
+            # PermutationExplainer draws its permutations from the global numpy RNG
+            np.random.seed(seed)
+            expl = explainer(x_np[i].astype(np.float64).reshape(1, D), max_evals=2 * D + 1, silent=True)
+            attrs.append(np.asarray(expl.values).reshape(C, T))
+        out = np.stack(attrs, axis=0)
+        return np.abs(out) if return_abs else out
 
 
 # ---------------- Factory ----------------
@@ -950,7 +833,7 @@ class ExplainerFactory:
         "smooth_gradient": SmoothGradientExplainer,
         "lime_tabular": LimeTabularTimeseriesExplainer,
         "shapley_sampling": ShapleySamplingExplainer,
-        "shap": ShapExplainer,
+        "shap_permutation": ShapExplainer,
     }
 
     @classmethod

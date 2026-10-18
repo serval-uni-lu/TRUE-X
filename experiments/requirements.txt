@@ -14,5 +14,5 @@ typeguard==2.13.3
 typing_extensions==4.12.2
 
 # optional XAI methods
-# shap
+shap==0.48.0
 # lime
