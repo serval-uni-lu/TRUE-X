@@ -4,7 +4,7 @@ from pathlib import Path
 
 _APP_DIR  = Path(__file__).resolve().parent
 _ROOT     = _APP_DIR.parent
-RANKS_CSV = str(_ROOT / "results" / "ranks_per_block_with_performance.csv")
+RANKS_CSV = str(_ROOT / "results" / "main_benchmark_14_with_performance.csv")
 
 try:
     from PipelineProfiler import get_pipeline_profiler_html
