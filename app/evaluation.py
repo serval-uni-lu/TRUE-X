@@ -164,7 +164,7 @@ def _run_b1(
         for method in methods:
             try:
                 A       = compute_attributions_for_method(exp, method, X_exp, bg_small, baseline)
-                metrics = run_xai_metrics_for_batch(exp, X_exp, A, train_loader=train_loader)
+                metrics = run_xai_metrics_for_batch(exp, X_exp, A)
                 for raw_name, arr in metrics.items():
                     rows.append({
                         "Dataset":   dataset_name,

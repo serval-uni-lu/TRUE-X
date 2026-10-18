@@ -147,21 +147,6 @@ def infer_input_shape_from_loader(loader) -> Tuple[int, int]:
     _, C, T = x.shape
     return (T, C)
 
-def _channel_mean_from_loader(train_loader) -> np.ndarray:
-    """
-    Compute per-channel mean across all training windows: shape (C,).
-    Used as the baseline for faithfulness metrics (masking strategy).
-    Expects batches with 'sequence' key of shape (B, C, T).
-    """
-    channel_sum, n_windows = None, 0
-    for batch in train_loader:
-        x = batch["sequence"]
-        if isinstance(x, torch.Tensor):
-            x = x.detach().cpu().numpy()
-        channel_sum = x.sum(axis=(0, 2)) if channel_sum is None else channel_sum + x.sum(axis=(0, 2))
-        n_windows += x.shape[0] * x.shape[2]
-    return (channel_sum / max(n_windows, 1)).astype(np.float32)
-
 def _build_xai_metrics(kind: str) -> Dict[str, Any]:
     """
     Instantiate the full set of XAI evaluation metrics from ExpliTest.
@@ -172,8 +157,8 @@ def _build_xai_metrics(kind: str) -> Dict[str, Any]:
     return {
         f"Average Sensitivity ({suffix})":       FAMVAvgSensitivity(kind=kind, sigma=0.01, tau=0.05, n_perturbations=5, seed=42),
         f"Continuity ({suffix})":                FAMVContinuity(kind=kind, sigma=0.01, tau=0.05, n_perturbations=5, seed=42),
-        f"Faithfulness Correlation ({suffix})":  FAMVFaithfulnessCorrelation(kind=kind, subset_size=10, n_runs=100, seed=42),
-        f"Pixel Flipping ({suffix})":            FAMVPixelFlipping(kind=kind, features_in_step=1),
+        f"Faithfulness Correlation ({suffix})":  FAMVFaithfulnessCorrelation(kind=kind, subset_size=10, n_runs=100, replacement="interpolation", seed=42),
+        f"Pixel Flipping ({suffix})":            FAMVPixelFlipping(kind=kind, features_in_step=1, replacement="interpolation"),
         f"Sparseness ({suffix}, Elem)":          FAMVSparsenessElement(),
         f"Complexity ({suffix}, Elem)":          FAMVComplexityEntropyElement(),
         f"Sparseness ({suffix}, Chan)":          FAMVSparsenessChannel(),
@@ -472,21 +457,12 @@ def run_xai_metrics_for_batch(
     exp_model: ExperimentModel,
     x_bct: np.ndarray,
     attr_bct: np.ndarray,
-    train_loader: Optional[DataLoader] = None,
 ) -> Dict[str, np.ndarray]:
     """
     Return per-sample arrays for each metric. If a metric still returns a scalar,
     we broadcast it to (B,) to avoid crashing.
     """
     task = exp_model.task.lower()
-    baseline_c = None
-    if train_loader is not None:
-        try:
-            baseline_c = _channel_mean_from_loader(train_loader)  # (C,)
-        except Exception as e:
-            logger.info(f"[baseline] channel mean fallback: {e}")
-            baseline_c = x_bct.mean(axis=(0, 2))
-
     kind = "regression" if task.startswith("regress") else "classification"
     metric_dict = _build_xai_metrics(kind)
     results: Dict[str, np.ndarray] = {}
@@ -517,8 +493,6 @@ def run_xai_metrics_for_batch(
                 results[name] = np.full(x_bct.shape[0], np.nan, dtype=float)
                 continue
             arr = metric.evaluate_attributions(model=exp_model, x=x_bct, attributions=attr_bct, explain_fn=robust_expl)
-        elif "Faithfulness Correlation" in name or "Pixel Flipping" in name:
-            arr = metric.evaluate_attributions(model=exp_model, x=x_bct, attributions=attr_bct, baseline_channels=baseline_c)
         else:
             arr = metric.evaluate_attributions(model=exp_model, x=x_bct, attributions=attr_bct)
 
@@ -688,7 +662,7 @@ def run_for_dataset_model(
                     raise ValueError(f"Attribution shape mismatch {A.shape} vs input {X_exp.shape}")
 
             X_bct = np.asarray(X_exp)  # already (N, C, T) — channels-first throughout
-            metrics = run_xai_metrics_for_batch(exp, X_bct, A, train_loader=train_loader)
+            metrics = run_xai_metrics_for_batch(exp, X_bct, A)
 
             # === per-dataset CSV logging, one row per sample ===
             ds_csv = dataset_csv_path(out_dir, dataset_name)
