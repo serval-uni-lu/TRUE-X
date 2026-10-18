@@ -789,9 +789,7 @@ def main():
     parser.add_argument("--out-attrs-dir", type=str, default=None,
                         help="If set, saves x_exp.npy/attr.npy/summary.json under this directory.")
     parser.add_argument("--methods", type=str,
-                        default="expected_gradients,lime_tabular")
-                        #default="deepliftshap,smooth_gradient,occlusion,feature_ablation,gradientshap,expected_gradients,lime_tabular")
-                        #default="saliency,gradient_x_input,guided_back_prop,integrated_gradients,deeplift,deepliftshap,smooth_gradient,occlusion,feature_ablation,gradientshap,expected_gradients,lime_tabular")
+                        default="saliency,gradient_x_input,guided_back_prop,smooth_gradient,integrated_gradients,expected_gradients,deeplift,deepliftshap,gradientshap,occlusion,feature_ablation,lime_tabular,shap_permutation,kernelshap")
     parser.add_argument("--max-explain", type=int, default=None,
                         help="Cap the number of explained samples per model (from test/val).")
     parser.add_argument("--seed", type=int, default=42)
