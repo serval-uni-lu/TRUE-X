@@ -44,7 +44,7 @@ Pre-trained model weights are in `saved_models/` and versioned in this repositor
 1. Download `CWRU_12k_ENCODER.pt` from the [Releases](../../releases) page.
 2. Place it at `saved_models/CWRU_12k_ENCODER.pt`.
 
-The following result files are larger than 50 MB and are available as a release asset:
+The following result files are larger than 50 MB and are available in the [neurocom-r1 release](https://github.com/serval-uni-lu/TRUE-X/releases/tag/neurocom-r1):
 
 | File | Place it at |
 |---|---|
@@ -113,8 +113,6 @@ The eight metrics are implemented in ExpliTest (`submodules/explitest`) and inst
 - Both faithfulness metrics replace a removed element by linear interpolation in time between the nearest kept elements of the same channel, using the original values only (nearest value if only one side exists, channel mean of the window if the whole channel is removed). `replacement="train_mean"` uses the per-channel training mean instead.
 - **Average Sensitivity (AvgSen)** and **Continuity (Cont):** Gaussian input noise with σ = 0.01 (inputs are standardized per channel with training statistics) and M = 5 accepted perturbations per sample, fixed seed. A perturbation is accepted if |Δf| ≤ τ = 0.05 (regression) or if the predicted class is unchanged (classification). AvgSen is the mean ratio of the Frobenius norms of the attribution change and the noise; Cont is 1 minus the mean Spearman correlation between the original and perturbed attribution maps.
 - **Complexity:** Gini sparseness and normalized entropy, at element level (Spars-E, Compl-E) and channel level (Spars-C, Compl-C).
-
-<!-- robustness/splits: pending -->
 
 Per {model, explainer}, each metric is summarized by its median over the evaluation samples after direction alignment (higher is better), and the explainers are ranked per dataset with PROMETHEE II (`experiments/analysis/promethee_ranking.py`, equal pillar weights).
 
