@@ -435,7 +435,7 @@ def compute_attributions_for_method(
     explainer = ExplainerFactory.get(method, xai_model)
 
     kwargs = dict(x_val=x_explain, task=exp_model.task, **params)
-    if method in {"deepliftshap", "gradientshap", "expected_gradients", "lime_tabular", "shapley_sampling", "shap_permutation"}:
+    if method in {"deepliftshap", "gradientshap", "expected_gradients", "lime_tabular", "shapley_sampling", "shap_permutation", "kernelshap"}:
         if background_small is not None:
             kwargs["background_data"] = background_small
     if method in {"integrated_gradients", "deeplift", "deepliftshap", "expected_gradients"} and baseline_mean is not None:

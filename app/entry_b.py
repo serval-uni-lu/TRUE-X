@@ -773,6 +773,7 @@ _XAI_GROUPS = {
     "Surrogate models": [
         "lime_tabular",
         "shap_permutation",
+        "kernelshap",
     ],
 }
 

@@ -765,6 +765,37 @@ class LimeTabularTimeseriesExplainer(BaseExplainer):
         return attributions.reshape(B, C, T)
 
 
+def _flat_model_fn(m: torch.nn.Module, device: torch.device, C: int, T: int,
+                   target: Optional[int], batch_size: Optional[int] = None):
+    """
+    (n, C*T) -> (n,) wrapper for SHAP: raw score of class `target`, or the scalar
+    output when target is None. The rows are evaluated in chunks of batch_size.
+    """
+    def f(Z: NDArray) -> NDArray:
+        X = torch.from_numpy(np.asarray(Z, dtype=np.float32).reshape(-1, C, T))
+        step = batch_size or X.shape[0]
+        outs = []
+        with torch.no_grad():
+            for s in range(0, X.shape[0], step):
+                out = m(X[s:s + step].to(device))
+                if isinstance(out, (tuple, list)):
+                    out = out[0]
+                outs.append(out.detach().cpu())
+        out = torch.cat(outs, dim=0).numpy()
+        if target is None:
+            return out.reshape(X.shape[0])
+        return out.astype(np.float64)[:, target]
+    return f
+
+
+def _predicted_class(m: torch.nn.Module, device: torch.device, x_ct: NDArray) -> int:
+    with torch.no_grad():
+        out = m(torch.from_numpy(np.asarray(x_ct, dtype=np.float32)[None]).to(device))
+        if isinstance(out, (tuple, list)):
+            out = out[0]
+    return int(out.argmax(dim=1)[0])
+
+
 class ShapExplainer(BaseExplainer):
     """
     Element-level SHAP with the default shap.Explainer (PermutationExplainer for a model
@@ -794,25 +825,62 @@ class ShapExplainer(BaseExplainer):
         bg_flat = np.asarray(background_data, dtype=np.float64).reshape(-1, D)
         classification = (task or "classification").lower() == "classification"
 
-        def _scores(X_ct: NDArray) -> NDArray:
-            with torch.no_grad():
-                out = m(torch.from_numpy(X_ct.astype(np.float32)).to(device_t))
-                if isinstance(out, (tuple, list)):
-                    out = out[0]
-            return out.detach().cpu().numpy()
-
         attrs = []
         for i in range(B):
+            cls = None
             if classification:
-                cls = int(np.argmax(_scores(x_np[i:i + 1]), axis=1)[0]) if target_class is None else int(target_class)
-                f = lambda Z, c=cls: _scores(Z.reshape(-1, C, T)).astype(np.float64)[:, c]
-            else:
-                f = lambda Z: _scores(Z.reshape(-1, C, T)).reshape(len(Z))
-            explainer = _shap.Explainer(f, bg_flat)
+                cls = _predicted_class(m, device_t, x_np[i]) if target_class is None else int(target_class)
+            explainer = _shap.Explainer(_flat_model_fn(m, device_t, C, T, cls), bg_flat)
             # PermutationExplainer draws its permutations from the global numpy RNG
             np.random.seed(seed)
             expl = explainer(x_np[i].astype(np.float64).reshape(1, D), max_evals=2 * D + 1, silent=True)
             attrs.append(np.asarray(expl.values).reshape(C, T))
+        out = np.stack(attrs, axis=0)
+        return np.abs(out) if return_abs else out
+
+
+class KernelShapExplainer(BaseExplainer):
+    """
+    Element-level KernelSHAP (shap.KernelExplainer, identity link) with 2D+2048 coalition
+    samples and no l1 regularization. Each (channel, timestep) element is one feature.
+    Classification explains the raw score of the class predicted on the clean input.
+    Returns (B,C,T) attributions.
+    """
+    def explain(
+        self,
+        x_val: NDArray,
+        background_data: NDArray,
+        task: str = "classification",
+        target_class: Optional[int] = None,
+        device: str = "auto",
+        *,
+        return_abs: bool = True,
+        seed: int = 42,
+        batch_size: int = 1024,
+        **_,
+    ) -> NDArray:
+        device_t = self._resolve_device(self.model, device)
+        m = self.model[0] if self.is_ensemble else self.model  # SHAP doesn't natively average models
+        m.to(device_t).eval()
+
+        x_np = np.asarray(x_val, dtype=np.float32)
+        B, C, T = x_np.shape
+        D = C * T
+        bg_flat = np.asarray(background_data, dtype=np.float64).reshape(-1, D)
+        classification = (task or "classification").lower() == "classification"
+
+        attrs = []
+        for i in range(B):
+            cls = None
+            if classification:
+                cls = _predicted_class(m, device_t, x_np[i]) if target_class is None else int(target_class)
+            f = _flat_model_fn(m, device_t, C, T, cls, batch_size)
+            explainer = _shap.KernelExplainer(f, bg_flat, link="identity")
+            # KernelExplainer samples coalitions from the global numpy RNG
+            np.random.seed(seed)
+            phi = explainer.shap_values(x_np[i].astype(np.float64).reshape(1, D),
+                                        nsamples=2 * D + 2048, l1_reg=0, silent=True)
+            attrs.append(np.asarray(phi, dtype=np.float64).reshape(C, T))
         out = np.stack(attrs, axis=0)
         return np.abs(out) if return_abs else out
 
@@ -834,6 +902,7 @@ class ExplainerFactory:
         "lime_tabular": LimeTabularTimeseriesExplainer,
         "shapley_sampling": ShapleySamplingExplainer,
         "shap_permutation": ShapExplainer,
+        "kernelshap": KernelShapExplainer,
     }
 
     @classmethod
