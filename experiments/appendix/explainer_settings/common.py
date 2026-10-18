@@ -70,7 +70,7 @@ def get_or_compute(path: Path, compute_fn) -> np.ndarray:
     return A
 
 
-# ---------------- Diagnostics (attribution-level) ----------------
+# Diagnostics (attribution-level)
 
 def normalized_l1(a_k: np.ndarray, a_ref: np.ndarray, eps: float = 1e-12) -> float:
     num = np.sum(np.abs(np.abs(a_k) - np.abs(a_ref)))

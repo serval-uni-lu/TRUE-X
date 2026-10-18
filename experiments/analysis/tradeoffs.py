@@ -22,12 +22,12 @@ from decimal import Decimal, ROUND_HALF_UP
 from fractions import Fraction
 
 
-# -------- PDF / vector-friendly defaults --------
+# PDF / vector-friendly defaults
 plt.rcParams["pdf.fonttype"] = 42
 plt.rcParams["ps.fonttype"] = 42
 plt.rcParams["savefig.transparent"] = False
 
-# -------- Bigger fonts (global) --------
+# Bigger fonts (global)
 plt.rcParams.update({
     "font.size": 13,
     "axes.labelsize": 14,
@@ -37,7 +37,7 @@ plt.rcParams.update({
     "legend.fontsize": 12,
 })
 
-# ---------------- I/O ----------------
+# I/O
 _ROOT = Path(__file__).resolve().parents[2]
 OUT_ROOT = _ROOT / "results" / "main_benchmark_14_tradeoffs"
 IN_COMPOSITES = OUT_ROOT / "pillar_composites_norm01.csv"
@@ -53,11 +53,11 @@ AX_MAX = 1.2
 DISPLAY_NAME = {"CWRU_12k": "CWRU", "Hydraulic": "Hydraulic", "Ecoating": "Ecoating", "FD001": "C-MAPSS"}
 TABLE6_ORDER = ["CWRU_12k", "Ecoating", "FD001", "Hydraulic"]   # row order of Table 6
 
-# ---------------- Highlighted models: performance rank <= 2, ties kept ----------------
+# Highlighted models: performance rank <= 2, ties kept
 # Loaded in main() from predictive_performance_36.csv; {dataset: [model, ...]} ordered by (rank, model).
 HIGHLIGHT_BY_DATASET = {}
 
-# ---------------- Highlight colors (NO GRAY, NO REUSE, HIGH CONTRAST) ----------------
+# Highlight colors: not gray, not reused, high contrast
 _TAB10 = plt.get_cmap("tab10")
 _TAB20 = plt.get_cmap("tab20")
 
@@ -83,7 +83,7 @@ def hilite_colors(dataset: str) -> dict:
             raise SystemExit(f"not enough spare highlight colours for {dataset}")
     return out
 
-# ---------------- Explicit explainer -> marker mapping ----------------
+# Explicit explainer -> marker mapping
 EXPLAINER_MARKERS = {
     "deeplift": "o", "deepliftshap": "s", "expected_gradients": "^", "feature_ablation": "D",
     "gradient_x_input": "P", "gradientshap": "v", "guided_back_prop": "X", "integrated_gradients": "<",
@@ -93,7 +93,7 @@ EXPLAINER_MARKERS = {
 }
 LEGEND_ORDER = sorted(EXPLAINER_MARKERS)
 
-# ---------------- Display rounding policy ----------------
+# Display rounding policy
 # Decimal ROUND_HALF_UP = round half away from zero. Percentages are rounded from the exact rational
 # 100*k/n; rho and the CI bounds from the shortest repr of the float. A value that rounds to zero is
 # shown without a sign.
@@ -107,14 +107,14 @@ def round_half_up_str(x, nd: int) -> str:
 def pct_fraction(k: int, n: int) -> Fraction:
     return Fraction(100 * k, n)
 
-# ---------------- Point styling ----------------
+# Point styling
 BASE_S_DOM = 42
 BASE_S_FR = 95
 HILITE_SCALE = 1.35
 
 BLACK_RGBA = mcolors.to_rgba("black")
 
-# ---- OPACITY CONTROLS FOR BLACK POINTS (THIS IS WHERE YOU CONTROL "LIGHTNESS") ----
+# Opacity of the black points (lower is lighter)
 ALPHA_DOM_BASE = 0.20   # dominated non-highlight black (lower => lighter)
 ALPHA_FR_BASE  = 0.30   # frontier non-highlight black (lower => lighter)
 
@@ -127,7 +127,6 @@ EDGE_FR = "black"
 LW_DOM = 0.6
 LW_FR = 1.2
 
-# ---------------- Utils ----------------
 def pareto_front_flags(x: np.ndarray, y: np.ndarray) -> np.ndarray:
     n = len(x)
     is_front = np.ones(n, dtype=bool)
@@ -166,7 +165,7 @@ def spearman_ci(x: np.ndarray, y: np.ndarray, n_boot: int = 2000, seed: int = 7)
     lo, hi = np.percentile(boots, [2.5, 97.5])
     return rho, (lo, hi)
 
-# ---------------- Plot one pair ----------------
+# Plot one pair
 def plot_pair(ax, sub_df, xcol, ycol, expl_markers):
     vals = sub_df[[xcol, ycol]].to_numpy()
     front_mask = pareto_front_flags(vals[:, 0], vals[:, 1])
@@ -270,7 +269,7 @@ def save_legend_pdf(all_explainers, expl_markers, out_pdf: Path, ncol: int = 6):
     plt.close(fig)
     print(f"[ok] wrote {out_pdf}")
 
-# ---------------- Table 6 (CSV and LaTeX from one dataframe) ----------------
+# Table 6 (CSV and LaTeX from one dataframe)
 def build_table6(stats_df: pd.DataFrame) -> pd.DataFrame:
     t = stats_df.copy()
     t["Dataset"] = t["Dataset_id"].map(DISPLAY_NAME)
@@ -321,7 +320,6 @@ def table6_latex(t: pd.DataFrame) -> str:
     return "\n".join(L)
 
 
-# ---------------- Main ----------------
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--composites", type=Path, default=IN_COMPOSITES)

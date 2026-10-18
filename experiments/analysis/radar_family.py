@@ -21,14 +21,14 @@ from matplotlib.cm import get_cmap
 from matplotlib.lines import Line2D
 from matplotlib.transforms import Bbox
 
-# --------------------- Vector-friendly defaults ---------------------
+# Vector-friendly defaults
 mpl.rcParams["ps.fonttype"] = 42     # embed TrueType in EPS
 mpl.rcParams["pdf.fonttype"] = 42
 mpl.rcParams["text.usetex"] = False
 mpl.rcParams["savefig.bbox"] = "tight"
 mpl.rcParams["font.size"] = 10       # base font size (we override some below)
 
-# --------------------- Tunables (spacing / highlight) ---------------------
+# Tunables (spacing / highlight)
 HIGHLIGHT_BANDS = []  # e.g. [(0.20, 0.40), (0.60, 0.80)]
 HIGHLIGHT_COLOR = "#e6e6e6"
 GRID_COLOR = "#cfcfcf"
@@ -37,14 +37,14 @@ FILL_ALPHA = 0.18
 
 SINGLE_XTICK_FS = 12
 
-# Start distance (in POINTS) for labels measured outward from the radar circle.
+# Start distance (in points) for labels measured outward from the radar circle.
 # Auto-adjust will push farther only if needed.
 SINGLE_LABEL_OFFSET_PT = 18
 
-# Clearance between label bbox and circle, in PIXELS.
+# Clearance between label bbox and circle, in pixels.
 LABEL_CLEARANCE_PX = 6
 
-# Offset growth in POINTS per iteration when a label still intersects the circle.
+# Offset growth in points per iteration when a label still intersects the circle.
 LABEL_STEP_PT = 2
 
 # Safety cap (points)
@@ -54,12 +54,11 @@ LABEL_MAX_OFFSET_PT = 60
 # Higher = more robust.
 CIRCLE_SAMPLE_N = 11
 
-# --------------------- Paths ---------------------
 _ROOT = Path(__file__).resolve().parents[2]
 INPUT_CSV = _ROOT / "results" / "main_benchmark_14_promethee_input" / "promethee_input_14.csv"
 OUT_ROOT = _ROOT / "results" / "main_benchmark_14_radars"
 
-# --------------------- XAI families ---------------------
+# XAI families
 FAMILY_MAP = {
     # Gradient-based (Gra)
     "saliency": "Gra",
@@ -86,7 +85,7 @@ FAMILY_MAP = {
 
 FAMILIES_ORDER = ["Gra", "Pat", "Per", "Sur"]
 
-# --------------------- Metric abbreviations & order ---------------------
+# Metric abbreviations & order
 METRIC_ABBR = {
     "Average Sensitivity (Reg)": "AvgSen",
     "Average Sensitivity (Classif)": "AvgSen",
@@ -107,18 +106,18 @@ METRIC_ABBR = {
 }
 ABBR_ORDER = ["AvgSen","Cont","FC","PF","Spars-E","Spars-C","Compl-E","Compl-C"]
 
-# --------------------- Exclusions ---------------------
+# Exclusions
 EXCLUDE = { "Hydraulic": [r"(?i)\bmcd[_\s]*cnn\b", r"(?i)\bmcdc?cnn\b"] }
 def _is_excluded(dataset: str, model: str) -> bool:
     pats = EXCLUDE.get(dataset, [])
     return any(re.search(p, model) for p in pats)
 
-# --------------------- Color mapping (per FAMILY, stable across figs) ---------------------
+# Color mapping per family, stable across figures
 tab10 = get_cmap("tab10")
 COLOR_OF_FAMILY = {fam: tab10(i % 10) for i, fam in enumerate(FAMILIES_ORDER)}
 
 
-# --------------------- Rank01 within a (Dataset, Model) block at FAMILY level ---------------------
+# Rank01 within a (Dataset, Model) block at family level
 def rank01_family_block(df_block: pd.DataFrame, return_all: bool = False):
     # return_all=True also returns the intermediates (M, ranks, k) for export
     df = df_block.copy()
@@ -147,7 +146,7 @@ def rank01_family_block(df_block: pd.DataFrame, return_all: bool = False):
         return r01.loc[present], M.loc[present], ranks.loc[present], k.loc[present]
     return r01.loc[present]
 
-# --------------------- Polar helpers ---------------------
+# Polar helpers
 def _draw_inside_bands(ax, bands=HIGHLIGHT_BANDS, color=HIGHLIGHT_COLOR, zorder=3):
     theta = np.linspace(0, 2*np.pi, 720)
     for r1, r2 in bands:
@@ -193,7 +192,7 @@ def _place_radar_labels_centered_autopush(
     for a, lab in zip(angles, labels):
         a = float(a) % (2*np.pi)
 
-        # Outward radial direction in DISPLAY coords:
+        # Outward radial direction in display coordinates:
         p1 = ax.transData.transform((a, 1.00))
         p2 = ax.transData.transform((a, 1.02))
         v = p2 - p1
@@ -298,7 +297,7 @@ def _plot_radar(ax, values_per_label, metric_labels, color_per_label,
                 color=color_per_label[lab],
                 linewidth=line_w, zorder=10)
 
-# --------------------- Single model (PDF) ---------------------
+# Single model (PDF)
 def save_single_model_radar(figs_dir, dataset, model, r01_block, families, metric_labels,
                             fig_w=4.8, fig_h=3.2):
     families = [f for f in FAMILIES_ORDER if f in families and f in r01_block.columns]
@@ -328,7 +327,7 @@ def save_single_model_radar(figs_dir, dataset, model, r01_block, families, metri
     plt.close(fig)
     print("Saved:", out_base.with_suffix(".pdf"))
 
-# --------------------- Separate legend figure ---------------------
+# Separate legend figure
 def save_family_legend(out_root):
     fam_used = [f for f in FAMILIES_ORDER]
 
@@ -356,7 +355,6 @@ def save_family_legend(out_root):
     plt.close(fig)
     print("Saved:", out_base.with_suffix(".pdf"))
 
-# --------------------- Driver ---------------------
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", type=Path, default=INPUT_CSV)

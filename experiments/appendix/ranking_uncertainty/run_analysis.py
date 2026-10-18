@@ -67,7 +67,7 @@ def main():
             for r in AZ.RANKINGS:
                 RANKS.append({"source": source, "dataset": ds, "world": lab, "ranking": r, "order": " > ".join(names(T, w, ACR, r))})
 
-    # ---------- 0. reference (production models, full scope) vs the published ranking
+    # 0. reference (production models, full scope) vs the published ranking
     integ = {}
     for ds in DS:
         T = ST(T0, ds); ref = rm(T, ds, lambda m, e: T0.get("A", ds, m, "prod", e))
@@ -80,7 +80,7 @@ def main():
     json.dump(integ, open(f"{OUT}/0_reference_vs_frozen_manuscript.json", "w"), indent=1)
     print(json.dumps({d: {k: v for k, v in x.items() if k in ("same_order", "max_abs_netflow_diff", "tau_b")} for d, x in integ.items()}, indent=0))
 
-    # ---------- A training seeds
+    # A training seeds
     for ds in DS:
         T = ST(T0, ds, **SCOPE_A[ds]); g = {t: (lambda m, e, t=t: T0.get("A", ds, m, t, e)) for t in ["prod", "s11", "s33", "s55"]}
         miss = check(T, ds, g); assert not miss, (ds, miss[:5])
@@ -88,7 +88,7 @@ def main():
         add("A_training_seed", ds, T, ref, ws, ["s11", "s33", "s55"], json.dumps(SCOPE_A[ds]))
         RANKS.append({"source": "A_training_seed", "dataset": ds, "world": "prod (reference)", "ranking": "overall", "order": " > ".join(names(T, ref, ACR))})
 
-    # ---------- B explainer seeds (B1 = production maps)
+    # B explainer seeds (B1 = production maps)
     for ds in DS:
         T = ST(T0, ds, **SCOPE_B[ds]); prod = lambda m, e: T0.get("A", ds, m, "prod", e)
         gb = {b: (lambda m, e, b=b: T0.get(b, ds, m, "prod", e) if e in STOCH else prod(m, e)) for b in ["B2", "B3"]}
@@ -96,7 +96,7 @@ def main():
         ref = rm(T, ds, prod); ws = [rm(T, ds, gb[b]) for b in ["B2", "B3"]]
         add("B_explainer_rng", ds, T, ref, ws, ["B2", "B3"], json.dumps(SCOPE_B[ds]))
 
-    # ---------- C metric random draws and F metric parameters (production maps, all 14 explainers)
+    # C metric random draws and F metric parameters (production maps, all 14 explainers)
     for ds in DS:
         T = ST(T0, ds); prod = lambda m, e: T0.get("A", ds, m, "prod", e); ref = rm(T, ds, prod)
         fc = pd.concat([pd.read_csv(p) for p in sorted((UF / "metric_mc" / "fc" / ds).glob("*.csv"))])
@@ -124,7 +124,7 @@ def main():
         for s_ in sorted(sg.sigma.unique()):
             add(f"F2_sigma{s_}", ds, T, ref, [rm(T, ds, sub([2, 3], lambda m, e: sgg[(m, e, s_)]))], [f"sigma={s_}"], "full")
 
-    # ---------- D evaluation samples (paired resampling, B = 500)
+    # D evaluation samples (paired resampling, B = 500)
     rng = np.random.default_rng(AZ.RNG_D); B = 500
     for ds in ["Ecoating", "Hydraulic", "FD001", "CWRU_12k"]:
         T = ST(T0, ds); prod = lambda m, e: T0.get("A", ds, m, "prod", e); ref = rm(T, ds, prod)

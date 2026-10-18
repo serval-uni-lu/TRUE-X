@@ -71,7 +71,6 @@ def topk(w, r, E, k=3):
     return {E[j] for j in np.where(w[r].rank <= k)[0]}
 
 
-# ------------------------------------------------------------------ data
 class Tables:
     def __init__(self, data_dir: Path):
         self.c = json.load(open(STUDY_CONFIG))
@@ -116,7 +115,6 @@ def world_matrix(T, ds, getter, idx=None):
         return np.nanmean(np.stack([model_matrix(T, ds, m, getter, idx) for m in T.models(ds)]), axis=0)
 
 
-# ------------------------------------------------------------------ summaries
 def summarize(ref, worlds, E, label, ds, conditional=False):
     acc, pw, summ = [], [], {}
     w = np.ones(len(worlds)) / len(worlds)
